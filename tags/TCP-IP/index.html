@@ -13,15 +13,6 @@
     
 
     
-        <meta name="description" content="123void main(void) &amp;#123;	printf(&amp;quot;hello world\n&amp;quot;);&amp;#125;
-
-void main(void) {
-    printf(&#34;hello world\n&#34;);
-}
-
-
-1234567891011121314#pragma mark">
-    
 
     <!--Author-->
     
@@ -30,19 +21,10 @@ void main(void) {
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Test">
+        <meta property="og:title" content="Cyrus的技术空间">
     
 
     <!--Open Graph Description-->
-    
-        <meta property="og:description" content="123void main(void) &amp;#123;	printf(&amp;quot;hello world\n&amp;quot;);&amp;#125;
-
-void main(void) {
-    printf(&#34;hello world\n&#34;);
-}
-
-
-1234567891011121314#pragma mark">
     
 
     <!--Open Graph Site Name-->
@@ -50,7 +32,7 @@ void main(void) {
 
     <!--Type page-->
     
-        <meta property="og:type" content="article">
+        <meta property="og:type" content="website">
     
 
     <!--Page Cover-->
@@ -69,7 +51,7 @@ void main(void) {
 
     <!-- Title -->
     
-    <title>Test - Cyrus的技术空间</title>
+    <title>TCP/IP - Cyrus的技术空间</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -171,87 +153,51 @@ void main(void) {
 </nav>
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<!-- Set your background image for this header in your post front-matter: cover -->
+    
 
+<!-- Page Header -->
+<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>Test</h1>
-                    
-                    <span class="meta">
-                        <!-- Date and Author -->
-                        
-                            Posted by Cyrus on
-                        
-                        
-                            2018-10-23
-                        
-                    </span>
+                <div class="site-heading">
+                    <h1>#TCP/IP</h1>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-            <!-- Tags and categories -->
-           
-                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
-                    
-                        
-
-
-<a href="/tags/日常/">#日常</a>
-
-
-                    
-                </div>
-                <div class="col-lg-4 col-md-5 post-categories">
-                    
-                        
-
-<a href="/categories/杂记/">杂记</a>
-
-                    
-                </div>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             
-
-            <!-- Gallery -->
+                <div class="post-preview">
+    <a href="/2018/10/23/TCP-IP学习笔记一/">
+        <h1 class="post-title archive">
+            TCP/IP学习笔记一
+        </h1>
+    </a>
+    <p class="post-meta archive">
+        <!-- Date and Author -->
+        
+            Posted by Cyrus on
+        
+        2018-10-23
+    </p>
+</div>
             
-
-            <!-- Post Main Content -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p><img src="//myblog.cyrus.fun/2018/10/23/Test/1540260898429.png" alt="This is a test for the format"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void main(void) &#123;</span><br><span class="line">	printf(&quot;hello world\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre>
-void main(void) {
-    printf("hello world\n");
-}
-</pre>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark 上传图片</span><br><span class="line">- (void) selectUploadImage</span><br><span class="line">&#123;</span><br><span class="line">    UIActionSheet *sheet;</span><br><span class="line">    // 判断是否支持相机</span><br><span class="line">    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])</span><br><span class="line">    &#123;</span><br><span class="line">        sheet  = [[UIActionSheet alloc] initWithTitle:@&quot;选择图像&quot; delegate:self cancelButtonTitle:nil destructiveButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;拍照&quot;, @&quot;从相册选择&quot;, nil];</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        sheet = [[UIActionSheet alloc] initWithTitle:@&quot;选择图像&quot; delegate:self cancelButtonTitle:nil destructiveButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;从相册选择&quot;, nil];</span><br><span class="line">    &#125;</span><br><span class="line">    [sheet showInView:self.navigationController.view];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-                
-            </div>
-
-            <!-- Comments -->
-            
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    
-
-
-                </div>
-            
+            <div class="archive-before-pagination"></div>
+            <ul class="pager">
+    
+    
+</ul>
         </div>
     </div>
-</article>
+</div>
+
 
     <!-- Footer -->
     <hr>
