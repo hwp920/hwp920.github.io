@@ -334,22 +334,22 @@
 </ul>
 <p>通过调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)setMode:(NSString *)mode error:(NSError **)outError</span><br></pre></td></tr></table></figure></p>
 <p>可以在设置Category之后再设置模式。</p>
-<h4 id="系统中断响应"><a href="#系统中断响应" class="headerlink" title="系统中断响应"></a>系统中断响应</h4><p><font color="0x00ff00">AVAudioSessionInterruptionNotification</font>:电话、闹铃响等中断的通知,其回调回来的userInfo主要包含两个键：</p>
+<h4 id="系统中断响应"><a href="#系统中断响应" class="headerlink" title="系统中断响应"></a>系统中断响应</h4><p><font color="color=#ff0000">AVAudioSessionInterruptionNotification</font>:电话、闹铃响等中断的通知,其回调回来的userInfo主要包含两个键：</p>
 <ul>
-<li>AVAudioSessionInterruptionTypeKey:取值为 <font color="0xff0000"> AVAudioSessionInterruptionTypeBegan </font>:表示中断开始，我们应该暂停播放和采集，取值为<font color="0xff0000">AVAudioSessionInterruptionTypeEnded</font>表示中断结束，我们可以继续播放和采集。</li>
-<li>AVAudioSessionInterruptionOptionKey:当前只有一种值<font color="0xff0000">AVAudioSessionInterruptionOptionShouldResume</font>:表示此时也应该恢复继续播放和采集。</li>
+<li>AVAudioSessionInterruptionTypeKey:取值为 <font color="#ff0000"> AVAudioSessionInterruptionTypeBegan </font>:表示中断开始，我们应该暂停播放和采集，取值为<font color="color=#ff0000">AVAudioSessionInterruptionTypeEnded</font>表示中断结束，我们可以继续播放和采集。</li>
+<li>AVAudioSessionInterruptionOptionKey:当前只有一种值<font color="color=#ff0000">AVAudioSessionInterruptionOptionShouldResume</font>:表示此时也应该恢复继续播放和采集。</li>
 </ul>
 <p>示例如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//注册通知</span><br><span class="line">NSNotificationCenter *nsnc = [NSNotificationCenter defaultCenter];</span><br><span class="line">        [nsnc addObserver:self selector:@selector(handleInterruption:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];</span><br><span class="line">        </span><br><span class="line">//处理回调</span><br><span class="line">- (void)handleInterruption: (NSNotification *)notification</span><br><span class="line">&#123;</span><br><span class="line">    NSDictionary *info = notification.userInfo;</span><br><span class="line">    AVAudioSessionInterruptionType type = [info[AVAudioSessionInterruptionTypeKey] unsignedIntegerValue];</span><br><span class="line">    </span><br><span class="line">    if (type == AVAudioSessionInterruptionTypeBegan) &#123;</span><br><span class="line">        //Handle AVAudioSessionInterruptionTypeBegan</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">       // Handle AVAudioSessionInterruptionTypeEnd</span><br><span class="line">        AVAudioSessionInterruptionOptions options = [info[AVAudioSessionInterruptionOptionKey] unsignedIntegerValue];</span><br><span class="line">        if (options == AVAudioSessionInterruptionOptionShouldResume) &#123;</span><br><span class="line">        </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><font color="0xff0000">AVAudioSessionSilenceSecondaryAudioHintNotification</font>:其他App占据AudioSession的通知，其回调回来的userInfo键为：</p>
+<p><font color="#ff0000">AVAudioSessionSilenceSecondaryAudioHintNotification</font>:其他App占据AudioSession的通知，其回调回来的userInfo键为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AVAudioSessionSilenceSecondaryAudioHintTypeKey</span><br></pre></td></tr></table></figure>
 <p>可能包含的值</p>
 <ul>
-<li>AVAudioSessionSilenceSecondaryAudioHintTypeBegin:表示其他App开始占据Session</li>
-<li>AVAudioSessionInterruptionTypeEnded:表示其他App开始释放Session</li>
+<li><font color="color=#ff0000">AVAudioSessionSilenceSecondaryAudioHintTypeBegin</font>:表示其他App开始占据Session</li>
+<li><font color="color=#ff0000">AVAudioSessionInterruptionTypeEnded</font>:表示其他App开始释放Session</li>
 </ul>
 <h4 id="外设改变"><a href="#外设改变" class="headerlink" title="外设改变"></a>外设改变</h4><p>默认情况下，AudioSession会在App启动时选择一个最优的输出方案，比如插入耳机的时候，就用耳机。但是这个过程中，用户可能拔出耳机，我们App要如何感知这样的情况呢？</p>
-<p><strong>AVAudioSessionRouteChangeNotification</strong> : 外设改变时通知，在NSNotificationCenter中对其进行注册，userInfo中有键：</p>
+<p><font color="color=#ff0000"><strong>AVAudioSessionRouteChangeNotification</strong></font> : 外设改变时通知，在NSNotificationCenter中对其进行注册，userInfo中有键：</p>
 <ul>
 <li>AVAudioSessionRouteChangeReasonKey ： 表示改变的原因</li>
 </ul>
