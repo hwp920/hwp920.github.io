@@ -251,6 +251,7 @@
 <li>Thai (th-TH)</li>
 <li>Turkish (tr-TR)</li>
 </ul>
+<p>（2）<strong><em>quality</em></strong>：声音质量，枚举值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, AVSpeechSynthesisVoiceQuality) &#123;</span><br><span class="line">    AVSpeechSynthesisVoiceQualityDefault = 1,	//默认</span><br><span class="line">    AVSpeechSynthesisVoiceQualityEnhanced		//增强</span><br><span class="line">&#125; NS_ENUM_AVAILABLE(10_14, 9_0);</span><br></pre></td></tr></table></figure></p>
 <p>AVSpeechUtterance相关属性</p>
 <p>（1）<strong><em>rate</em></strong>:指定播放语音时的速率(0.0-1.0),即AVSpeechUtteranceMinimumSpeechRate和AVSpeechUtteranceMaximumSpeechRate之间</p>
 <p>（2）<strong><em>pitchMultiplier</em></strong>：设置声调,属性值介于0.5(低音调)~2.0(高音调)之间</p>
