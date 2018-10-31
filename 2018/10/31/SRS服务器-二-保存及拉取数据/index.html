@@ -13,9 +13,9 @@
     
 
     
-        <meta name="description" content="一、什么是srs服务器按照项目github上的说法：SRS定位是运营级的互联网直播服务器集群，追求更好的概念完整性和最简单实现的代码。也就是说srs服务器是一个功能强大，容易实现的直播服务器。
-除了srs，直播服务器还有下面这些选择：
-FMS — Adobe公司出品的服务器，价格昂贵，当然是最正宗的">
+        <meta name="description" content="在SRS服务器一中讲到了SRS服务器的搭建，现在讲一下SRS服务器保存推流文件的设置。
+一、SRS服务器保存推流文件的设置1、找到srs.conf文件配置12cd srs/trunk/vi conf/srs.conf
+2、修改如下：1234567891011121314151617181920212">
     
 
     <!--Author-->
@@ -25,14 +25,14 @@ FMS — Adobe公司出品的服务器，价格昂贵，当然是最正宗的">
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="SRS服务器一 搭建">
+        <meta property="og:title" content="SRS服务器 二 保存及拉取文件数据">
     
 
     <!--Open Graph Description-->
     
-        <meta property="og:description" content="一、什么是srs服务器按照项目github上的说法：SRS定位是运营级的互联网直播服务器集群，追求更好的概念完整性和最简单实现的代码。也就是说srs服务器是一个功能强大，容易实现的直播服务器。
-除了srs，直播服务器还有下面这些选择：
-FMS — Adobe公司出品的服务器，价格昂贵，当然是最正宗的">
+        <meta property="og:description" content="在SRS服务器一中讲到了SRS服务器的搭建，现在讲一下SRS服务器保存推流文件的设置。
+一、SRS服务器保存推流文件的设置1、找到srs.conf文件配置12cd srs/trunk/vi conf/srs.conf
+2、修改如下：1234567891011121314151617181920212">
     
 
     <!--Open Graph Site Name-->
@@ -59,7 +59,7 @@ FMS — Adobe公司出品的服务器，价格昂贵，当然是最正宗的">
 
     <!-- Title -->
     
-    <title>SRS服务器一 搭建 - Cyrus的技术空间</title>
+    <title>SRS服务器 二 保存及拉取文件数据 - Cyrus的技术空间</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -169,7 +169,7 @@ FMS — Adobe公司出品的服务器，价格昂贵，当然是最正宗的">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>SRS服务器一 搭建</h1>
+                    <h1>SRS服务器 二 保存及拉取文件数据</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
@@ -177,7 +177,7 @@ FMS — Adobe公司出品的服务器，价格昂贵，当然是最正宗的">
                             Posted by Cyrus on
                         
                         
-                            2018-10-23
+                            2018-10-31
                         
                     </span>
                 </div>
@@ -198,17 +198,12 @@ FMS — Adobe公司出品的服务器，价格昂贵，当然是最正宗的">
                         
 
 
-<a href="/tags/服务器/">#服务器</a> <a href="/tags/rtmp/">#rtmp</a>
+<a href="/tags/SRS/">#SRS</a>
 
 
                     
                 </div>
                 <div class="col-lg-4 col-md-5 post-categories">
-                    
-                        
-
-<a href="/categories/srs/">srs</a>
-
                     
                 </div>
             
@@ -218,22 +213,11 @@ FMS — Adobe公司出品的服务器，价格昂贵，当然是最正宗的">
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h3 id="一、什么是srs服务器"><a href="#一、什么是srs服务器" class="headerlink" title="一、什么是srs服务器"></a>一、什么是srs服务器</h3><p>按照项目github上的说法：SRS定位是运营级的互联网直播服务器集群，追求更好的概念完整性和最简单实现的代码。也就是说srs服务器是一个功能强大，容易实现的直播服务器。</p>
-<p>除了srs，直播服务器还有下面这些选择：</p>
-<p>FMS — Adobe公司出品的服务器，价格昂贵，当然是最正宗的，因为RTMP就是Adobe公司的私有协议；</p>
-<p>Wowza — 需要授权费，效率和稳定性都还不错；</p>
-<p>Red5 — 一个开源实现， 效率和稳定性都稍微差些，由于它是Java实现的，所以天生支持跨平台运行；</p>
-<p>Nignx-rtmp-module – -nginx的一个第三方模块，如果你熟悉nginx那是不错的选择，当然它也是免费的，不过功能就没有其他几个丰富了</p>
-<h3 id="二、srs服务器的搭建（Ubuntu或Centos）"><a href="#二、srs服务器的搭建（Ubuntu或Centos）" class="headerlink" title="二、srs服务器的搭建（Ubuntu或Centos）"></a>二、srs服务器的搭建（Ubuntu或Centos）</h3><h4 id="1、下载"><a href="#1、下载" class="headerlink" title="1、下载"></a>1、下载</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/ossrs/srs</span><br></pre></td></tr></table></figure>
-<h4 id="2、编译"><a href="#2、编译" class="headerlink" title="2、编译"></a>2、编译</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd srs/trunk</span><br><span class="line">./configure &amp;&amp; make</span><br></pre></td></tr></table></figure>
-<p>服务器配置相对好点的，可以尝试 make -jn(n为线程数)加快编辑速度</p>
-<h4 id="3、编辑conf-rtmp-conf文件，配置内容："><a href="#3、编辑conf-rtmp-conf文件，配置内容：" class="headerlink" title="3、编辑conf/rtmp.conf文件，配置内容："></a>3、编辑conf/rtmp.conf文件，配置内容：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">listen              1935;</span><br><span class="line">pid                 ./objs/srs.pid;</span><br><span class="line">chunk_size          60000;</span><br><span class="line">ff_log_dir          ./objs;</span><br><span class="line">srs_log_tank        file;  </span><br><span class="line">#配置日志答应到文件，需要和srs_log_level配合使用</span><br><span class="line">srs_log_level       trace;</span><br><span class="line">#制定配置文件的级别，默认级别是trace</span><br><span class="line">srs_log_file        ./objs/srs.log;  </span><br><span class="line">#制定日志文件的位置。</span><br><span class="line">max_connections     1000;</span><br><span class="line">#最大连接数</span><br><span class="line">daemon              on;</span><br><span class="line">#以daemon的方式启动，如果要启动在console，那么需要配置daemon off;并且，需要配置srs_log_tank console;</span><br><span class="line">utc_time            off;</span><br><span class="line">#是否使用utc时间。如果该值为off则使用本地时间，如果开始使用utc时间。</span><br><span class="line">vhost __defaultVhost__ &#123;   </span><br><span class="line">#默认的vhost，在没有指明vhost的情况，默认使用这个vhost。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="4、启动服务"><a href="#4、启动服务" class="headerlink" title="4、启动服务"></a>4、启动服务</h4><p>在trunk目录下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./objs/srs -c conf/srs.conf</span><br></pre></td></tr></table></figure></p>
-<p>*其他操作相关指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">停止 ./etc/init.d/srs stop</span><br><span class="line">重启 ./etc/init.d/srs restart</span><br></pre></td></tr></table></figure></p>
-<h4 id="5、其他注意事项"><a href="#5、其他注意事项" class="headerlink" title="5、其他注意事项"></a>5、其他注意事项</h4><p>*如果是阿里云服务器，需要设置端口映射。<br>安全规则-&gt;添加安全规则<br><img src="//www.cyrus.fun/2018/10/23/SRS服务器搭建/rtmp映射.png" alt=""></p>
-<h3 id="三、rtmp推流与播放"><a href="#三、rtmp推流与播放" class="headerlink" title="三、rtmp推流与播放"></a>三、rtmp推流与播放</h3><h4 id="1、使用obs推流"><a href="#1、使用obs推流" class="headerlink" title="1、使用obs推流"></a>1、使用obs推流</h4><p>obs是一款免费且开源的用于视频录制以及直播串流的软件。在Windows, Mac以及Linux下均有客户端。obs设置如下:<br><img src="//www.cyrus.fun/2018/10/23/SRS服务器搭建/obs.png" alt=""></p>
-<h4 id="2、使用vlc播放"><a href="#2、使用vlc播放" class="headerlink" title="2、使用vlc播放"></a>2、使用vlc播放</h4><p>VLC 是一款自由、开源的跨平台多媒体播放器及框架，可播放大多数多媒体文件，以及 DVD、音频 CD、VCD 及各类流媒体协议。vcl播放链接是obs的URL/流密钥，如下图：<br><img src="//www.cyrus.fun/2018/10/23/SRS服务器搭建/vlc.png" alt=""></p>
-<h4 id="3、最终效果如下图"><a href="#3、最终效果如下图" class="headerlink" title="3、最终效果如下图"></a>3、最终效果如下图</h4><p><img src="//www.cyrus.fun/2018/10/23/SRS服务器搭建/result_rtmp.png" alt=""></p>
+                <p>在SRS服务器一中讲到了SRS服务器的搭建，现在讲一下SRS服务器保存推流文件的设置。</p>
+<h3 id="一、SRS服务器保存推流文件的设置"><a href="#一、SRS服务器保存推流文件的设置" class="headerlink" title="一、SRS服务器保存推流文件的设置"></a>一、SRS服务器保存推流文件的设置</h3><p>1、找到srs.conf文件配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd srs/trunk/</span><br><span class="line">vi conf/srs.conf</span><br></pre></td></tr></table></figure></p>
+<p>2、修改如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># main config for srs.</span><br><span class="line"># @see full.conf for detail config.</span><br><span class="line"></span><br><span class="line">listen              1935;</span><br><span class="line">max_connections     1000;</span><br><span class="line">srs_log_tank        file;</span><br><span class="line">srs_log_file        ./objs/srs.log;</span><br><span class="line">http_api &#123;</span><br><span class="line">    enabled         on;</span><br><span class="line">    listen          1985;</span><br><span class="line">&#125;</span><br><span class="line">http_server &#123;</span><br><span class="line">    enabled         on;</span><br><span class="line">    listen          8080;</span><br><span class="line">    dir             ./objs/nginx/html;</span><br><span class="line">&#125;</span><br><span class="line">stats &#123;</span><br><span class="line">    network         0;</span><br><span class="line">    disk            sda sdb xvda xvdb;</span><br><span class="line">&#125;</span><br><span class="line">vhost __defaultVhost__ &#123;</span><br><span class="line">    dvr &#123;		//dvr保存数据的配置</span><br><span class="line">        enabled    on;</span><br><span class="line">#        dvr_path    ./objs/nginx/html/[app]/[stream].[timestamp].flv;</span><br><span class="line">        dvr_path    ./objs/nginx/html/[app]-[stream].flv</span><br><span class="line">        dvr_plan    session;</span><br><span class="line">        dvr_duration    30;</span><br><span class="line">        dvr_wait_keyframe    on;</span><br><span class="line">        time_jitter    full;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中dvr_path就是文件保存地址,保存文件必须为flv格式。在推流过程中，文件会保存为xxx.flv.tmp，停止推流后自动修改为xxx.flv。<br>obs推流：<br><img src="//www.cyrus.fun/2018/10/31/SRS服务器-二-保存及拉取数据/obs_set.png" alt=""><br>vlc播放：<br><img src="//www.cyrus.fun/2018/10/31/SRS服务器-二-保存及拉取数据/vlc_play.png" alt=""><br>推流时：<br><img src="//www.cyrus.fun/2018/10/31/SRS服务器-二-保存及拉取数据/pushing.png" alt=""><br>推流后：<br><img src="//www.cyrus.fun/2018/10/31/SRS服务器-二-保存及拉取数据/pushed.png" alt=""></p>
+<p>直接播放保存的flv文件(点播)：<br><img src="//www.cyrus.fun/2018/10/31/SRS服务器-二-保存及拉取数据/play_file.png" alt=""><br>注：只有存放在<strong><em>/objs/nginx/html</em></strong>目录下的<strong><em>flv格式文件</em></strong>才能播放。另推流时暂存的xxx.flv.tmp文件也可以用这种方式播放，即<font color="ff0000">播放的文件，只跟文件存放数据的格式有关，跟文件名无关</font>。</p>
 
 
                 
