@@ -13,6 +13,12 @@
     
 
     
+        <meta name="description" content="AVAudioPlayer 比较简单，主要说几个有用的方法和属性。
+属性
+1、pan:立体声设置，0:立体声  -1：左声道  1：右声道
+2、volume:  音量    0.0 - 1.0
+3、rate: 播放速率    0.5 - 2.0      0.5：半速  1.0：正常速度   2.0">
+    
 
     <!--Author-->
     
@@ -21,10 +27,16 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Cyrus的技术空间">
+        <meta property="og:title" content="AVFoundation学习笔记四  AVAudioPlayer">
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="AVAudioPlayer 比较简单，主要说几个有用的方法和属性。
+属性
+1、pan:立体声设置，0:立体声  -1：左声道  1：右声道
+2、volume:  音量    0.0 - 1.0
+3、rate: 播放速率    0.5 - 2.0      0.5：半速  1.0：正常速度   2.0">
     
 
     <!--Open Graph Site Name-->
@@ -32,7 +44,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -51,7 +63,7 @@
 
     <!-- Title -->
     
-    <title>AVFoundation - Cyrus的技术空间</title>
+    <title>AVFoundation学习笔记四  AVAudioPlayer - Cyrus的技术空间</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -153,96 +165,100 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>AVFoundation</h1>
+                <div class="post-heading">
+                    <h1>AVFoundation学习笔记四  AVAudioPlayer</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2018-11-01
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/AVFoundation/">AVFoundation</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
             
-                <div class="post-preview">
-    <a href="/2018/11/01/AVFoundation学习笔记一-iOS多媒体环境/">
-        <h1 class="post-title archive">
-            AVFoundation学习笔记一 iOS多媒体环境
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-11-01
-    </p>
-</div>
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2018/11/01/AVFoundation学习笔记二-AVAudioPlayer/">
-        <h1 class="post-title archive">
-            AVFoundation学习笔记四  AVAudioPlayer
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-11-01
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/10/25/AVFoundation学习笔记二-AVAudioSession/">
-        <h1 class="post-title archive">
-            AVFoundation学习笔记三  AVAudioSession
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-25
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/10/24/AVFoundation学习笔记一-AVSpeechSynthesizer/">
-        <h1 class="post-title archive">
-            AVFoundation学习笔记二  Speech Synthesis
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-24
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><img src="//www.cyrus.fun/2018/11/01/AVFoundation学习笔记二-AVAudioPlayer/audioplayer.png" alt=""></p>
+<p>AVAudioPlayer 比较简单，主要说几个有用的方法和属性。</p>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><ul>
+<li>1、pan:立体声设置，0:立体声  -1：左声道  1：右声道</li>
+<li>2、volume:  音量    0.0 - 1.0</li>
+<li>3、rate: 播放速率    0.5 - 2.0      0.5：半速  1.0：正常速度   2.0：倍速</li>
+<li>4、currentTime: 音频文件的播放时间</li>
+<li>5、deviceCurrentTime: 输出设备播放音频的时间，注意如果播放中被暂停此时间也会继续累加</li>
+<li>6、numberOfLoop:  循环播放次数，默认为1， -1为无限循环</li>
+<li><p>7、settting: 文件的基本信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    AVAudioFileTypeKey = 1667327590;	\\大端序数据，转主机序后为lpcm</span><br><span class="line">    AVChannelLayoutKey = &lt;02006500 03000000 00000000&gt;;</span><br><span class="line">    AVEncoderBitRateKey = 0;</span><br><span class="line">    AVFormatIDKey = 1819304813;		\\大端序数据，转主机序后为caff</span><br><span class="line">    AVLinearPCMBitDepthKey = 16;	\\采样精度</span><br><span class="line">    AVLinearPCMIsBigEndianKey = 1;	\\数据是否以大端序保存</span><br><span class="line">    AVLinearPCMIsFloatKey = 0;		</span><br><span class="line">    AVLinearPCMIsNonInterleaved = 0;</span><br><span class="line">    AVNumberOfChannelsKey = 2;		\\通道数</span><br><span class="line">    AVSampleRateKey = 44100;		\\采样率</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>8、duration: 文件总时长</p>
+</li>
+<li>9、numberOfChannels： 该音频的声道数</li>
+<li>10、meteringEnabled： 是否允许测量声道平均值和峰值</li>
 </ul>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ul>
+<li>1、- (BOOL)prepareToPlay;  取得需要的音频硬件并预加载AudioQueue缓冲区.</li>
+<li>2、- (BOOL)play;</li>
+<li>3、- (BOOL)playAtTime:(NSTimeInterval)time； 播放没有调用prepareToPlay的话会隐式调用</li>
+<li>4、- (void)pause;</li>
+<li>5、- (void)stop;  停止播放。<font color="ff0000">区别：stop会把prepareToPlay所做的准备释放掉，pause不会，即pause后调用play响应较快。</font></li>
+<li>6、-（void）updateMeters;  meteringEnabled为true时，刷新对应声道强度的峰值和平均值</li>
+<li>7、- (float)peakPowerForChannel:(NSUInteger)channelNumber; 对应声道强度的峰值</li>
+<li>8、- (float)averagePowerForChannel:(NSUInteger)channelNumber; 对应声道强度的平均值</li>
+</ul>
+<p><font color="ff0000">注：7、8有效的前提条件为 meteringEnabled = YES &amp;&amp; 调用了updateMeters。此计数是以对数刻度计量的，-160表示完全安静，0表示最大输入值。</font>可用于动态展示音频强度状态。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr>
