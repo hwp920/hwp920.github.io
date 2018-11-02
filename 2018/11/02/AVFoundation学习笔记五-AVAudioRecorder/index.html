@@ -220,10 +220,8 @@
 <li><strong>AVNumberOfChannelsKey</strong>:通道数，1：单声道  2：立体声</li>
 <li><strong>AVLinearPCMBitDepthKey</strong>:采样精度/位深， 8位或16位，用于lpcm</li>
 <li><strong>AVLinearPCMIsBigEndianKey</strong>:是否大端保存数据，用于lpcm</li>
-<li><p><strong>AVLinearPCMIsFloatKey</strong>:采样数据是否为浮点型</p>
-</li>
-<li><p><strong>AVEncoderBitDepthHintKey</strong>:编码位深，8-32，非lpcm使用</p>
-</li>
+<li><strong>AVLinearPCMIsFloatKey</strong>:采样数据是否为浮点型</li>
+<li><strong>AVEncoderBitDepthHintKey</strong>:编码位深，8-32，非lpcm使用</li>
 <li><strong>AVEncoderAudioQualityKey</strong>:编码质量，非lpcm使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, AVAudioQuality) &#123;</span><br><span class="line"> 	AVAudioQualityMin    = 0,</span><br><span class="line"> 	AVAudioQualityLow    = 0x20,</span><br><span class="line"> 	AVAudioQualityMedium = 0x40,</span><br><span class="line"> 	AVAudioQualityHigh   = 0x60,</span><br><span class="line"> 	AVAudioQualityMax    = 0x7F</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
