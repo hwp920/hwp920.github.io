@@ -13,6 +13,9 @@
     
 
     
+        <meta name="description" content="比较简单的类，主要说一下几个注意的地方：
+一、配置AVAudioSession12345678AVAudioSession *session = [AVAudioSession sharedInstance];    NSError *error;    if (![session setCateg">
+    
 
     <!--Author-->
     
@@ -21,10 +24,13 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Cyrus的技术空间">
+        <meta property="og:title" content="AVFoundation学习笔记五 AVAudioRecorder">
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="比较简单的类，主要说一下几个注意的地方：
+一、配置AVAudioSession12345678AVAudioSession *session = [AVAudioSession sharedInstance];    NSError *error;    if (![session setCateg">
     
 
     <!--Open Graph Site Name-->
@@ -32,7 +38,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -51,7 +57,7 @@
 
     <!-- Title -->
     
-    <title>Archives: 2018 - Cyrus的技术空间</title>
+    <title>AVFoundation学习笔记五 AVAudioRecorder - Cyrus的技术空间</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -153,186 +159,89 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>2018</h1>
+                <div class="post-heading">
+                    <h1>AVFoundation学习笔记五 AVAudioRecorder</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2018-11-02
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/AVFoundation/">AVFoundation</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
             
-                <div class="post-preview">
-    <a href="/2018/11/02/AVFoundation学习笔记五-AVAudioRecorder/">
-        <h1 class="post-title archive">
-            AVFoundation学习笔记五 AVAudioRecorder
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-11-02
-    </p>
-</div>
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2018/11/01/AVFoundation学习笔记一-iOS多媒体环境/">
-        <h1 class="post-title archive">
-            AVFoundation学习笔记一 iOS多媒体环境
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-11-01
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/11/01/AVFoundation学习笔记二-AVAudioPlayer/">
-        <h1 class="post-title archive">
-            AVFoundation学习笔记四  AVAudioPlayer
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-11-01
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/10/31/SRS服务器-二-保存及拉取数据/">
-        <h1 class="post-title archive">
-            SRS服务器 二 保存及拉取文件数据
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-31
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/10/31/Xcode编译错误-This-application-does-not-support-this-device-s-CPU-type/">
-        <h1 class="post-title archive">
-            Xcode编译错误:This application does not support this device's CPU type
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-31
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/10/25/AVFoundation学习笔记二-AVAudioSession/">
-        <h1 class="post-title archive">
-            AVFoundation学习笔记三  AVAudioSession
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-25
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/10/24/AVFoundation学习笔记一-AVSpeechSynthesizer/">
-        <h1 class="post-title archive">
-            AVFoundation学习笔记二  Speech Synthesis
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-24
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/10/23/SRS服务器搭建/">
-        <h1 class="post-title archive">
-            SRS服务器一 搭建
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-23
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/10/23/冒泡排序/">
-        <h1 class="post-title archive">
-            冒泡排序
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-23
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/10/23/TCP-IP学习笔记一/">
-        <h1 class="post-title archive">
-            TCP/IP学习笔记一
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-23
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><img src="//www.cyrus.fun/2018/11/02/AVFoundation学习笔记五-AVAudioRecorder/recorder.png" alt=""><br>比较简单的类，主要说一下几个注意的地方：</p>
+<h3 id="一、配置AVAudioSession"><a href="#一、配置AVAudioSession" class="headerlink" title="一、配置AVAudioSession"></a>一、配置AVAudioSession</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">AVAudioSession *session = [AVAudioSession sharedInstance];</span><br><span class="line">    NSError *error;</span><br><span class="line">    if (![session setCategory:AVAudioSessionCategoryPlayAndRecord error:&amp;error]) &#123;</span><br><span class="line">        NSLog(@&quot;Category Error: %@&quot;, [error localizedDescription]);</span><br><span class="line">    &#125;</span><br><span class="line">    if (![session setActive:YES error:&amp;error]) &#123;</span><br><span class="line">        NSLog(@&quot;Activation Error: %@&quot;, [error localizedDescription]);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二、settings参数"><a href="#二、settings参数" class="headerlink" title="二、settings参数"></a>二、settings参数</h3><p>创建AVAudioRecorder的方法中，settings是最重要的参数，有着众多的配置参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (nullable instancetype)initWithURL:(NSURL *)url settings:(NSDictionary&lt;NSString *, id&gt; *)settings error:(NSError **)outError;</span><br></pre></td></tr></table></figure></p>
+<p>settings中的key可以在<strong><em>AVFoundation-&gt;framework文件夹-&gt;AVAudio-&gt;AVAudioSettings.h</em></strong>中找到。</p>
+<p>settings常见的key值：</p>
+<ul>
+<li><strong>AVFormatIDKey</strong>：定义了写入内容的音频格式，值类型存在于 AudioFormatID枚举中，由相应四字节字符组成的32位整形，如：<br><img src="//www.cyrus.fun/2018/11/02/AVFoundation学习笔记五-AVAudioRecorder/audio_format.png" alt=""><br><font color="ff0000">注意</font>：指定的类型必须与URL定义的文件名对应，比如录制一个test.wav，隐含的意思是录制的音频必须满足Waveform Audio File Format(WAVE)的格式要求，即低字节序（AVLinearPCMIsBigEndianKey 值为NO）、LinerPCM。如果AudioFormatID的值不是 kAudioFormatLinearPCM。NSError的错误信息为：<br>The  operation couldn’t be completed.(OSStatus error 118449215).<br>118449215 = ‘fmt?’,即不兼容格式</li>
+<li><strong>AVSampleRateKey</strong>:采样率，对输入的模拟音频信号每一秒内的采样数，如8kHz,AM广播的录制效果，不件较小。44.1kHz，CD质量的采样率，文件比较大。尽量使用标准采样率，如8000、16000、22050和44100。</li>
+<li><strong>AVNumberOfChannelsKey</strong>:通道数，1：单声道  2：立体声</li>
+<li><strong>AVLinearPCMBitDepthKey</strong>:采样精度/位深， 8位或16位，用于lpcm</li>
+<li><strong>AVLinearPCMIsBigEndianKey</strong>:是否大端保存数据，用于lpcm</li>
+<li><p><strong>AVLinearPCMIsFloatKey</strong>:采样数据是否为浮点型</p>
+</li>
+<li><p><strong>AVEncoderBitDepthHintKey</strong>:编码位深，8-32，非lpcm使用</p>
+</li>
+<li><strong>AVEncoderAudioQualityKey</strong>:编码质量，非lpcm使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, AVAudioQuality) &#123;</span><br><span class="line"> 	AVAudioQualityMin    = 0,</span><br><span class="line"> 	AVAudioQualityLow    = 0x20,</span><br><span class="line"> 	AVAudioQualityMedium = 0x40,</span><br><span class="line"> 	AVAudioQualityHigh   = 0x60,</span><br><span class="line"> 	AVAudioQualityMax    = 0x7F</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr>
