@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="AVPlayer一个用来播放基本时间的视听媒体的控制器对象。支持播放从本地、分步下载或通过HTTP Live Streaming协议得到的流媒体，并在多种播放场景中播放这些视频资源。AVPlayer是一个不可见组件，要将视频资源导出到用户界面的目标位置，需要使用AVPlyerLayer类。
+AVPl">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="AVFoundation学习笔记八 AVPlayer及缩略图等相关功能">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="AVPlayer一个用来播放基本时间的视听媒体的控制器对象。支持播放从本地、分步下载或通过HTTP Live Streaming协议得到的流媒体，并在多种播放场景中播放这些视频资源。AVPlayer是一个不可见组件，要将视频资源导出到用户界面的目标位置，需要使用AVPlyerLayer类。
+AVPl">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>AVFoundation学习笔记八 AVPlayer及缩略图等相关功能 - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>AVFoundation学习笔记八 AVPlayer及缩略图等相关功能</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2018-11-08
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/AVFoundation/">AVFoundation</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><img src="//www.cyrus.fun/2018/11/08/AVFoundation学习笔记八-AVPlayer及缩略图等相关功能/player_classes.png" alt=""></p>
+<h3 id="AVPlayer"><a href="#AVPlayer" class="headerlink" title="AVPlayer"></a>AVPlayer</h3><p>一个用来播放基本时间的视听媒体的控制器对象。支持播放从本地、分步下载或通过HTTP Live Streaming协议得到的流媒体，并在多种播放场景中播放这些视频资源。AVPlayer是一个不可见组件，要将视频资源导出到用户界面的目标位置，需要使用AVPlyerLayer类。</p>
+<h3 id="AVPlayerLayer"><a href="#AVPlayerLayer" class="headerlink" title="AVPlayerLayer"></a>AVPlayerLayer</h3><p>构建于Core animation上，是AVFoundation中能找到的为数不多的可见组件。AVPlayerLayer扩展了CoreAnimation的CALayer类，并通过框架在屏幕上显示视频内容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AVPlayerLayer的videoGravity属性：</span><br><span class="line">AVLayerVideoGravityResizeAspect：默认值，保持视频原始宽高比，可能会有黑边；</span><br><span class="line">AVLayerVideoGravityResizeAspectFill： 保持原始宽高比，短边填充屏幕，长边可能会超出屏幕</span><br><span class="line">AVLayerVideoGravityResize：填充屏幕，不保持宽高比，图像会变形，最不常用。</span><br></pre></td></tr></table></figure></p>
+<h3 id="AVPlayerItem"><a href="#AVPlayerItem" class="headerlink" title="AVPlayerItem"></a>AVPlayerItem</h3><p>AVAsset包含一些媒体数据的静态信息，如创建日期、元数据和时长等，但是没有当前播放时间、音量和查找特定位置的方法这些动态数据，需要AVPlayerItem和AVPlayerItemTrack类构建相应的动态内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">代码如下（简单，没啥说的）：</span><br><span class="line">NSURL *assetURL = [[NSBundle mainBundle] URLForResource:@&quot;1&quot; withExtension:@&quot;mp4&quot;];</span><br><span class="line">    AVAsset *asset = [AVAsset assetWithURL:assetURL];</span><br><span class="line">    </span><br><span class="line">    AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];</span><br><span class="line">    AVPlayer *player = [[AVPlayer alloc] initWithPlayerItem:item];</span><br><span class="line">    AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:player];</span><br><span class="line">    layer.frame = self.view.bounds;</span><br><span class="line">    [self.view.layer addSublayer:layer];</span><br><span class="line">    [player play];</span><br></pre></td></tr></table></figure>
+<h3 id="CMTime"><a href="#CMTime" class="headerlink" title="CMTime"></a>CMTime</h3><p>CMTime是Core Media的一种数据结构。CMTime为时间的正确表示给出了一种结构，即分数值的方式（分子、分母）,定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//value/timescale = seconds.</span><br><span class="line">    typedef struct</span><br><span class="line">    &#123;</span><br><span class="line">        CMTimeValue    value;       //分子 int64_t</span><br><span class="line">        CMTimeScale    timescale;   //分母 int32_t</span><br><span class="line">        CMTimeFlags    flags;</span><br><span class="line">        CMTimeEpoch    epoch;</span><br><span class="line">    &#125; CMTime;</span><br><span class="line">    </span><br><span class="line">    创建</span><br><span class="line">    //0.5s</span><br><span class="line">    CMTime halfSecond = CMTimeMake(1, 2);</span><br><span class="line">    //5s</span><br><span class="line">    CMTime fiveSeconds = CMTimeMake(5, 1);</span><br><span class="line">    //44.1kHz</span><br><span class="line">    CMTime oneSample = CMTimeMake(1, 44100);</span><br><span class="line">    //0</span><br><span class="line">    CMTime zeroTime = kCMTimeZero;</span><br></pre></td></tr></table></figure></p>
+<h3 id="播放过程中的进度监听"><a href="#播放过程中的进度监听" class="headerlink" title="播放过程中的进度监听"></a>播放过程中的进度监听</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- (void)addPlayerItemTimeObserver &#123;</span><br><span class="line">    </span><br><span class="line">    // Create 0.5 second refresh interval - REFRESH_INTERVAL == 0.5</span><br><span class="line">    CMTime interval =</span><br><span class="line">        CMTimeMakeWithSeconds(0.5, NSEC_PER_SEC);              // 1</span><br><span class="line">    </span><br><span class="line">    // Main dispatch queue</span><br><span class="line">    dispatch_queue_t queue = dispatch_get_main_queue();                     // 2</span><br><span class="line">    </span><br><span class="line">    // Create callback block for time observer</span><br><span class="line"> </span><br><span class="line">    void (^callback)(CMTime time) = ^(CMTime time) &#123;</span><br><span class="line">        NSTimeInterval currentTime = CMTimeGetSeconds(time);</span><br><span class="line">        NSTimeInterval duration = CMTimeGetSeconds(weakSelf.playerItem.duration);</span><br><span class="line">        //do something with currentTime and duration</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    // Add observer and store pointer for future use</span><br><span class="line">    self.timeObserver = [self.player addPeriodicTimeObserverForInterval:interval queue:queue usingBlock:callback];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">可通过： [self.player removeTimeObserver:self.timeObserver]; 移除监听</span><br></pre></td></tr></table></figure>
+<h3 id="视频进度缩略图"><a href="#视频进度缩略图" class="headerlink" title="视频进度缩略图"></a><font color="ff0000">视频进度缩略图</font></h3><p>AVAssetImageGenerator工具类。这个类可以从一个Asset视频曲目中提取图片。生成一个或多个缩略图。主要包含两个方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AVAssetImageGenerator工具类。这个类可以从一个Asset视频曲目中提取图片。生成一个或多个缩略图。主要包含两个方法：</span><br><span class="line">/**</span><br><span class="line">requestedTime: 指定获取缩略图的时间 传入数据</span><br><span class="line">actualTime:    生成图片的准确时间   传出数据</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">- (nullable CGImageRef)copyCGImageAtTime:(CMTime)requestedTime actualTime:(nullable CMTime *)actualTime error:(NSError * _Nullable * _Nullable)outError //生成指定时间的单张缩略图</span><br></pre></td></tr></table></figure></p>
+<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//指定时间生成缩略图</span><br><span class="line">//创建URL</span><br><span class="line">    NSURL *url=[NSURL URLWithString:[_videoURLStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];</span><br><span class="line">    AVURLAsset *urlAsset=[AVURLAsset assetWithURL:url];</span><br><span class="line">    AVAssetImageGenerator *imageGenerator=[AVAssetImageGenerator assetImageGeneratorWithAsset:urlAsset];</span><br><span class="line">    NSError *error=nil;</span><br><span class="line">    CMTime time=CMTimeMakeWithSeconds(timeBySecond, 10);</span><br><span class="line">    CMTime actualTime;</span><br><span class="line">    CGImageRef cgImage= [imageGenerator copyCGImageAtTime:time actualTime:&amp;actualTime error:&amp;error];</span><br><span class="line">    if(error)&#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    CMTimeShow(actualTime);</span><br><span class="line">    UIImage *image=[UIImage imageWithCGImage:cgImage];//转化为UIImage</span><br><span class="line">    //保存到相册</span><br><span class="line">    UIImageWriteToSavedPhotosAlbum(image,nil, nil, nil);</span><br><span class="line">    CGImageRelease(cgImage);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">//生成指定时间数组的一组缩略图</span><br><span class="line">typedef void (^AVAssetImageGeneratorCompletionHandler)(CMTime requestedTime, CGImageRef _Nullable image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error);</span><br><span class="line">- (void)generateCGImagesAsynchronouslyForTimes:(NSArray&lt;NSValue *&gt; *)requestedTimes completionHandler:(AVAssetImageGeneratorCompletionHandler)handler;</span><br><span class="line">- (void)generateThumbnails &#123;</span><br><span class="line">    </span><br><span class="line">    self.imageGenerator =                                                   // 1</span><br><span class="line">        [AVAssetImageGenerator assetImageGeneratorWithAsset:self.asset];</span><br><span class="line">    </span><br><span class="line">    // Generate the @2x equivalent</span><br><span class="line">    self.imageGenerator.maximumSize = CGSizeMake(200.0f, 0.0f);             // 2</span><br><span class="line">    CMTime duration = self.asset.duration;</span><br><span class="line">    NSMutableArray *times = [NSMutableArray array];                         // 3</span><br><span class="line">    CMTimeValue increment = duration.value / 20;</span><br><span class="line">    CMTimeValue currentValue = 2.0 * duration.timescale;</span><br><span class="line">    while (currentValue &lt;= duration.value) &#123;</span><br><span class="line">        CMTime time = CMTimeMake(currentValue, duration.timescale);</span><br><span class="line">        [times addObject:[NSValue valueWithCMTime:time]];</span><br><span class="line">        currentValue += increment;</span><br><span class="line">    &#125;</span><br><span class="line">    __block NSUInteger imageCount = times.count;                            // 4</span><br><span class="line">    __block NSMutableArray *images = [NSMutableArray array];</span><br><span class="line">    AVAssetImageGeneratorCompletionHandler handler;                         // 5 handler会多次回调，每次生成一张缩略图/失败</span><br><span class="line">    </span><br><span class="line">    handler = ^(CMTime requestedTime,</span><br><span class="line">                CGImageRef imageRef,</span><br><span class="line">                CMTime actualTime,</span><br><span class="line">                AVAssetImageGeneratorResult result,</span><br><span class="line">                NSError *error) &#123;</span><br><span class="line">        if (result == AVAssetImageGeneratorSucceeded) &#123;                     // 6</span><br><span class="line">            UIImage *image = [UIImage imageWithCGImage:imageRef];</span><br><span class="line">            id thumbnail =</span><br><span class="line">                [THThumbnail thumbnailWithImage:image time:actualTime];</span><br><span class="line">            [images addObject:thumbnail];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            NSLog(@&quot;Error: %@&quot;, [error localizedDescription]);</span><br><span class="line">        &#125;</span><br><span class="line">        // If the decremented image count is at 0, we&apos;re all done.</span><br><span class="line">        if (--imageCount == 0) &#123;                                            // 7</span><br><span class="line">            dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">                NSString *name = THThumbnailsGeneratedNotification;</span><br><span class="line">                NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];</span><br><span class="line">                [nc postNotificationName:name object:images];</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    [self.imageGenerator generateCGImagesAsynchronouslyForTimes:times completionHandler:handler];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="字幕切换"><a href="#字幕切换" class="headerlink" title="字幕切换"></a>字幕切换</h3><p>AVFoundation在展示字幕和隐藏字幕方面提供了可靠方法。AVPlayerLayer会自动渲染这些元素，并且可以让开发者告诉应用程序哪些元素里面要渲染。完成这些操作需要用到AVMediaSelectionGroup和AVMediaSelectionOption两个类。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">NSArray *mediaCharacteristics = asset.availableMediaCharacteristicsWithMediaSelectionOptions;</span><br><span class="line">    for (NSString *characteristic in mediaCharacteristics) &#123;</span><br><span class="line">        //可选择的轨道组</span><br><span class="line">        AVMediaSelectionGroup *group = [asset mediaSelectionGroupForMediaCharacteristic:characteristic];</span><br><span class="line">        NSLog(@&quot;%@&quot;, characteristic);</span><br><span class="line">        for (AVMediaSelectionOption *option in group.options) &#123;</span><br><span class="line">            //option:轨道组中的轨道</span><br><span class="line">            NSLog(@&quot;Option:%@&quot;, option.displayName);</span><br><span class="line">            </span><br><span class="line">            //- (void)selectMediaOption:(nullable AVMediaSelectionOption *)mediaSelectionOption inMediaSelectionGroup:(AVMediaSelectionGroup *)mediaSelectionGroup</span><br><span class="line">            //对所择轨道的切换，如切换字幕、音频等</span><br><span class="line">            [item selectMediaOption:option inMediaSelectionGroup:group];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果显示：<br><img src="//www.cyrus.fun/2018/11/08/AVFoundation学习笔记八-AVPlayer及缩略图等相关功能/option_result.png" alt=""></p>
+<h3 id="airplay"><a href="#airplay" class="headerlink" title="airplay"></a>airplay</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectZero];</span><br><span class="line">volumeView.showsVolumeSlider = NO;</span><br><span class="line">[volumeView sizeToFit];</span><br><span class="line">[self.view addSubview:volumeView];</span><br></pre></td></tr></table></figure>
+<p>可以弹出airplay播放设备，如mac上的air server，但air Server闪退，原因未知</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2018 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
