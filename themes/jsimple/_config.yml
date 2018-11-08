@@ -1,0 +1,77 @@
+# site name
+siteName: 说IT
+shortName: 说
+
+
+# full https model which means #Content-Security-Policy = upgrade-insecure-requests# in meat tag
+fullHttps: false
+
+# favicon
+favicon: /images/favicon.png
+# unique avatar
+avatarShow: false
+avatarImage: /images/favicon.png
+
+# Home page sort type: -1: newer first，1: older first.
+homePageSortType: -1
+# Home page article shown number)
+homeArticleShown: 10
+
+
+# your site build time or domain buy time
+siteBuildingTime: 01/20/2018
+
+
+# Top navigate menu name
+## Notice:
+## Name order decide show index.The name also called category alias,so you must set category alias before start server.
+## BTW,'category_map' and 'tag_map' field in site '_config.yml' file must one to one correspondence with menus below.
+menu:
+   前端: big-front-end
+   后台: server-side
+   设计: design
+   资源: resource
+
+# Left menu of single pages settings
+## Notice: faName is FontAwesome style name
+leftPagesMenu:
+- uri: help
+  title: 帮助
+  faName: fa-question-circle
+
+
+# cover info config
+coverTitle: 做产品，写代码
+coverDescription: 一个关注技术与人文的IT博客
+
+# sns url
+sns:
+  telegram: http://t.me/kunyintang
+  instagram: https://www.instagram.com/mtangsir/
+  twitter: https://twitter.com/tangkunyin
+  github: https://github.com/tangkunyin
+
+# your article copyright or content declare
+postDeclare: 本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！
+
+# Git-pages server info
+pageServerName: Coding
+pageServerUrl: https://coding.net/register?key=bcace447-fa41-4579-9783-86fdf0f723e2
+
+
+# Gitment
+# Introduction: https://imsun.net/posts/gitment-introduction/
+gitment:
+  enable: false
+  githubID:
+  repo:
+  ClientID:
+  ClientSecret:
+  lazy: true
+
+## Comments settings.You can choose only ONE to display.
+# disqus shortName,
+disqus_shortname:
+
+# Analytics
+tentcentAnalyticsId:

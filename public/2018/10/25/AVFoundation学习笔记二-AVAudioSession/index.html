@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="注：文章部分内容来自：https://www.jianshu.com/p/3e0a399380df及参考《AVFoundation 开发秘籍》
+一、AVAudioSession是用来干嘛的？简单来说AVAudioSession是用来控制app的音频行为，比如插拔耳机后是否继续播放音频、接电话后返回是">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="AVFoundation学习笔记三  AVAudioSession">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="注：文章部分内容来自：https://www.jianshu.com/p/3e0a399380df及参考《AVFoundation 开发秘籍》
+一、AVAudioSession是用来干嘛的？简单来说AVAudioSession是用来控制app的音频行为，比如插拔耳机后是否继续播放音频、接电话后返回是">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>AVFoundation学习笔记三  AVAudioSession - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>AVFoundation学习笔记三  AVAudioSession</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2018-10-25
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/AVFoundation/">AVFoundation</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>注：<br>文章部分内容来自：<a href="https://www.jianshu.com/p/3e0a399380df" target="_blank" rel="noopener">https://www.jianshu.com/p/3e0a399380df</a><br>及参考《AVFoundation 开发秘籍》</p>
+<h4 id="一、AVAudioSession是用来干嘛的？"><a href="#一、AVAudioSession是用来干嘛的？" class="headerlink" title="一、AVAudioSession是用来干嘛的？"></a>一、AVAudioSession是用来干嘛的？</h4><p>简单来说AVAudioSession是用来控制app的音频行为，比如插拔耳机后是否继续播放音频、接电话后返回是否继续播放、是否和其他音频数据混音等。当你遇到:</p>
+<ul>
+<li>是进行录音还是播放？</li>
+<li>当系统静音键按下时该如何表现？</li>
+<li>是从扬声器还是从听筒里面播放声音？</li>
+<li>插拔耳机后如何表现？</li>
+<li>来电话/闹钟响了后如何表现？</li>
+<li>其他音频App启动后如何表现？</li>
+<li>…<br>这些场景的时候，就可以考虑一下“AVAudioSession”了。</li>
+</ul>
+<h4 id="二、AVAudioSession是如何控制音频行为的？"><a href="#二、AVAudioSession是如何控制音频行为的？" class="headerlink" title="二、AVAudioSession是如何控制音频行为的？"></a>二、AVAudioSession是如何控制音频行为的？</h4><p>AVFoundation定义了7种分类（category）来描述应用程序所使用的音频行为。<br><img src="//www.cyrus.fun/2018/10/25/AVFoundation学习笔记二-AVAudioSession/session_category.png" alt=""></p>
+<p>7种类别各自的行为总结如下：</p>
+<ul>
+<li><strong><em>AVAudioSessionCategoryAmbient</em></strong>： 只用于播放音乐时，并且可以和QQ音乐同时播放，比如玩游戏的时候还想听QQ音乐的歌，那么把游戏播放背景音就设置成这种类别。同时，当用户锁屏或者静音时也会随着静音，这种类别基本使用所有App的背景场景。</li>
+<li><strong><em>AVAudioSessionCategorySoloAmbient(默认)</em></strong>：也是只用于播放,但是和<strong><em>“AVAudioSessionCategoryAmbient”</em></strong>不同的是，用了它就别想听QQ音乐了，比如不希望QQ音乐干扰的App，类似节奏大师。同样当用户锁屏或者静音时也会随着静音，锁屏了就玩不了节奏大师了。</li>
+<li><strong><em>AVAudioSessionCategoryPlayback</em></strong>：如果锁屏了还想听声音怎么办？用这个类别，比如App本身就是播放器，同时当App播放时，其他类似QQ音乐就不能播放了。所以这种类别一般用于播放器类App</li>
+<li><strong><em>AVAudioSessionCategoryRecord</em></strong>：有了播放器，肯定要录音机，比如微信语音的录制，就要用到这个类别，既然要安静的录音，肯定不希望有QQ音乐了，所以其他播放声音会中断。想想微信语音的场景，就知道什么时候用他了。</li>
+<li><strong><em>AVAudioSessionCategoryPlayAndRecord</em></strong>：如果既想播放又想录制该用什么模式呢？比如VoIP，打电话这种场景，PlayAndRecord就是专门为这样的场景设计的 。</li>
+<li><strong><em>AVAudioSessionCategoryMultiRoute</em></strong>：想象一个DJ用的App，手机连着HDMI到扬声器播放当前的音乐，然后耳机里面播放下一曲，这种常人不理解的场景，这个类别可以支持多个设备输入输出。</li>
+<li><strong><em>AVAudioSessionCategoryAudioProcessing</em></strong>: 主要用于音频格式处理，一般可以配合AudioUnit进行使用</li>
+</ul>
+<h4 id="三、如何设置AVAudioSession"><a href="#三、如何设置AVAudioSession" class="headerlink" title="三、如何设置AVAudioSession"></a>三、如何设置AVAudioSession</h4><p>获取AVAudioSession单例,设置类别并激活。音频会话通常会在应用程序启动时进行一次配置，所以可以将代码写在- (BOOL)application:(UIApplication <em>)application didFinishLaunchingWithOptions:(NSDictionary </em>)launchOptions：中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">AVAudioSession *session = [AVAudioSession sharedInstance];</span><br><span class="line">NSError *error;</span><br><span class="line">    if (![session setCategory:AVAudioSessionCategoryPlayback error:&amp;error]) &#123;</span><br><span class="line">        NSLog(@&quot;Category Error:%@&quot;, [error localizedDescription]);</span><br><span class="line">    &#125;</span><br><span class="line">    if (![session setActive:YES error:&amp;error]) &#123;</span><br><span class="line">        NSLog(@&quot;Activation Error:%@&quot;, [error localizedDescription]);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">因为AVAudioSession会影响其他App的表现，当自己App的Session被激活，其他App的就会被解除激活，如何要让自己的Session解除激活后恢复其他App Session的激活状态呢？</span><br><span class="line"></span><br><span class="line">此时可以使用：</span><br><span class="line"></span><br><span class="line">(BOOL)setActive:(BOOL)active</span><br><span class="line">withOptions:(AVAudioSessionSetActiveOptions)options</span><br><span class="line">error:(NSError * _Nullable *)outError;</span><br><span class="line">这里的options传入AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation 即可。</span><br><span class="line"></span><br><span class="line">当然，也可以通过otherAudioPlaying变量来提前判断当前是否有其他App在播放音频。</span><br></pre></td></tr></table></figure>
+<h4 id="四、如何根据自己需求调整AVAudioSession"><a href="#四、如何根据自己需求调整AVAudioSession" class="headerlink" title="四、如何根据自己需求调整AVAudioSession"></a>四、如何根据自己需求调整AVAudioSession</h4><p>AVAudioSession的设置可以分三个层级<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Category确定基调---&gt; options微调 + mode微调</span><br></pre></td></tr></table></figure></p>
+<h5 id="Category的选项options"><a href="#Category的选项options" class="headerlink" title="Category的选项options"></a>Category的选项options</h5><p>上面介绍的这个七大类别，可以认为是设定了七种主场景，而这七类肯定是不能满足开发者所有的需求的。CoreAudio提供的方法是，首先定下七种的一种基调，然后在进行微调。CoreAudio为每种Category都提供了些许选项来进行微调。<br>在设置完类别后，可以通过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property(readonly) AVAudioSessionCategoryOptions categoryOptions;</span><br></pre></td></tr></table></figure></p>
+<p>属性，查看当前类别设置了哪些选项，注意这里的返回值是AVAudioSessionCategoryOptions，实际是多个options的“|”运算。默认情况下是0。</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>适用类别</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AVAudioSessionCategoryOptionMixWithOthers</td>
+<td>AVAudioSessionCategoryPlayAndRecord, AVAudioSessionCategoryPlayback, and AVAudioSessionCategoryMultiRoute</td>
+<td>是否可以和其他后台App进行混音</td>
+</tr>
+<tr>
+<td>AVAudioSessionCategoryOptionDuckOthers</td>
+<td>AVAudioSessionCategoryAmbient, AVAudioSessionCategoryPlayAndRecord, AVAudioSessionCategoryPlayback, and AVAudioSessionCategoryMultiRoute</td>
+<td>是否压低其他App声音</td>
+</tr>
+<tr>
+<td>AVAudioSessionCategoryOptionAllowBluetooth</td>
+<td>AVAudioSessionCategoryRecord and AVAudioSessionCategoryPlayAndRecord</td>
+<td>是否支持蓝牙耳机</td>
+</tr>
+<tr>
+<td>AVAudioSessionCategoryOptionDefaultToSpeaker</td>
+<td>AVAudioSessionCategoryPlayAndRecord</td>
+<td>是否默认用免提声音</td>
+</tr>
+</tbody>
+</table>
+<p>来看每个选项的基本作用：</p>
+<ul>
+<li>AVAudioSessionCategoryOptionMixWithOthers ： 如果确实用的AVAudioSessionCategoryPlayback实现的一个背景音，但是呢，又想和QQ音乐并存，那么可以在AVAudioSessionCategoryPlayback类别下在设置这个选项，就可以实现共存了。</li>
+<li>AVAudioSessionCategoryOptionDuckOthers：在实时通话的场景，比如QQ音乐，当进行视频通话的时候，会发现QQ音乐自动声音降低了，此时就是通过设置这个选项来对其他音乐App进行了压制。</li>
+<li>AVAudioSessionCategoryOptionAllowBluetooth：如果要支持蓝牙耳机电话，则需要设置这个选项</li>
+<li>AVAudioSessionCategoryOptionDefaultToSpeaker： 如果在VoIP模式下，希望默认打开免提功能，需要设置这个选项</li>
+</ul>
+<p>通过接口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)setCategory:(NSString *)category withOptions:(AVAudioSessionCategoryOptions)options error:(NSError **)outError</span><br></pre></td></tr></table></figure></p>
+<p>来对当前的类别进行选项的设置。</p>
+<h4 id="七大模式（Mode）"><a href="#七大模式（Mode）" class="headerlink" title="七大模式（Mode）"></a>七大模式（Mode）</h4><p>刚讲完七大类别，现在再来七大模式。通过上面的七大类别，我们基本覆盖了常用的主场景，在每个主场景中可以通过Option进行微调。为此CoreAudio提供了七大比较常见微调后的子场景。叫做各个类别的模式。</p>
+<table>
+<thead>
+<tr>
+<th>mode</th>
+<th>适用的类别</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AVAudioSessionModeDefault</td>
+<td>所有类别</td>
+<td>默认的模式</td>
+</tr>
+<tr>
+<td>AVAudioSessionModeVoiceChat</td>
+<td>AVAudioSessionCategoryPlayAndRecord</td>
+<td>VoIP</td>
+</tr>
+<tr>
+<td>AVAudioSessionModeGameChat</td>
+<td>AVAudioSessionCategoryPlayAndRecord</td>
+<td>游戏录制，由GKVoiceChat自动设置，无需手动调用</td>
+</tr>
+<tr>
+<td>AVAudioSessionModeVideoRecording</td>
+<td>AVAudioSessionCategoryPlayAndRecord AVAudioSessionCategoryRecord</td>
+<td>录制视频时</td>
+</tr>
+<tr>
+<td>AVAudioSessionModeMoviePlayback</td>
+<td>AVAudioSessionCategoryPlayback</td>
+<td>视频播放</td>
+</tr>
+<tr>
+<td>AVAudioSessionModeMeasurement</td>
+<td>AVAudioSessionCategoryPlayAndRecord AVAudioSessionCategoryRecord AVAudioSessionCategoryPlayback</td>
+<td>最小系统</td>
+</tr>
+<tr>
+<td>AVAudioSessionModeVideoChat</td>
+<td>AVAudioSessionCategoryPlayAndRecord</td>
+<td>视频通话</td>
+</tr>
+</tbody>
+</table>
+<p>每个模式有其适用的类别，所以，并不是有“七七 四十九”种组合。如果当前处于的类别下没有这个模式，那么是设置不成功的。设置完Category后可以通过：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property(readonly) NSArray&lt;NSString *&gt; *availableModes;</span><br></pre></td></tr></table></figure></p>
+<p>属性，查看其支持哪些属性，做合法性校验。</p>
+<p>来看具体应用：</p>
+<ul>
+<li>AVAudioSessionModeDefault： 每种类别默认的就是这个模式，所有要想还原的话，就设置成这个模式。</li>
+<li>AVAudioSessionModeVoiceChat：主要用于VoIP场景，此时系统会选择最佳的输入设备，比如插上耳机就使用耳机上的麦克风进行采集。此时有个副作用，他会设置类别的选项为”AVAudioSessionCategoryOptionAllowBluetooth”从而支持蓝牙耳机。</li>
+<li>AVAudioSessionModeVideoChat ： 主要用于视频通话，比如QQ视频、FaceTime。时系统也会选择最佳的输入设备，比如插上耳机就使用耳机上的麦克风进行采集并且会设置类别的选项为”AVAudioSessionCategoryOptionAllowBluetooth” 和 “AVAudioSessionCategoryOptionDefaultToSpeaker”。</li>
+<li>AVAudioSessionModeGameChat ： 适用于游戏App的采集和播放，比如“GKVoiceChat”对象，一般不需要手动设置<br>另外几种和音频APP关系不大，一般我们只需要关注VoIP或者视频通话即可。</li>
+</ul>
+<p>通过调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)setMode:(NSString *)mode error:(NSError **)outError</span><br></pre></td></tr></table></figure></p>
+<p>可以在设置Category之后再设置模式。</p>
+<h4 id="系统中断响应"><a href="#系统中断响应" class="headerlink" title="系统中断响应"></a>系统中断响应</h4><p><font color="color=#ff0000">AVAudioSessionInterruptionNotification</font>:电话、闹铃响等中断的通知,其回调回来的userInfo主要包含两个键：</p>
+<ul>
+<li>AVAudioSessionInterruptionTypeKey:取值为 <font color="#ff0000"> AVAudioSessionInterruptionTypeBegan </font>:表示中断开始，我们应该暂停播放和采集，取值为<font color="color=#ff0000">AVAudioSessionInterruptionTypeEnded</font>表示中断结束，我们可以继续播放和采集。</li>
+<li>AVAudioSessionInterruptionOptionKey:当前只有一种值<font color="color=#ff0000">AVAudioSessionInterruptionOptionShouldResume</font>:表示此时也应该恢复继续播放和采集。</li>
+</ul>
+<p>示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//注册通知</span><br><span class="line">NSNotificationCenter *nsnc = [NSNotificationCenter defaultCenter];</span><br><span class="line">        [nsnc addObserver:self selector:@selector(handleInterruption:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];</span><br><span class="line">        </span><br><span class="line">//处理回调</span><br><span class="line">- (void)handleInterruption: (NSNotification *)notification</span><br><span class="line">&#123;</span><br><span class="line">    NSDictionary *info = notification.userInfo;</span><br><span class="line">    AVAudioSessionInterruptionType type = [info[AVAudioSessionInterruptionTypeKey] unsignedIntegerValue];</span><br><span class="line">    </span><br><span class="line">    if (type == AVAudioSessionInterruptionTypeBegan) &#123;</span><br><span class="line">        //Handle AVAudioSessionInterruptionTypeBegan</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">       // Handle AVAudioSessionInterruptionTypeEnd</span><br><span class="line">        AVAudioSessionInterruptionOptions options = [info[AVAudioSessionInterruptionOptionKey] unsignedIntegerValue];</span><br><span class="line">        if (options == AVAudioSessionInterruptionOptionShouldResume) &#123;</span><br><span class="line">        </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><font color="#ff0000">AVAudioSessionSilenceSecondaryAudioHintNotification</font>:其他App占据AudioSession的通知，其回调回来的userInfo键为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AVAudioSessionSilenceSecondaryAudioHintTypeKey</span><br></pre></td></tr></table></figure>
+<p>可能包含的值</p>
+<ul>
+<li><font color="color=#ff0000">AVAudioSessionSilenceSecondaryAudioHintTypeBegin</font>:表示其他App开始占据Session</li>
+<li><font color="color=#ff0000">AVAudioSessionInterruptionTypeEnded</font>:表示其他App开始释放Session</li>
+</ul>
+<h4 id="外设改变"><a href="#外设改变" class="headerlink" title="外设改变"></a>外设改变</h4><p>默认情况下，AudioSession会在App启动时选择一个最优的输出方案，比如插入耳机的时候，就用耳机。但是这个过程中，用户可能拔出耳机，我们App要如何感知这样的情况呢？</p>
+<p><font color="color=#ff0000"><strong>AVAudioSessionRouteChangeNotification</strong></font> : 外设改变时通知，在NSNotificationCenter中对其进行注册，userInfo中有键：</p>
+<ul>
+<li>AVAudioSessionRouteChangeReasonKey ： 表示改变的原因</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>枚举值</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AVAudioSessionRouteChangeReasonUnknown</td>
+<td>未知原因</td>
+</tr>
+<tr>
+<td>AVAudioSessionRouteChangeReasonNewDeviceAvailable</td>
+<td>有新设备可用</td>
+</tr>
+<tr>
+<td>AVAudioSessionRouteChangeReasonOldDeviceUnavailable</td>
+<td>老设备不可用</td>
+</tr>
+<tr>
+<td>AVAudioSessionRouteChangeReasonCategoryChange</td>
+<td>类别改变了</td>
+</tr>
+<tr>
+<td>AVAudioSessionRouteChangeReasonOverride</td>
+<td>App重置了输出设置</td>
+</tr>
+<tr>
+<td>AVAudioSessionRouteChangeReasonWakeFromSleep</td>
+<td>从睡眠状态呼醒</td>
+</tr>
+<tr>
+<td>AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory</td>
+<td>当前Category下没有合适的设备</td>
+</tr>
+<tr>
+<td>AVAudioSessionRouteChangeReasonRouteConfigurationChange</td>
+<td>Rotuer的配置改变了</td>
+</tr>
+</tbody>
+</table>
+<p>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">NSNotificationCenter *nsnc = [NSNotificationCenter defaultCenter];</span><br><span class="line">[nsnc addObserver:self selector:@selector(handleRouteChange:) name:AVAudioSessionRouteChangeNotification object:[AVAudioSession sharedInstance]];</span><br><span class="line"></span><br><span class="line">- (void)handleRouteChange:(NSNotification *)notification</span><br><span class="line">&#123;</span><br><span class="line">    NSDictionary *info = notification.userInfo;</span><br><span class="line">    AVAudioSessionRouteChangeReason reason = [info[AVAudioSessionRouteChangeReasonKey] unsignedIntegerValue];</span><br><span class="line">    if (reason == AVAudioSessionRouteChangeReasonOldDeviceUnavailable) &#123;</span><br><span class="line">        //如果拔出耳机，停止播放</span><br><span class="line">        AVAudioSessionRouteDescription *previousRoute = info[AVAudioSessionRouteChangePreviousRouteKey];</span><br><span class="line">        AVAudioSessionPortDescription *previousOutput = previousRoute.outputs[0];</span><br><span class="line">        NSString *portType = previousOutput.portType;</span><br><span class="line">        if ([portType isEqualToString:AVAudioSessionPortHeadphones]) &#123;</span><br><span class="line">            [self stop];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2018 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
