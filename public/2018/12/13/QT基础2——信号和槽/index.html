@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="信号和槽是QT中用于对象间通信的一种机制，也是QT的核心机制。在GUI编程中，我们经常需要在改变一个组件的同时，通知另一个组件做出响应。
+一、信号连接函数123456789101112131415161718192021222324252627282930//信号连接函数QMetaObject::C">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="QT基础2——信号和槽">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="信号和槽是QT中用于对象间通信的一种机制，也是QT的核心机制。在GUI编程中，我们经常需要在改变一个组件的同时，通知另一个组件做出响应。
+一、信号连接函数123456789101112131415161718192021222324252627282930//信号连接函数QMetaObject::C">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>QT基础2——信号和槽 - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>QT基础2——信号和槽</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2018-12-13
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/QT/">QT</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>信号和槽是QT中用于对象间通信的一种机制，也是QT的核心机制。在GUI编程中，我们经常需要在改变一个组件的同时，通知另一个组件做出响应。</p>
+<h3 id="一、信号连接函数"><a href="#一、信号连接函数" class="headerlink" title="一、信号连接函数"></a>一、信号连接函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//信号连接函数</span><br><span class="line">QMetaObject::Connection QObject::connect(const QObject *sender, const char *signal, const QObject *receiver, const char *method, Qt::ConnectionType type = Qt::AutoConnection)</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line">//btn为成员变量</span><br><span class="line">	btn.setParent(this);</span><br><span class="line">    btn.setText(&quot;hehe&quot;);</span><br><span class="line">    btn.move(50, 50);</span><br><span class="line">    connect(&amp;btn, &amp;QPushButton::pressed, this, &amp;MyWidget::close);</span><br><span class="line">    </span><br><span class="line">    /*</span><br><span class="line">    * QObject *sender, 即&amp;btn，信号发出者,指针类型</span><br><span class="line">    * const char *signal，即&amp;QPushButton::pressed，处理的信号， &amp;发送者类名::信号名</span><br><span class="line">    * QObject *receiver，即this(这里是父视图，也可以是其他对象），信号接收者</span><br><span class="line">    * const char *method，即&amp;MyWidget::close，槽函数，&amp;接收的类名::槽函数名字</span><br><span class="line">    */</span><br><span class="line">    </span><br><span class="line">对比iOS的UIControl(UIButton的父类）添加事件的方法：</span><br><span class="line">- (void)addTarget:(nullable id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line">UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];</span><br><span class="line">    [button addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];</span><br><span class="line">    </span><br><span class="line">对比一下：</span><br><span class="line">&amp;btn 对应 button  --&gt;事件产生者</span><br><span class="line">&amp;QPushButton::pressed 对应 UIControlEventTouchUpInside  --&gt;事件的类型</span><br><span class="line">this 对应  self   --&gt;事件的接收者</span><br><span class="line">&amp;MyWidget::close 对应  @selector(close)  --&gt;事件的响应函数</span><br><span class="line">而且，事件类型和响应函数只需要字符数组类型，这说明槽函数有着类似iOS运行时的实现机制，可以通过函数名找到相应的函数实现。</span><br></pre></td></tr></table></figure>
+<h3 id="二、自定义信号函数和槽函数"><a href="#二、自定义信号函数和槽函数" class="headerlink" title="二、自定义信号函数和槽函数"></a>二、自定义信号函数和槽函数</h3><p>在我们的.h文件中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">#ifndef MYWIDGET_H</span><br><span class="line">#define MYWIDGET_H</span><br><span class="line"></span><br><span class="line">#include &lt;QWidget&gt;</span><br><span class="line">#include &lt;QPushButton&gt;</span><br><span class="line"></span><br><span class="line">class MyWidget : public QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit MyWidget(QWidget *parent = nullptr);</span><br><span class="line"></span><br><span class="line">//这里写信号函数</span><br><span class="line">   /* 信号必须有signals关键字声明</span><br><span class="line">    * 信号没有返回值，但可以有参数</span><br><span class="line">    * 信号就是函数的声明，只需要声明，无需实现</span><br><span class="line">    * 使用: emit  函数() 发送信号   </span><br><span class="line">    */</span><br><span class="line">signals:</span><br><span class="line">	void mySignal();	//对应信息发送 emit mySignal();</span><br><span class="line">    void mySignal1(int, QString);	//对应信息发送 emit mySignal1(123， “123”);</span><br><span class="line">    </span><br><span class="line">//这里写槽函数</span><br><span class="line">	/* 槽函数特点：</span><br><span class="line">	 * 可以为任意的成员函数，普通全局函数，静态函数</span><br><span class="line">	 * 槽函数需要和信号一致（参数，返回值 ）</span><br><span class="line">	 * 信号都没有返回值，所以，槽函数一定没有返回值 </span><br><span class="line">    */</span><br><span class="line">public slots:</span><br><span class="line">    void mySlot();</span><br><span class="line">    void mySlot1(int, QString);</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">    QPushButton btn;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#endif // MYWIDGET_H</span><br></pre></td></tr></table></figure></p>
+<p>在.m文件中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;mywidget.h&quot;</span><br><span class="line">#include &lt;QLabel&gt;</span><br><span class="line">#include &lt;QDebug&gt;</span><br><span class="line"></span><br><span class="line">MyWidget::MyWidget(QWidget *parent) : QWidget(parent)</span><br><span class="line">&#123;</span><br><span class="line">    btn.setParent(this);</span><br><span class="line">    btn.setText(&quot;hehe&quot;);</span><br><span class="line">    btn.move(50, 50);</span><br><span class="line">    </span><br><span class="line">    //自发自收，^-^</span><br><span class="line">    connect(this, &amp;MyWidget::mySignal, this, &amp;MyWidget::mySlot);</span><br><span class="line">   	connect(this, &amp;MyWidget::mySignal1, this, &amp;MyWidget::mySlot1);</span><br><span class="line">    </span><br><span class="line">    emit mySignal();</span><br><span class="line">    emit mySignal1(123, &quot;123&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void MyWidget::mySlot() &#123;</span><br><span class="line">    btn.setText(&quot;点击了&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MyWidget::mySlot1(int a, QString str) &#123;</span><br><span class="line">    qDebug() &lt;&lt; a &lt;&lt; str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、信号连接函数的几种写法"><a href="#三、信号连接函数的几种写法" class="headerlink" title="三、信号连接函数的几种写法"></a>三、信号连接函数的几种写法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1、QT5的写法</span><br><span class="line">connect(&amp;btn, &amp;QPushButton::pressed, this, &amp;MyWidget::close);</span><br><span class="line"></span><br><span class="line">2、QT4的写法</span><br><span class="line">//QT4槽函数必须有slots关键字来修饰 .h public slots:</span><br><span class="line">connect(&amp;btn, SIGNAL(released()), this, SLOT(mySlot()));</span><br><span class="line"></span><br><span class="line">3、Lambda 表达式的写法</span><br><span class="line">connect(&amp;btn, &amp;QPushButton::released,</span><br><span class="line">            [=]() &#123;</span><br><span class="line">            btn.setText(&quot;456&quot;);</span><br><span class="line">            qDebug() &lt;&lt; &quot;123&quot;;</span><br><span class="line">                  &#125;</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+<p>重点讲一下关于Lambda表达式的写法：</p>
+<ul>
+<li>C++11增加的新特性 .pro文件 CONFIG += C++11</li>
+<li>配合信号一起使用，类似iOS的block</li>
+<li>[btn，a, b]传参，将btn,a, b传入表达式</li>
+<li>可以直接用【=】，将外部所有局部变量、类中的所有成员变量传入表达式<br>*【=】() mutable {} 可以修改变量值，相当于iOS的__block</li>
+<li>[this] 类中的所有成员以值传递方式, [&amp;] 把外部所有局部变量，引用符号</li>
+<li>信号带参数 【】(参数列表){},参数列表与信号相对应，如上面的mySlot1信号<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">connect(this, &amp;MyWidget::mySignal1,</span><br><span class="line">          [=](int a, QString str) &#123;</span><br><span class="line">            qDebug() &lt;&lt; a &lt;&lt; str;</span><br><span class="line">         &#125;</span><br><span class="line">        );</span><br><span class="line">//发送信号</span><br><span class="line">emit mySignal1(123, &quot;123&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2018 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
