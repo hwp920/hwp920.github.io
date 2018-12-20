@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="QT的事件是由事件基类QEvent派生出来的，而控件的事件是从QObject和QWidget继续来的虚函数，可以重写实现。
+控件事件示例代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="QT基础5——事件处理">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="QT的事件是由事件基类QEvent派生出来的，而控件的事件是从QObject和QWidget继续来的虚函数，可以重写实现。
+控件事件示例代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>QT基础5——事件处理 - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>QT基础5——事件处理</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2018-12-20
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/QT/">QT</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>QT的事件是由事件基类QEvent派生出来的，而控件的事件是从QObject和QWidget继续来的虚函数，可以重写实现。</p>
+<h3 id="控件事件"><a href="#控件事件" class="headerlink" title="控件事件"></a>控件事件</h3><p>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">//.h文件</span><br><span class="line">#ifndef EVENTLABEL_H</span><br><span class="line">#define EVENTLABEL_H</span><br><span class="line"></span><br><span class="line">#include &lt;QObject&gt;</span><br><span class="line">#include &lt;QLabel&gt;</span><br><span class="line">#include &lt;QWidget&gt;</span><br><span class="line"></span><br><span class="line">class EventLabel : public QLabel</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit EventLabel(QWidget *parent = nullptr);</span><br><span class="line"></span><br><span class="line">protected:</span><br><span class="line">	//鼠标按下事件</span><br><span class="line">    void mousePressEvent(QMouseEvent *ev);</span><br><span class="line">	//鼠标移动事件</span><br><span class="line">    void mouseMoveEvent(QMouseEvent *event);</span><br><span class="line">	//鼠标释放事件</span><br><span class="line">    void mouseReleaseEvent(QMouseEvent *event);</span><br><span class="line">	//鼠标离开控件事件 virtual关键字可写可不写</span><br><span class="line">    virtual void leaveEvent(QEvent *event);</span><br><span class="line">	//鼠标进入控件事件</span><br><span class="line">    virtual void enterEvent(QEvent *event);</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line"></span><br><span class="line">public slots:</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#endif // EVENTLABEL_H</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.cpp 文件</span><br><span class="line">#include &quot;eventlabel.h&quot;</span><br><span class="line">#include &lt;QMouseEvent&gt;</span><br><span class="line">#include &lt;QDebug&gt;</span><br><span class="line"></span><br><span class="line">EventLabel::EventLabel(QWidget *parent) : QLabel(parent)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void EventLabel::mousePressEvent(QMouseEvent *ev)</span><br><span class="line">&#123;</span><br><span class="line">    int i = ev-&gt;x();</span><br><span class="line">    int j = ev-&gt;y();</span><br><span class="line"></span><br><span class="line">    if (ev-&gt;button() == Qt::LeftButton) &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;left&quot;;</span><br><span class="line">    &#125; else if (ev-&gt;button() == Qt::RightButton) &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;Right&quot;;</span><br><span class="line">    &#125; else if (ev-&gt;button() == Qt::MidButton) &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;Mid&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    QString text = QString(&quot;&lt;center&gt;&lt;h1&gt;Mouse Press: (%1, %2)&lt;/h1&gt;&lt;/center&gt;&quot;).arg(i).arg(j);</span><br><span class="line">    this-&gt;setText(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void EventLabel::mouseReleaseEvent(QMouseEvent *ev) &#123;</span><br><span class="line">    QString text = QString(&quot;&lt;center&gt;&lt;h1&gt;Mouse Release: (%1, %2)&lt;/h1&gt;&lt;/center&gt;&quot;).arg(ev-&gt;x()).arg(ev-&gt;y());</span><br><span class="line">    this-&gt;setText(text);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void EventLabel::mouseMoveEvent(QMouseEvent *ev)</span><br><span class="line">&#123;</span><br><span class="line">    QString text = QString(&quot;&lt;center&gt;&lt;h1&gt;Mouse Move: (%1, %2)&lt;/h1&gt;&lt;/center&gt;&quot;).arg(ev-&gt;x()).arg(ev-&gt;y());</span><br><span class="line">    this-&gt;setText(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void EventLabel::leaveEvent(QEvent *event)</span><br><span class="line">&#123;</span><br><span class="line">    QString text = QString(&quot;&lt;center&gt;&lt;h1&gt;leave&lt;/h1&gt;&lt;/center&gt;&quot;);</span><br><span class="line">    this-&gt;setText(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void EventLabel::enterEvent(QEvent *event)</span><br><span class="line">&#123;</span><br><span class="line">    QString text = QString(&quot;&lt;center&gt;&lt;h1&gt;enter&lt;/h1&gt;&lt;/center&gt;&quot;);</span><br><span class="line">    this-&gt;setText(text);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.h文件</span><br><span class="line">protected:</span><br><span class="line">    void keyPressEvent(QKeyEvent *);</span><br><span class="line">    </span><br><span class="line">.cpp 文件</span><br><span class="line">void MainWindow::keyPressEvent(QKeyEvent *e)</span><br><span class="line">&#123;</span><br><span class="line">	//QKeyEvent 键盘按键事件</span><br><span class="line">    //e-&gt;key() 被下的按键</span><br><span class="line">    //Qt::Key_x   键盘按键的枚举值</span><br><span class="line">    qDebug() &lt;&lt; (char)e-&gt;key();</span><br><span class="line">    if (e-&gt;key() == Qt::Key_A)</span><br><span class="line">    &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;Qt::Key_A&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="定时器事件"><a href="#定时器事件" class="headerlink" title="定时器事件"></a>定时器事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">.h 文件</span><br><span class="line">protected:</span><br><span class="line">	void timerEvent(QTimerEvent *e);</span><br><span class="line">    </span><br><span class="line">private:</span><br><span class="line">	int timerID;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">.cpp 文件</span><br><span class="line">//启动定时器,单位为ms</span><br><span class="line">timerID = this-&gt;startTimer(1000);</span><br><span class="line"></span><br><span class="line">//定时器处理函数，所有定时器事件都通过些函数处理，不像OC的NSTimer单独指定</span><br><span class="line">void MainWindow::timerEvent(QTimerEvent *e)</span><br><span class="line">&#123;</span><br><span class="line">	//e-&gt;timerId()获取触发事件的定时器</span><br><span class="line">    if (timerID == e-&gt;timerId()) &#123;  </span><br><span class="line">        static int sec = 0;</span><br><span class="line">        sec++;</span><br><span class="line"></span><br><span class="line">        ui-&gt;label-&gt;setText(QString(&quot;&lt;center&gt;&lt;h1&gt;timer out: %1&lt;/h1&gt;&lt;/center&gt;&quot;).arg(sec));</span><br><span class="line"></span><br><span class="line">        if (sec == 5) &#123;</span><br><span class="line">        	//关闭定时器</span><br><span class="line">            killTimer(timerID);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="事件的接收和忽略"><a href="#事件的接收和忽略" class="headerlink" title="事件的接收和忽略"></a>事件的接收和忽略</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//e-&gt;accept() 接收事件，即处理事件</span><br><span class="line">//e-&gt;ignore() 忽略事件，不处理</span><br><span class="line">void MainWindow::closeEvent(QCloseEvent *e) &#123;</span><br><span class="line">    int ret = QMessageBox::question(this, &quot;question&quot;, &quot;是否关闭窗口&quot;);</span><br><span class="line">    if(ret == QMessageBox::Yes) &#123;</span><br><span class="line">        //接收事件，执行事件， 事件不再传递，关闭事件-&gt;关闭窗口</span><br><span class="line">        e-&gt;accept();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        //忽略事件，事件传递给父组件直到找到事件接收者或者无父组件丢弃</span><br><span class="line">        e-&gt;ignore();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="事件分发"><a href="#事件分发" class="headerlink" title="事件分发"></a>事件分发</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class MyClass : public QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    MyClass(QWidget *parent = 0);</span><br><span class="line">    ~MyClass();</span><br><span class="line"></span><br><span class="line">//事件处理函数 返回true停止事件传递， false 继续事件传递</span><br><span class="line">    bool event(QEvent* ev) override</span><br><span class="line">    &#123;	</span><br><span class="line">    	//判断事件类型，分发给相应的处理函数</span><br><span class="line">        if (ev-&gt;type() == QEvent::PolishRequest) &#123;</span><br><span class="line">            // overwrite handling of PolishRequest if any</span><br><span class="line">            doThings();</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else  if (ev-&gt;type() == QEvent::Show) &#123;</span><br><span class="line">            // complement handling of Show if any</span><br><span class="line">            doThings2();</span><br><span class="line">            //调用父类处理函数，即进行默认处理</span><br><span class="line">            QWidget::event(ev);</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        // Make sure the rest of events are handled</span><br><span class="line">        //调用父类处理函数，即进行默认处理</span><br><span class="line">        return QWidget::event(ev);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="事件过滤器"><a href="#事件过滤器" class="headerlink" title="事件过滤器"></a>事件过滤器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">  class MainWindow : public QMainWindow</span><br><span class="line">  &#123;</span><br><span class="line">  public:</span><br><span class="line">      MainWindow();</span><br><span class="line"></span><br><span class="line">  protected:</span><br><span class="line">  //1、重写事件过滤函数</span><br><span class="line">      bool eventFilter(QObject *obj, QEvent *ev) override;</span><br><span class="line"></span><br><span class="line">  private:</span><br><span class="line">      QTextEdit *textEdit;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  MainWindow::MainWindow()</span><br><span class="line">  &#123;</span><br><span class="line">      textEdit = new QTextEdit;</span><br><span class="line">      setCentralWidget(textEdit);</span><br><span class="line">      </span><br><span class="line">	//2、控件初始化过滤</span><br><span class="line">      textEdit-&gt;installEventFilter(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">//3、具体事件处理</span><br><span class="line">  bool MainWindow::eventFilter(QObject *obj, QEvent *event)</span><br><span class="line">  &#123;</span><br><span class="line">      if (obj == textEdit) &#123;</span><br><span class="line">          if (event-&gt;type() == QEvent::KeyPress) &#123;</span><br><span class="line">              QKeyEvent *keyEvent = static_cast&lt;QKeyEvent*&gt;(event);</span><br><span class="line">              qDebug() &lt;&lt; &quot;Ate key press&quot; &lt;&lt; keyEvent-&gt;key();</span><br><span class="line">              return true;</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">              return false;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">          // pass the event on to the parent class</span><br><span class="line">          return QMainWindow::eventFilter(obj, event);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2018 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
