@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="服务端常用的tcp服务端会有两个套接字，一个监听套接字和三次握手之后正常通讯 的套接字。QT的tcp服务端把这两个套接字设计成两个类：QTcpServer（监听套接字）和QTcpSocket（通讯套接字，客户端只用通讯套接字）。123456789101112131415161718192021222">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="QT基础9——TCP">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="服务端常用的tcp服务端会有两个套接字，一个监听套接字和三次握手之后正常通讯 的套接字。QT的tcp服务端把这两个套接字设计成两个类：QTcpServer（监听套接字）和QTcpSocket（通讯套接字，客户端只用通讯套接字）。123456789101112131415161718192021222">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>QT基础9——TCP - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>QT基础9——TCP</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-01-01
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/QT/">QT</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><p>常用的tcp服务端会有两个套接字，一个监听套接字和三次握手之后正常通讯 的套接字。QT的tcp服务端把这两个套接字设计成两个类：QTcpServer（监听套接字）和QTcpSocket（通讯套接字，客户端只用通讯套接字）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">//1、创建监听套接字</span><br><span class="line">server = new QTcpServer(this);</span><br><span class="line"></span><br><span class="line">//2、监听地址和端口，相当于socket的 bind+listen</span><br><span class="line">server-&gt;listen(QHostAddress::Any, 10000);</span><br><span class="line"></span><br><span class="line">//3、当有客户端连接时，会发出newConnection信号</span><br><span class="line">connect(server, &amp;QTcpServer::newConnection,</span><br><span class="line">            [=] () &#123;</span><br><span class="line">            </span><br><span class="line">        //4、获取三次握手成功的客户端链接，相当于accept</span><br><span class="line">        tcpSocket = server-&gt;nextPendingConnection();</span><br><span class="line">		</span><br><span class="line">        //获取客户端IP</span><br><span class="line">        QString ip = tcpSocket-&gt;peerAddress().toString();</span><br><span class="line">        //获取客户端商品</span><br><span class="line">        quint16 port = tcpSocket-&gt;peerPort();</span><br><span class="line">        QString temp = QString(&quot;[%1:%2]: 连接成功&quot;).arg(ip).arg(port);</span><br><span class="line">        qDebug() &lt;&lt; ip &lt;&lt; port;</span><br><span class="line">        ui-&gt;textRead-&gt;setText(temp);</span><br><span class="line">		</span><br><span class="line">        //5、当接收到客户端数据时，会发出readyRead信号</span><br><span class="line">        connect(tcpSocket, &amp;QTcpSocket::readyRead,</span><br><span class="line">                [=]() &#123;</span><br><span class="line">             //读数据，获有接口文档的，可以读定长数据</span><br><span class="line">            QByteArray array = tcpSocket-&gt;readAll();</span><br><span class="line">            ui-&gt;textRead-&gt;append(array);</span><br><span class="line">        &#125;);</span><br><span class="line">		</span><br><span class="line">        //6、客户端断开时，会发出disconnected信号，处理断开事件</span><br><span class="line">        connect(tcpSocket, &amp;QTcpSocket::disconnected,</span><br><span class="line">                [=]() &#123;</span><br><span class="line">            tcpSocket-&gt;disconnectFromHost();</span><br><span class="line">            tcpSocket-&gt;close();</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //写数据到客户端</span><br><span class="line">    QString str = @&quot;Hello world&quot;;</span><br><span class="line">    tcpSocket-&gt;write(str.toUtf8().data());</span><br><span class="line">    </span><br><span class="line">    //主动断开连接</span><br><span class="line">    tcpSocket-&gt;disconnectFromHost();</span><br><span class="line">    tcpSocket-&gt;close();</span><br><span class="line">    tcpSocket = NULL;</span><br></pre></td></tr></table></figure></p>
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">//1、创建socket</span><br><span class="line">client = new QTcpSocket(this);</span><br><span class="line"></span><br><span class="line">//2、连接服务端</span><br><span class="line">client-&gt;connectToHost(&quot;127.0.0.1&quot;, 8888, QIODevice::ReadWrite);</span><br><span class="line"></span><br><span class="line">//3、处理连接成功信号</span><br><span class="line">connect(client, &amp;QTcpSocket::connected,</span><br><span class="line">            [=]()&#123;</span><br><span class="line">        QString ip = client-&gt;peerAddress().toString();</span><br><span class="line">        quint16 port = client-&gt;peerPort();</span><br><span class="line">        QString temp = QString(&quot;[%1 : %2]&quot;).arg(ip).arg(port);</span><br><span class="line">        ui-&gt;editRead-&gt;setText(temp);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">//4、处理收到数据信号</span><br><span class="line">connect(client, &amp;QTcpSocket::readyRead,</span><br><span class="line">            [=]()&#123;</span><br><span class="line">        QByteArray array = client-&gt;readAll();</span><br><span class="line">        ui-&gt;editRead-&gt;append(array);</span><br><span class="line"> &#125;);</span><br><span class="line"> </span><br><span class="line"> 5、处理断开连接信号</span><br><span class="line"> connect(client, &amp;QTcpSocket::disconnected, </span><br><span class="line">            [=]()&#123;</span><br><span class="line">        //服务端断开连接</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">//写数据</span><br><span class="line">QString str = @&quot;Hello world&quot;;</span><br><span class="line">client-&gt;write(str.toUtf8().data());</span><br><span class="line"></span><br><span class="line">//断开连接</span><br><span class="line">client-&gt;disconnectFromHost();</span><br><span class="line">client-&gt;close();</span><br><span class="line">ui-&gt;editRead-&gt;setText(&quot;disconnected&quot;);</span><br><span class="line">client = NULL;</span><br></pre></td></tr></table></figure>
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
