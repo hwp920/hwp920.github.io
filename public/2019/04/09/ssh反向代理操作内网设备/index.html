@@ -13,6 +13,10 @@
     
 
     
+        <meta name="description" content="本文基本参照：https://www.cnblogs.com/kwongtai/p/6903420.html  对原文作者表示感谢
+之前上写了个树莓派摄像头采集及传输的程序，有时在外网想调试，出租房没有公网IP，操作不了，所以就上网查了下资料，找到了两种解决方案：
+一、gotohttp首先就是got">
+    
 
     <!--Author-->
     
@@ -25,6 +29,10 @@
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="本文基本参照：https://www.cnblogs.com/kwongtai/p/6903420.html  对原文作者表示感谢
+之前上写了个树莓派摄像头采集及传输的程序，有时在外网想调试，出租房没有公网IP，操作不了，所以就上网查了下资料，找到了两种解决方案：
+一、gotohttp首先就是got">
     
 
     <!--Open Graph Site Name-->
@@ -191,7 +199,59 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                
+                <p>本文基本参照：<a href="https://www.cnblogs.com/kwongtai/p/6903420.html" target="_blank" rel="noopener">https://www.cnblogs.com/kwongtai/p/6903420.html</a>  对原文作者表示感谢</p>
+<p>之前上写了个树莓派摄像头采集及传输的程序，有时在外网想调试，出租房没有公网IP，操作不了，所以就上网查了下资料，找到了两种解决方案：</p>
+<h3 id="一、gotohttp"><a href="#一、gotohttp" class="headerlink" title="一、gotohttp"></a>一、gotohttp</h3><p>首先就是gotohttp，在官网<a href="http://www.tohttp.com" target="_blank" rel="noopener">http://www.tohttp.com</a> 下载相应系统的程序，执行得到一个id和控制码，回到官网输入就可以控制了。<br><img src="gotohttp.png" alt="gotohtt命令行界面效果"></p>
+<p>优点：不需要vps，操作简单<br>缺点：窗口模式下，字体太小，不全屏看着难受</p>
+<h3 id="二、http反向代理"><a href="#二、http反向代理" class="headerlink" title="二、http反向代理"></a>二、http反向代理</h3><h4 id="1、描述一下目前的机器状况，梳理梳理："><a href="#1、描述一下目前的机器状况，梳理梳理：" class="headerlink" title="1、描述一下目前的机器状况，梳理梳理："></a>1、描述一下目前的机器状况，梳理梳理：</h4><table>
+<thead>
+<tr>
+<th>机器</th>
+<th style="text-align:center">IP</th>
+<th style="text-align:center">用户名</th>
+<th style="text-align:right">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>树莓派</td>
+<td style="text-align:center">10.21.32.106</td>
+<td style="text-align:center">gdut728</td>
+<td style="text-align:right">目标设备，处于内网</td>
+</tr>
+<tr>
+<td>阿里云服务器</td>
+<td style="text-align:center">123.123.123.123</td>
+<td style="text-align:center">root</td>
+<td style="text-align:right">外网服务器，相当于桥梁的作用</td>
+</tr>
+</tbody>
+</table>
+<font color="ff0000">PS：123.123.123.123是瞎起的</font>
+
+<h4 id="2、解决方法"><a href="#2、解决方法" class="headerlink" title="2、解决方法"></a>2、解决方法</h4><p>通俗地说：就是在树莓派上做到阿里云服务器的反向代理；然后在阿里云服务器上做正向的代理实现本地端口的转发</p>
+<h5 id="2-1-实现前的准备"><a href="#2-1-实现前的准备" class="headerlink" title="2.1 实现前的准备"></a>2.1 实现前的准备</h5><p>每台都要安装ssh的客户端。<br>服务器和树莓派都装的ubuntu，都自带ssh。如果是使用其他版本Linux，请手动Google一下咯。</p>
+<h5 id="2-2-介绍一下使用到的ssh参数："><a href="#2-2-介绍一下使用到的ssh参数：" class="headerlink" title="2.2 介绍一下使用到的ssh参数："></a>2.2 介绍一下使用到的ssh参数：</h5><p>反向代理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fCNR</span><br></pre></td></tr></table></figure></p>
+<p>正向代理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fCNL</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-f 后台执行ssh指令</span><br><span class="line">-C 允许压缩数据</span><br><span class="line">-N 不执行远程指令</span><br><span class="line">-R 将远程主机(服务器)的某个端口转发到本地端指定机器的指定端口</span><br><span class="line">-L 将本地机(客户机)的某个端口转发到远端指定机器的指定端口</span><br><span class="line">-p 指定远程主机的端口</span><br><span class="line"></span><br><span class="line">******************区分大小写啊各位亲******************</span><br></pre></td></tr></table></figure>
+<h4 id="3-首先在树莓派上面操作："><a href="#3-首先在树莓派上面操作：" class="headerlink" title="3. 首先在树莓派上面操作："></a>3. 首先在树莓派上面操作：</h4><p>建立树莓派到服务器的反向代理，具体指令为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fCNR [B机器IP或省略]:[B机器端口]:[A机器的IP]:[A机器端口] [登陆B机器的用户名@服务器IP]</span><br></pre></td></tr></table></figure></p>
+<p>在这里我使用了B机器的7280端口，以及A机器的22端口，按照上面的指令就是这样子的操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fCNR 7280:localhost:22 root@123.123.123.123</span><br></pre></td></tr></table></figure></p>
+<p>检验是否已经启动了可以使用ps aux | grep ssh指令来查看：<br><img src="//www.cyrus.fun/2019/04/09/ssh反向代理操作内网设备/ssh_r.png" alt=""></p>
+<h5 id="4-接着在服务器上面操作"><a href="#4-接着在服务器上面操作" class="headerlink" title="4. 接着在服务器上面操作:"></a>4. 接着在服务器上面操作:</h5><p>建立服务器的正向代理，用来做转发，具体指令为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fCNL [A机器IP或省略]:[A机器端口]:[B机器的IP]:[B机器端口] [登陆B机器的用户名@B机器的IP]</span><br></pre></td></tr></table></figure></p>
+<p>按照第3那里输入的指令，这里的B机器的端口和上面的B机器的端口是一致的，端口1234的也是服务器的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fCNL *:1234:localhost:7280 localhost</span><br></pre></td></tr></table></figure></p>
+<p>检验是否已经启动了可以使用ps aux | grep ssh指令来查看：<br><img src="//www.cyrus.fun/2019/04/09/ssh反向代理操作内网设备/ssh_l.png" alt=""></p>
+<font color="ff0000">在此1234端口为本地转发端口，负责和外网进行通信，并将数据转发的7280这个端口，实现了可以从其他机器访问的功能。同时，*号表示可以接受任何IP的访问。</font>
+
+
+<h4 id="5-展现奇迹的时候到了"><a href="#5-展现奇迹的时候到了" class="headerlink" title="5. 展现奇迹的时候到了"></a>5. 展现奇迹的时候到了</h4><p>至此我们都配置好了树莓派和服务器，那么我们就可以从一部外网的电脑登陆到内网里面去啦。鉴于我目前的电脑在内网，而服务器都是外网的，所以可以通过服务器连接到我内网的树莓派，具体指令为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p1234 gdut728@123.123.123.123</span><br></pre></td></tr></table></figure></p>
+<p>在此-p参数为指定登陆的IP，我们在上面指定了1234端口为转发端口，故用1234端口登陆，然后gdut728是内网树莓派的用户名，123.123.123.123为外网服务器的IP地址。<br><img src="//www.cyrus.fun/2019/04/09/ssh反向代理操作内网设备/connect.png" alt=""></p>
+<h4 id="6-设置免密码登陆到内网"><a href="#6-设置免密码登陆到内网" class="headerlink" title="6.设置免密码登陆到内网"></a>6.设置免密码登陆到内网</h4><p>在内网的树莓派上面执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id 外网用户名@外网IP</span><br></pre></td></tr></table></figure></p>
+<p>按照之前我设定的端口，这个指令就是如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id root@123.123.123.123</span><br></pre></td></tr></table></figure></p>
+<p><img src="//www.cyrus.fun/2019/04/09/ssh反向代理操作内网设备/免密.png" alt=""><br>那以后这台内网的树莓派ssh登陆我外网的B机器就可以免密码登陆啦~<br>检验是否已经可以使用免密码登陆可以使用如下指令来检验：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@123.123.123.123</span><br></pre></td></tr></table></figure></p>
+<p><img src="//www.cyrus.fun/2019/04/09/ssh反向代理操作内网设备/检验免密.png" alt=""></p>
+<h4 id="7-设备开机自动启动反向代理"><a href="#7-设备开机自动启动反向代理" class="headerlink" title="7.设备开机自动启动反向代理"></a>7.设备开机自动启动反向代理</h4><p>在树莓派的/etc/systemd/system路径下建立一个名为myssh.service的文件，并在其中输入以下内容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=My Reverse SSH Service</span><br><span class="line">ConditionPathExists=|/usr/bin</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">User=root</span><br><span class="line">ExecStart=/usr/bin/ssh  -NTC -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=no -i /home/cyrus/.ssh/id_rsa  -R 7280:localhost:22 root@123.123.123	//端口及IP改为自己设置的</span><br><span class="line"></span><br><span class="line">RestartSec=3</span><br><span class="line">Restart=always</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure></p>
+<p>开机开启服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable myssh.service</span><br></pre></td></tr></table></figure></p>
+
 
                 
             </div>
