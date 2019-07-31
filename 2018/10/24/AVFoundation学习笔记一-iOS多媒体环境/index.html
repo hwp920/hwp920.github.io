@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Core AudioCore Audio是OS X和iOS系统上处理所有音频事件的框架。
+
+1、为音频和HIDI内容的录制、播放和处理提供相应接口；
+2、高层级AudioQueueServers框架提供的处理基本音频播放和录音相关的功能；
+3、低层级Audio Units针对音频信号进行完全控制的功">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="AVFoundation学习笔记一 iOS多媒体环境">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Core AudioCore Audio是OS X和iOS系统上处理所有音频事件的框架。
+
+1、为音频和HIDI内容的录制、播放和处理提供相应接口；
+2、高层级AudioQueueServers框架提供的处理基本音频播放和录音相关的功能；
+3、低层级Audio Units针对音频信号进行完全控制的功">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>AVFoundation学习笔记一 iOS多媒体环境 - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>AVFoundation学习笔记一 iOS多媒体环境</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2018-10-24
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/AVFoundation/">AVFoundation</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><img src="//www.cyrus.fun/2018/10/24/AVFoundation学习笔记一-iOS多媒体环境/ios_media.png" alt=""></p>
+<h3 id="Core-Audio"><a href="#Core-Audio" class="headerlink" title="Core Audio"></a>Core Audio</h3><p>Core Audio是OS X和iOS系统上处理所有音频事件的框架。</p>
+<ul>
+<li>1、为音频和HIDI内容的录制、播放和处理提供相应接口；</li>
+<li>2、高层级AudioQueueServers框架提供的处理基本音频播放和录音相关的功能；</li>
+<li>3、低层级Audio Units针对音频信号进行完全控制的功能。</li>
+</ul>
+<h3 id="Core-Video"><a href="#Core-Video" class="headerlink" title="Core Video"></a>Core Video</h3><p>Core Video是OS X和iOS系统上针对数字视频所提供的管道模式。Core Video为其相对的Core Media<font color="ff0000">提供图片缓存和缓存池支持，提供了一个能够对数字视频逐帧访问的接口</font>。</p>
+<h3 id="Core-Media"><a href="#Core-Media" class="headerlink" title="Core Media"></a>Core Media</h3><p>Core Media是AVFoundation所用到的低层级媒体管道的一部分。提供针对音频样本和视频帧处理所需的低层级数据类型和接口。Core Media还提供了CMTime数据类型的时基模型。</p>
+<h3 id="Core-Animation"><a href="#Core-Animation" class="headerlink" title="Core Animation"></a>Core Animation</h3><p>Core Animation是OS X和iOS提供的合成及动画相关框架，封装了OpenGL和OpenGL ES功能的基本Objective-C的各种类。（似乎已经改为<font color="ff0000">Metal</font>作为Core Animation的低层渲染）</p>
+<h3 id="AVFoundation-本系列主要内容"><a href="#AVFoundation-本系列主要内容" class="headerlink" title="AVFoundation (本系列主要内容)"></a>AVFoundation (本系列主要内容)</h3><p>处于高层级框架和低层级框架之间，以Objective-C接口方式提供了很多低层级框架才能实现的功能和性能,可以和高层级的框架无缝衔接。</p>
+<ul>
+<li>1、文本朗诵 （AVSpeechSynthesizer）</li>
+<li>2、音频播放和录制（AVAudioPlayer和AVAudioRecorder）</li>
+<li>3、媒体文件元数据（AVMetadataItem）</li>
+<li>4、视频播放 （AVPlayer 和 AVPlayerItem）</li>
+<li>5、媒体捕捉 （AVCaptureSession）</li>
+<li>6、媒体读写 （AVAssetReader和AVAssetWriter）</li>
+<li>7、媒体编辑</li>
+</ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
