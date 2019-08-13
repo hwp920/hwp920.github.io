@@ -13,6 +13,10 @@
     
 
     
+        <meta name="description" content="参考：https://www.cnblogs.com/ranson7zop/p/7889272.html
+首先看一下MP4的层级结构：
+1、概述MP4文件中的所有数据都装在box（QuickTime中为atom）中，也就是说MP4文件由若干个box组成，每个box有类型和长度，可以将box理解为一个">
+    
 
     <!--Author-->
     
@@ -21,10 +25,14 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Cyrus的技术空间">
+        <meta property="og:title" content="MP4格式解析一（概览）">
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="参考：https://www.cnblogs.com/ranson7zop/p/7889272.html
+首先看一下MP4的层级结构：
+1、概述MP4文件中的所有数据都装在box（QuickTime中为atom）中，也就是说MP4文件由若干个box组成，每个box有类型和长度，可以将box理解为一个">
     
 
     <!--Open Graph Site Name-->
@@ -32,7 +40,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -51,7 +59,7 @@
 
     <!-- Title -->
     
-    <title>Cyrus的技术空间</title>
+    <title>MP4格式解析一（概览） - Cyrus的技术空间</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -154,208 +162,98 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>Cyrus的技术空间</h1>
-                    <hr class="small">
-                    <span class="subheading">记录学习的点点滴滴</span>
+                <div class="post-heading">
+                    <h1>MP4格式解析一（概览）</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-08-13
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            
-                <div class="post-preview">
-    <a href="/2019/08/13/MP4格式解析二-ftyp/">
-        <h2 class="post-title">
-            MP4格式解析二   ftyp/mvhd
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-13
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2019/08/13/MP4格式解析一（概览）/">
-        <h2 class="post-title">
-            MP4格式解析一（概览）
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-13
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2019/08/08/FLV文件格式解析（h264-aac）/">
-        <h2 class="post-title">
-            FLV文件格式解析（h264 + aac）
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-08
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2019/08/06/RTMP协议解析/">
-        <h2 class="post-title">
-            RTMP协议解析
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-06
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2019/04/09/ssh反向代理操作内网设备/">
-        <h2 class="post-title">
-            ssh反向代理操作内网设备
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-04-09
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2019/01/31/V4L视频采集/">
-        <h2 class="post-title">
-            V4L视频采集
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-01-31
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2019/01/27/H264-nalu类型及解析/">
-        <h2 class="post-title">
-            H264 nalu类型及解析
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-01-27
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2019/01/24/H264-profile类型及特点/">
-        <h2 class="post-title">
-            H264 profile类型、特点及解析
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-01-24
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2019/01/01/QT基础10——UDP/">
-        <h2 class="post-title">
-            QT基础10——UDP
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-01-01
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2019/01/01/QT基础9——TCP/">
-        <h2 class="post-title">
-            QT基础9——TCP
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-01-01
-    </p>
-</div>
-<hr>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/MP4/">#MP4</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/音视频/">音视频</a>
+
+                    
+                </div>
             
 
-            <ul class="pager">
-    
-    
-        <li class="next"><a href="/page/2/">Older Posts  &rarr;</a></li>
-    
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>参考：<a href="https://www.cnblogs.com/ranson7zop/p/7889272.html" target="_blank" rel="noopener">https://www.cnblogs.com/ranson7zop/p/7889272.html</a></p>
+<p>首先看一下MP4的层级结构：<br><img src="//www.cyrus.fun/2019/08/13/MP4格式解析一（概览）/MP4_1.png" alt=""></p>
+<h4 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h4><p>MP4文件中的所有数据都装在box（QuickTime中为atom）中，也就是说MP4文件由若干个box组成，每个box有类型和长度，可以将box理解为一个数据对象块。box中可以包含另一个box，这种box称为container box。</p>
+<ul>
+<li>一个MP4文件首先会有且只有一个“ftyp”类型的box，作为MP4格式的标志并包含关于文件的一些信息；</li>
+<li>之后会有且只有一个“moov”类型的box（Movie Box），它是一种container box，子box包含了媒体的metadata信息；</li>
+<li>MP4文件的媒体数据包含在“mdat”类型的box（Midia Data Box）中，该类型的box也是container box，可以有多个，也可以没有（当媒体数据全部引用其他文件时），媒体数据的结构由metadata进行描述。</li>
 </ul>
+<p>下面是一些概念：</p>
+<ul>
+<li><em>track</em>  表示一些sample的集合，对于媒体数据来说，track表示一个视频或音频序列。</li>
+<li><em>hint track</em> 这个特殊的track并不包含媒体数据，而是包含了一些将其他数据track打包成流媒体的指示信息。</li>
+<li><em>hint track</em> 这个特殊的track并不包含媒体数据，而是包含了一些将其他数据track打包成流媒体的指示信息。</li>
+<li><em>sample</em> 对于非hint track来说，video sample即为一帧视频，或一组连续视频帧，audio sample即为一段连续的压缩音频，它们统称sample。对于hint track，sample定义一个或多个流媒体包的格式。</li>
+<li><em>sample table</em> 指明sampe时序和物理布局的表。</li>
+<li><em>chunk</em> 一个track的几个sample组成的单元。</li>
+</ul>
+<h4 id="2、Box"><a href="#2、Box" class="headerlink" title="2、Box"></a>2、Box</h4><p>首先需要说明的是，box中的字节序为网络字节序，也就是大端字节序（Big-Endian），简单的说，就是一个32位的4字节整数存储方式为高位字节在内存的低端。Box由header和body组成，其中header统一指明box的大小和类型，body根据类型有不同的意义和格式。</p>
+<p>标准的box开头的4个字节（32位）为box size，该大小包括box header和box body整个box的大小，这样我们就可以在文件中定位各个box。如果size为1，则表示这个box的大小为large size，真正的size值要在largesize域上得到。（实际上只有“mdat”类型的box才有可能用到large size。）如果size为0，表示该box为文件的最后一个box，文件结尾即为该box结尾。（同样只存在于“mdat”类型的box中。）</p>
+<p>size后面紧跟的32位为box type，一般是4个字符，如“ftyp”、“moov”等，这些box type都是已经预定义好的，分别表示固定的意义。如果是“uuid”，表示该box为用户扩展类型。如果box type是未定义的，应该将其忽略。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
-
+</article>
 
     <!-- Footer -->
     <hr>
