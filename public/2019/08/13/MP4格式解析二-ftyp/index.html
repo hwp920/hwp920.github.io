@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="一、ftypftyp(File Type Box),该box有且只有1个，并且只能被包含在文件层，而不能被其他box包含。该box应该被放在文件的最开始，指示该MP4文件应用的相关信息。
+
+下面看具体数据解析:
+12345678900 00 00 1C 66 74 79 70 6D 70 34 32">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="MP4格式解析二   ftyp/mvhd">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="一、ftypftyp(File Type Box),该box有且只有1个，并且只能被包含在文件层，而不能被其他box包含。该box应该被放在文件的最开始，指示该MP4文件应用的相关信息。
+
+下面看具体数据解析:
+12345678900 00 00 1C 66 74 79 70 6D 70 34 32">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>MP4格式解析二   ftyp/mvhd - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>MP4格式解析二   ftyp/mvhd</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-08-13
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/MP4/">#MP4</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/音视频/">音视频</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="一、ftyp"><a href="#一、ftyp" class="headerlink" title="一、ftyp"></a>一、ftyp</h3><p>ftyp(File Type Box),该box有且只有1个，并且只能被包含在文件层，而不能被其他box包含。该box应该被放在文件的最开始，指示该MP4文件应用的相关信息。</p>
+<p><img src="//www.cyrus.fun/2019/08/13/MP4格式解析二-ftyp/ftyp_1.png" alt=""></p>
+<p>下面看具体数据解析:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 1C 66 74 79 70 6D 70 34 32 00 00 00 01 ; ....ftypmp42....</span><br><span class="line">6D 70 34 31 6D 70 34 32 69 73 6F 6D             ; mp41mp42isom</span><br><span class="line"></span><br><span class="line">===================== 解析 =====================</span><br><span class="line">00 00 00 1C: box长度28，包括这4个字节本身，即后面还有24个字节的box body;</span><br><span class="line">66 74 79 70: ftyp, box type	</span><br><span class="line">6D 70 34 32: mp42, major brand</span><br><span class="line">00 00 00 01: 1,	Minor version</span><br><span class="line">6D 70 34 31 6D 70 34 32 69 73 6F 6D: Compatible brands, mp41 (0X6D703431), mp42 (0X6D703432), isom (0X69736F6D),说明本文件遵从（或称兼容）mp41,mp42,isom三种协议。</span><br></pre></td></tr></table></figure>
+<p>ftyp box通常放在文件的开始，通过对该box解析可以让我们的软件（播放器、demux、解析器）知道应该使用哪种协议对这该文件解析，是后续解读文件基础。</p>
+<h3 id="二、mvhd"><a href="#二、mvhd" class="headerlink" title="二、mvhd"></a>二、mvhd</h3><h4 id="1、moov"><a href="#1、moov" class="headerlink" title="1、moov"></a>1、moov</h4><p>在讲mvhd box之前，先简单地讲一下moov box。该box包含了文件媒体的metadata信息，“moov”是一个container box，具体内容信息由子box诠释。同File Type Box一样，该box有且只有一个，且只被包含在文件层。一般情况下，“moov”会紧随“ftyp”出现。</p>
+<p>一般情况下，“moov”中会包含1个“mvhd”和两个“trak”(一个音频，一个视频)。其中“mvhd”为header box，一般作为“moov”的第一个子box出现（对于其他container box来说，header box都应作为首个子box出现）。“trak”包含了一个track的相关信息，是一个container box。</p>
+<h3 id="2、mvhd"><a href="#2、mvhd" class="headerlink" title="2、mvhd"></a>2、mvhd</h3><p>mvhd(Movie Header Box),主要存放着视频文件的meta data，其中的time scale和 duration对文件的播放有着重要作用。“mvhd”结构如下表。<br><img src="//www.cyrus.fun/2019/08/13/MP4格式解析二-ftyp/mvhd_1.png" alt=""><br><img src="//www.cyrus.fun/2019/08/13/MP4格式解析二-ftyp/mvhd_2.png" alt=""></p>
+<p>下面看具体数据解析:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 6C 6D 76 68 64 00 00 00 00 D6 C0 15 26 ; ...lmvhd.......&amp;</span><br><span class="line">D6 C0 19 9A 00 00 AC 44 02 FE B7 74 00 01 00 00 ; .......D...t....</span><br><span class="line">01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 ; ................</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 ; ................</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 00 ; ............@...</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ; ................</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 03             ; ............</span><br><span class="line"></span><br><span class="line">===================== 解析 =====================</span><br><span class="line">00 00 00 6C: 长度108</span><br><span class="line"></span><br><span class="line">6D 76 68 64: mvhd的ASCII标识</span><br><span class="line"></span><br><span class="line">00: box版本，0或1，一般为0</span><br><span class="line"></span><br><span class="line">00 00 00: flags, 0</span><br><span class="line"></span><br><span class="line">D6 C0 15 26: createTime(创建时间),从UTC时间的1904年1月1日0点至今的秒数,不过这里的时间并不影响播放器识别并播放影片。</span><br><span class="line"></span><br><span class="line">D6 C0 19 9A: modification time（修改时间）</span><br><span class="line"></span><br><span class="line">00 00 AC 44: time scale(44100),文件媒体在1秒时间内的刻度值，可以理解为1秒长度的时间单元数.即将1s平均分为1/44100份，每份1/44100s。timescale时间刻度贯穿在整个文件中，所有对于时间的描述都要以其为参照，例如解码时间DTS，展示时间PTS等最重要的时间描述。</span><br><span class="line"></span><br><span class="line">02 FE B7 74: duration(50247540),媒体可播放时长.这个数值的单位与实际时间的对应关系就要通过上面的timescale参数。duration / timescale = 可播放时长（s）。这里算出该视频能播放50247540 / 44100 = 1139s, 即19分钟左右。</span><br><span class="line"></span><br><span class="line">00 01 00 00: rate,推荐播放速率，高16位和低16位分别为小数点整数部分和小数部分，即[16.16] 格式，该值为1.0（0x00010000）表示正常前向播放</span><br><span class="line"></span><br><span class="line">01 00: volume,与rate类似，[8.8] 格式，1.0（0x0100）表示最大音量</span><br><span class="line"></span><br><span class="line">00 00 00 00 00 00 00 00 00 00: reverse,10字节保留位</span><br><span class="line"></span><br><span class="line">00 01 00 00  00 00 00 00  00 00 00 00</span><br><span class="line">00 00 00 00  00 01 00 00  00 00 00 00</span><br><span class="line">00 00 00 00  00 00 00 00  40 00 00 00: matrix，36字节视频变换矩阵</span><br><span class="line"></span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00 </span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00  :pre-defined, 24字节,其中包括：</span><br><span class="line">	00 00 00 00: preview_time</span><br><span class="line">	00 00 00 00: preview_duration</span><br><span class="line">	00 00 00 00: poster_time</span><br><span class="line">	00 00 00 00: selection_time</span><br><span class="line">	00 00 00 00: selection_duration</span><br><span class="line">	00 00 00 00: current_time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">00 00 00 03: next track id(3), 下一个track使用的id号</span><br></pre></td></tr></table></figure></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
