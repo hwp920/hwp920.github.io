@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="一、stbl (Sample Table Box) “stbl”包含了关于track中sample所有时间和位置的信息，以及sample的编解码等信息。利用这个表，可以解释sample的时序、类型、大小以及在各自存储容器中的位置。“stbl”是一个container box，其子box包括：samp">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="MP4格式解析七 stbl">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="一、stbl (Sample Table Box) “stbl”包含了关于track中sample所有时间和位置的信息，以及sample的编解码等信息。利用这个表，可以解释sample的时序、类型、大小以及在各自存储容器中的位置。“stbl”是一个container box，其子box包括：samp">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>MP4格式解析七 stbl - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>MP4格式解析七 stbl</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-08-17
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/MP4/">#MP4</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/音视频/">音视频</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="一、stbl-Sample-Table-Box"><a href="#一、stbl-Sample-Table-Box" class="headerlink" title="一、stbl (Sample Table Box)"></a>一、stbl (Sample Table Box)</h3><p> “stbl”包含了关于track中sample所有时间和位置的信息，以及sample的编解码等信息。利用这个表，可以解释sample的时序、类型、大小以及在各自存储容器中的位置。“stbl”是一个container box，其子box包括：sample description box（stsd）、time to sample box（stts）、sample size box（stsz或stz2）、sample to chunk box（stsc）、chunk offset box（stco或co64）、composition time to sample box（ctts）、sync sample box（stss）等。</p>
+<p><img src="//www.cyrus.fun/2019/08/17/MP4格式解析七-stbl/stbl_1.png" alt=""></p>
+<h3 id="二、stsd-Sample-Description-Box"><a href="#二、stsd-Sample-Description-Box" class="headerlink" title="二、stsd(Sample Description Box)"></a>二、stsd(Sample Description Box)</h3><p> <img src="//www.cyrus.fun/2019/08/17/MP4格式解析七-stbl/stsd_1.png" alt=""></p>
+<p>下面看一下数据:<br> <img src="//www.cyrus.fun/2019/08/17/MP4格式解析七-stbl/stsd_2.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 67 73 74 73 64 00 00 00 00 00 00 00 01 ; ...gstsd........</span><br><span class="line">00 00 00 57 6D 70 34 61 00 00 00 00 00 00 00 01 ; ...Wmp4a........</span><br><span class="line">00 00 00 00 00 00 00 00 00 02 00 10 00 00 00 00 ; ................</span><br><span class="line">BB 80 00 00 00 00 00 33 65 73 64 73 00 00 00 00 ; ......3esds....</span><br><span class="line">03 80 80 80 22 00 00 00 04 80 80 80 14 40 15 00 ; .&quot;.....@..</span><br><span class="line">18 00 00 01 F4 00 00 01 F4 00 05 80 80 80 02 11 ; .............</span><br><span class="line">88 06 80 80 80 01 02                            ; ....</span><br><span class="line"></span><br><span class="line">==============  解析  ==============</span><br><span class="line">00 00 00 67: size 103</span><br><span class="line">73 74 73 64: stsd</span><br><span class="line">00 00 00 00: version和flag均为1</span><br><span class="line">00 00 00 01: Number of entries 1</span><br><span class="line">00 00 00 57 .... : entries数据</span><br></pre></td></tr></table></figure>
+<h4 id="mp4a-amp-amp-avc1"><a href="#mp4a-amp-amp-avc1" class="headerlink" title="mp4a &amp;&amp; avc1"></a>mp4a &amp;&amp; avc1</h4><p>mp4a和avc1均为stsd的entries数据类型，分别对应着音频和视频(根据封装的音视频数据的不同，还可以有其他的类型)</p>
+<h4 id="1、mp4a"><a href="#1、mp4a" class="headerlink" title="1、mp4a"></a>1、mp4a</h4><p>下面看一下数据:<br><img src="//www.cyrus.fun/2019/08/17/MP4格式解析七-stbl/mp4a_1.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 57 6D 70 34 61 00 00 00 00 00 00 00 01 ; ...Wmp4a........</span><br><span class="line">00 00 00 00 00 00 00 00 00 02 00 10 00 00 00 00 ; ................</span><br><span class="line">BB 80 00 00 00 00 00 33 65 73 64 73 00 00 00 00 ; ......3esds....</span><br><span class="line">03 80 80 80 22 00 00 00 04 80 80 80 14 40 15 00 ; .&quot;.....@..</span><br><span class="line">18 00 00 01 F4 00 00 01 F4 00 05 80 80 80 02 11 ; .............</span><br><span class="line">88 06 80 80 80 01 02                            ; ....</span><br><span class="line"></span><br><span class="line">==============  解析  ==============</span><br><span class="line">00 00 00 57: size 87</span><br><span class="line">6D 70 34 61: mp4a</span><br><span class="line">00 00 00 00 00 00:  6字节保留，必须为0</span><br><span class="line">00 01: index 1</span><br><span class="line">00 00: unsigned int(16) pre_defined = 0;</span><br><span class="line">00 00: const unsigned int(16) reserved = 0;</span><br><span class="line">00 00 00 00 00 02 00 10 00 00 00 00: unsigned int(32)[3] pre_defined = 0;</span><br><span class="line">BB 80 00 00: 暂时不知道什么作用</span><br><span class="line">00 00 00 33 65 73 64 73 00 00 00 00....: esds box数据</span><br></pre></td></tr></table></figure>
+<h4 id="esds-box（ES-Descriptor-Box）解析"><a href="#esds-box（ES-Descriptor-Box）解析" class="headerlink" title="esds box（ES Descriptor Box）解析"></a>esds box（ES Descriptor Box）解析</h4><p>esds box中主要是存放Element Stream Descriptors（ESDs），该box的前四个字节为version&amp;flag，一般为0x 00 00 00 00；<br>从偏移第四个字节开始，为ESDs。<br>ESDs中可以分为三层，每层为包含关系，分别为MP4ESDescr（0x03开始，一般7个字节），MP4DecConfigDescr（0x04开始，一般13个字节），MP4DecSpecificDescr，每层的结构都类似如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef esdsStruct&#123;</span><br><span class="line">uint8_t tag;</span><br><span class="line">&lt;不定长，最长4字节&gt; size;</span><br><span class="line">uint8_t[size] data;</span><br><span class="line">&#125;esdsStruct；</span><br></pre></td></tr></table></figure></p>
+<p>下面看具体数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 33 65 73 64 73 00 00 00 00 03 80 80 80 ; ...3esds.....</span><br><span class="line">22 00 00 00 04 80 80 80 14 40 15 00 18 00 00 01 ; &quot;.....@......</span><br><span class="line">F4 00 00 01 F4 00 05 80 80 80 02 11 88 06 80 80 ; ...........</span><br><span class="line">80 01 02                                        ; ..</span><br><span class="line"></span><br><span class="line">==============  解析  ==============</span><br><span class="line">00 00 00 33: size 51</span><br><span class="line">65 73 64 73: esds</span><br><span class="line">00 00 00 00: version 和 flag 均为 0</span><br><span class="line">03: ES_DescrTag</span><br><span class="line">80 80 80 22: 4字节size（一般就一字节），这里有点奇怪，4字节长度，但只取最后一个0x22当长度</span><br><span class="line">00 00：ES_ID</span><br><span class="line">00: </span><br><span class="line">	:0000 0000(bits)</span><br><span class="line">     0:		steamDependenceFlag，如果为1，则有16bits的dependsOn_ES_IS</span><br><span class="line">      0:		URL_Flag,如果为1，后边则有8bits URLlength, 和相应的URLstring(URLlength)</span><br><span class="line">       0:		OCRstreamFlag, 如果为1，有16bits OCR_ES_id;</span><br><span class="line">        0 0000: streamPriority</span><br><span class="line">        </span><br><span class="line">04: DecoderConfigDescriptor TAG</span><br><span class="line">80 80 80 14: 4字节size（一般就一字节），这里有点奇怪，4字节长度，但只取最后一个0x14(20)当长度</span><br><span class="line">40: objectTypeIndication (14496-1 Table8), 0x40是Audio (ISO/IEC 14496-3)</span><br><span class="line">15:</span><br><span class="line">	:0001 0101</span><br><span class="line">     0001 01        :streamType  5是Audio Stream, 14496-1 Table9</span><br><span class="line">            0       :upStream</span><br><span class="line">             1      :reserved</span><br><span class="line">00 18 00: bufferSizeDB: 6144</span><br><span class="line">01 F4 00: Max bitrate 128000  //可以获取最大码率</span><br><span class="line">01 F4 00: Avg bitrate 128000  //可以获取平均码率</span><br><span class="line"></span><br><span class="line">05: DecSpecificInfotag</span><br><span class="line">80 80 80 02: 4字节size（一般就一字节），这里有点奇怪，4字节长度，但只取最后一个0x02当长度</span><br><span class="line">11 88:</span><br><span class="line">	0001 0001 1000 1000:</span><br><span class="line">    0001 0                     :audioObjectType 2 GASpecificConfig</span><br><span class="line">          001 1                :samplingFrequencyIndex</span><br><span class="line">               000 1		   :channelConfiguration 1 </span><br><span class="line">                    00		   :cpConfig</span><br><span class="line">                      0		   :directMapping</span><br><span class="line">                      </span><br><span class="line">06: SLConfigDescrTag</span><br><span class="line">80 80 80 01: 长度1</span><br><span class="line">02: predefined 0x02 Reserved for use in MP4 files</span><br></pre></td></tr></table></figure></p>
+<h4 id="2、avc1"><a href="#2、avc1" class="headerlink" title="2、avc1"></a>2、avc1</h4><p>看数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 C1 61 76 63 31 00 00 00 00 00 00 00 01 ; ....avc1........</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ; ................</span><br><span class="line">05 12 03 C6 00 48 00 00 00 48 00 00 00 00 00 00 ; .....H...H......</span><br><span class="line">00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ; ................</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ; ................</span><br><span class="line">00 00 00 18 FF FF 00 00 00 34 61 76 63 43 01 4D ; .........4avcC.M</span><br><span class="line">00 20 FF E1 00 1D 27 4D 00 20 89 8B 60 29 03 DF ; . ....&apos;M. ..`)..</span><br><span class="line">11 36 02 D4 04 04 06 93 03 00 05 DC 00 01 77 05 ; .6............w.</span><br><span class="line">EF 7C 14 01 00 04 28 EE 1F 20                                 </span><br><span class="line"></span><br><span class="line">==============  解析  ==============</span><br><span class="line">00 00 00 C1: size 193</span><br><span class="line">61 76 63 31: avc1</span><br><span class="line">00 00 00 00 00 00: reserve</span><br><span class="line">00 01: index 1</span><br><span class="line">00 00: pre_defined</span><br><span class="line">00 00: reserved</span><br><span class="line">00 00 00 00: pre_defined</span><br><span class="line">00 00 00 00: pre_defined</span><br><span class="line">00 00 00 00: pre_defined</span><br><span class="line">05 12: width 1298 </span><br><span class="line">03 C6: height 966</span><br><span class="line">00 48 00 00: Horiz resolution 4718592 </span><br><span class="line">00 48 00 00: Ver resolution   4718592 </span><br><span class="line">00 00 00 00: reverse</span><br><span class="line">00 01: frame count 0</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00: 32字节compressr_name</span><br><span class="line">00 18：bit_depth</span><br><span class="line">FF FF：pre_defined</span><br><span class="line"></span><br><span class="line">00 00 00 34： size 52</span><br><span class="line">61 76 63 43: avcC</span><br><span class="line">01: version</span><br><span class="line">4D: AVC profile indication(77, Main profile)</span><br><span class="line">00: AVC profile compatibility</span><br><span class="line">20: AVC level indication 32</span><br><span class="line">FF: nulu size(4 暂时不知道怎么来的)</span><br><span class="line">E1: SPS个数，低五位有效，1个sps</span><br><span class="line">00 1D: sps长度，29</span><br><span class="line">27 4D 00 20 89 8B 60 29 03 DF 11 36 02 D4 04 04 06 93 03 00 05 DC 00 01 77 05 EF 7C 14： sps</span><br><span class="line">01: pps个数</span><br><span class="line">00 04： pps长度</span><br><span class="line">28 EE 1F 20： pps数据</span><br></pre></td></tr></table></figure></p>
+<h3 id="stts-Decoding-Time-to-Sample-Box"><a href="#stts-Decoding-Time-to-Sample-Box" class="headerlink" title="stts(Decoding Time to Sample Box)"></a>stts(Decoding Time to Sample Box)</h3><p>“stts”存储了sample的duration，描述了sample时序的映射方法，我们通过它可以找到任何时间的sample。“stts”可以包含一个压缩的表来映射时间和sample序号，用其他的表来提供每个sample的长度和指针。表中每个条目提供了在同一个时间偏移量里面连续的sample序号，以及samples的偏移量。递增这些偏移量，就可以建立一个完整的time to sample表。</p>
+<p>直接看数据:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 18 73 74 74 73 00 00 00 00 00 00 00 01 ; ....stts........</span><br><span class="line">00 00 00 8C 00 00 01 90                         ; ........</span><br><span class="line"></span><br><span class="line">==============  解析  ==============</span><br><span class="line">00 00 00 18: size 24</span><br><span class="line">73 74 74 73: stts</span><br><span class="line">00 00 00 00: version 和 flag</span><br><span class="line">00 00 00 01: Entry count 1</span><br><span class="line">00 00 00 8C: sample count 140</span><br><span class="line">00 00 01 90: Sample delta 400</span><br><span class="line"></span><br><span class="line">* 在mvhd的timescale为6000，这里sample delta为400，6000/400=15,即1秒15帧</span><br><span class="line"></span><br><span class="line">* stts只有一个entry,sample count140,delta 400, 140*400=56000, 与mvhd的duration相对应</span><br></pre></td></tr></table></figure></p>
+<h3 id="ctts-Composition-Time-to-Sample-Box"><a href="#ctts-Composition-Time-to-Sample-Box" class="headerlink" title="ctts(Composition Time to Sample Box)"></a>ctts(Composition Time to Sample Box)</h3><p>这个box是用来重新构建因为h264 B帧存在而导致的pts dts不同的问题。<br>例如sample的解码顺序是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I P B  P B  ...</span><br></pre></td></tr></table></figure></p>
+<p>但是它的显示顺序却是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I B P B P ...</span><br></pre></td></tr></table></figure></p>
+<p>当带有B帧的Nalus流封装后，再次解码显示，此时PTS 和 DTS 不能一一对应，因为B帧的时间戳小于P帧，此时CTS 可以记录这个偏差，用以回复解码的时间戳。<br> ctts = CTS-DTS  </p>
+<p> 语法：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> class CompositionOffsetBox</span><br><span class="line">    extends FullBox(‘ctts’, version = 0, 0) &#123;</span><br><span class="line">    unsigned int(32) entry_count;</span><br><span class="line">    int i;</span><br><span class="line">    if (version==0) &#123;</span><br><span class="line">        for (i=0; i &lt; entry_count; i++) &#123;</span><br><span class="line">            unsigned int(32) sample_count;</span><br><span class="line">            unsigned int(32) sample_offset;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (version == 1) &#123;</span><br><span class="line">        for (i=0; i &lt; entry_count; i++) &#123;</span><br><span class="line">            unsigned int(32) sample_count;</span><br><span class="line">            signed int(32) sample_offset;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 看一下解析数据：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> 00 00 04 70 63 74 74 73 00 00 00 00 00 00 00 8C ; ...pctts........</span><br><span class="line">00 00 00 01 00 00 01 90 00 00 00 01 00 00 03 20 ; ............... </span><br><span class="line">00 00 00 01 00 00 00 00 00 00 00 01 00 00 03 20 ; ............... </span><br><span class="line">00 00 00 01 00 00 00 00 00 00 00 01 00 00 03 20 ; ............... </span><br><span class="line">00 00 00 01 00 00 00 00 00 00 00 01 00 00 03 20 ; ............... </span><br><span class="line">00 00 00 01 00 00 00 00 00 00 00 01 00 00 03 20 ; ............... </span><br><span class="line">00 00 00 01 00 00 00 00 00 00 00 01 00 00 03 20 ; ............... </span><br><span class="line">00 00 00 01 00 00 00 00 00 00 00 01 00 00 03 20 ; ............... </span><br><span class="line">00 00 00 01 00 00 00 00 00 00 00 01 00 00 01 90 ; ................</span><br><span class="line">00 00 00 01 00 00 03 20 00 00 00 01 00 00 00 00 ; ....... ........</span><br><span class="line">00 00 00 01 00 00 03 20 00 00 00 01 00 00 00 00 ; ....... ........</span><br><span class="line"></span><br><span class="line">==============  解析  ==============</span><br><span class="line">00 00 04 70: size 1136</span><br><span class="line">63 74 74 73: ctts</span><br><span class="line">00 00 00 00: version flag 0</span><br><span class="line">00 00 00 8C: entry_count 140</span><br><span class="line"></span><br><span class="line">entry datas:</span><br><span class="line">00 00 00 01: Sample count 1</span><br><span class="line">00 00 01 90: Sample offset 400</span><br><span class="line"></span><br><span class="line">00 00 00 01: Sample count 1</span><br><span class="line">00 00 03 20: Sample offset 800</span><br><span class="line"></span><br><span class="line">00 00 00 01: Sample count 1</span><br><span class="line">00 00 00 00: Sample offset 0</span><br><span class="line"></span><br><span class="line">.... 循环</span><br></pre></td></tr></table></figure></p>
+<p> 由于edts-&gt;elst 的media time 为400，该track整体延迟400播放<br> 看一下示意图：<br> <img src="//www.cyrus.fun/2019/08/17/MP4格式解析七-stbl/ctts.png" alt=""></p>
+<h3 id="stss-Sync-Sample-Box"><a href="#stss-Sync-Sample-Box" class="headerlink" title="stss(Sync Sample Box)"></a>stss(Sync Sample Box)</h3><p> “stss”确定media中的关键帧。对于压缩媒体数据，关键帧是一系列压缩序列的开始帧，其解压缩时不依赖以前的帧，而后续帧的解压缩将依赖于这个关键帧。“stss”可以非常紧凑的标记媒体内的随机存取点，它包含一个sample序号表，表内的每一项严格按照sample的序号排列，说明了媒体中的哪一个sample是关键帧。如果此表不存在，说明每一个sample都是一个关键帧，是一个随机存取点。-&gt;关键帧序号</p>
+<p>看一下解析数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 38 73 74 73 73 00 00 00 00 00 00 00 0A ; ...8stss........</span><br><span class="line">00 00 00 01 00 00 00 10 00 00 00 1F 00 00 00 2E ; ................</span><br><span class="line">00 00 00 3D 00 00 00 4C 00 00 00 5B 00 00 00 6A ; ...=...L...[...j</span><br><span class="line">00 00 00 79 00 00 00 88                         ; ...y....</span><br><span class="line"></span><br><span class="line">==============  解析  ==============</span><br><span class="line">00 00 00 38: size 56</span><br><span class="line">73 74 73 73: stss</span><br><span class="line">00 00 00 00: version flag</span><br><span class="line">00 00 00 0A: entry count 10,有10个关键帧</span><br><span class="line">00 00 00 01: 第一个关键帧位于第1帧</span><br><span class="line">00 00 00 10: 第二个关键帧位于第16帧</span><br><span class="line">00 00 00 1F：第三个关键帧位于第31帧</span><br><span class="line">。。。。。</span><br><span class="line">00 00 00 88：第十个关键帧位于第136帧</span><br></pre></td></tr></table></figure></p>
+<h3 id="sdtp-Independent-and-Disposable-Samples-Box"><a href="#sdtp-Independent-and-Disposable-Samples-Box" class="headerlink" title="sdtp(Independent and Disposable Samples Box)"></a>sdtp(Independent and Disposable Samples Box)</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">aligned(8) class SampleDependencyTypeBox</span><br><span class="line">   extends FullBox(‘sdtp’, version = 0, 0) &#123;</span><br><span class="line">   for (i=0; i &lt; sample_count; i++)&#123;</span><br><span class="line">        unsigned int(2) is_leading;</span><br><span class="line">        unsigned int(2) sample_depends_on;</span><br><span class="line">        unsigned int(2) sample_is_depended_on;</span><br><span class="line">        unsigned int(2) sample_has_redundancy;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">说明： </span><br><span class="line">* is_leading(可不管): takes one of the following four values: </span><br><span class="line">0: the leading nature of this sample is unknown;(</span><br><span class="line">该样本的主要性质未知;)</span><br><span class="line">1: this sample is a leading sample that has a dependency before the referenced I‐picture (and is therefore not decodable);(</span><br><span class="line">此sample是一个主要样本，它在引用的I帧之前具有依赖性（因此不可解码）;)</span><br><span class="line">2: this sample is not a leading sample;（此样本不是主要样本）</span><br><span class="line">3: this sample is a leading sample that has no dependency before the referenced I‐picture (and is therefore decodable);（</span><br><span class="line">此sample是一个主要示例，在引用的I帧之前没有依赖关系（因此可解码））</span><br><span class="line"></span><br><span class="line">* sample_depends_on：takes one of the following four values:</span><br><span class="line">0: the dependency of this sample is unknown;（未知依赖关系）</span><br><span class="line">1: this sample does depend on others (not an I picture)（依赖其他帧，非I帧）; </span><br><span class="line">2: this sample does not depend on others (I picture)（I帧）;</span><br><span class="line">3: reserved（保留）</span><br><span class="line"></span><br><span class="line">* sample_is_depended_on takes one of the following four values: </span><br><span class="line">0: the dependency of other samples on this sample is unknown;（是否有其他帧依赖该帧未知） </span><br><span class="line">1: other samples may depend on this one (not disposable)（可能有其他帧依赖该帧）;</span><br><span class="line">2: no other sample depends on this one (disposable)（没有其他帧依赖该帧）;</span><br><span class="line">3: reserved</span><br><span class="line"></span><br><span class="line">sample_has_redundancy takes one of the following four values:</span><br><span class="line">0: it is unknown whether there is redundant coding in this sample（尚不清楚该sample中是否存在冗余编码）;</span><br><span class="line">1: there is redundant coding in this sample（该sample有冗余编码）;</span><br><span class="line">2: there is no redundant coding in this sample（没有冗余编码）;</span><br><span class="line">3: reserved</span><br></pre></td></tr></table></figure></p>
+<p>看数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 98 73 64 74 70 00 00 00 00 20 10 18 10 ; ....sdtp.... ...</span><br><span class="line">18 10 18 10 18 10 18 10 18 10 18 20 10 18 10 18 ; ........... ....</span><br><span class="line">10 18 10 18 10 18 10 18 10 18 20 10 18 10 18 10 ; .......... .....</span><br><span class="line">18 10 18 10 18 10 18 10 18 20 10 18 10 18 10 18 ; ......... ......</span><br><span class="line">10 18 10 18 10 18 10 18 20 10 18 10 18 10 18 10 ; ........ .......</span><br><span class="line">18 10 18 10 18 10 18 20 10 18 10 18 10 18 10 18 ; ....... ........</span><br><span class="line">10 18 10 18 10 18 20 10 18 10 18 10 18 10 18 10 ; ...... .........</span><br><span class="line">18 10 18 10 18 20 10 18 10 18 10 18 10 18 10 18 ; ..... ..........</span><br><span class="line">10 18 10 18 20 10 18 10 18 10 18 10 18 10 18 10 ; .... ...........</span><br><span class="line">18 10 18 20 10 18 10 18                         ; ... ....</span><br><span class="line"></span><br><span class="line">==============  解析  ==============</span><br><span class="line">00 00 00 98: size 152</span><br><span class="line">73 64 74 70: sdtp </span><br><span class="line">00 00 00 00: version flag</span><br><span class="line"></span><br><span class="line">20:</span><br><span class="line">	0010 0000:</span><br><span class="line">   	00			:is_leading 0</span><br><span class="line">      10		:sample_depends_on 2 I帧</span><br><span class="line">         00		:sample_is_depended_on 0</span><br><span class="line">           00	:sample_has_redundancy</span><br><span class="line"></span><br><span class="line">10:</span><br><span class="line">	0001 0000:</span><br><span class="line">    00			:is_leading 0</span><br><span class="line">   	  01		:sample_depends_on 1 非I帧</span><br><span class="line"> 		 00		:sample_is_depended_on 0</span><br><span class="line">           00	:sample_has_redundancy</span><br><span class="line">           </span><br><span class="line">18:</span><br><span class="line">	0001 1000:</span><br><span class="line">    00			:is_leading 0</span><br><span class="line">   	  01		:sample_depends_on 1 非I帧</span><br><span class="line">         10		:sample_is_depended_on 2 没有其他帧依赖该帧 B帧</span><br><span class="line">           00	:sample_has_redundancy</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h3 id="stsc-Sample-To-Chunk-Box"><a href="#stsc-Sample-To-Chunk-Box" class="headerlink" title="stsc(Sample To Chunk Box)"></a>stsc(Sample To Chunk Box)</h3><pre><code>用chunk组织sample可以方便优化数据获取，一个thunk包含一个或多个sample。“stsc”中用一个表描述了sample与chunk的映射关系，查看这张表就可以找到包含指定sample的thunk，从而找到这个sample。  
+</code></pre><p>可以参考：<a href="https://www.cnblogs.com/shakin/p/8543719.html" target="_blank" rel="noopener">https://www.cnblogs.com/shakin/p/8543719.html</a><br>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">aligned(8) class SampleToChunkBox</span><br><span class="line">extends FullBox(‘stsc’, version = 0, 0) &#123; </span><br><span class="line">    unsigned int(32) entry_count;</span><br><span class="line">    for (i=1; i u entry_count; i++) &#123;</span><br><span class="line">    unsigned int(32) first_chunk;</span><br><span class="line">    unsigned int(32) samples_per_chunk; </span><br><span class="line">    unsigned int(32) sample_description_index;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">关键点在于他们里面的三个字段: first_chunk,samples_per_chunk,sample_description_index。</span><br><span class="line"></span><br><span class="line">first_chunk: 每一个 entry 开始的 chunk 位置。</span><br><span class="line">samples_per_chunk: 每一个 chunk 里面包含多少的 sample</span><br><span class="line">sample_description_index: 每一个 sample 的描述。一般可以默认设置为 1。</span><br><span class="line"></span><br><span class="line">这 3 个字段实际上决定了一个 MP4 中有多少个 chunks，每个 chunks 有多少个 samples。这里顺便普及一下 chunk 和 sample 的相关概念。在 MP4 文件中，最小的基本单位是 Chunk 而不是 Sample。</span><br><span class="line"></span><br><span class="line">sample: 包含最小单元数据的 slice。里面有实际的 NAL 数据。</span><br><span class="line">chunk: 里面包含的是一个一个的 sample。为了是优化数据的读取，让 I/O 更有效率。</span><br></pre></td></tr></table></figure></p>
+<p>现在看一下具体数据的解析:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 DC 73 74 73 63 00 00 00 00 00 00 00 11 ; ....stsc........</span><br><span class="line">00 00 00 01 00 00 00 08 00 00 00 01 00 00 00 02 ; ................</span><br><span class="line">00 00 00 07 00 00 00 01 00 00 00 03 00 00 00 08 ; ................</span><br><span class="line">00 00 00 01 00 00 00 04 00 00 00 07 00 00 00 01 ; ................</span><br><span class="line">00 00 00 05 00 00 00 08 00 00 00 01 00 00 00 06 ; ................</span><br><span class="line">00 00 00 07 00 00 00 01 00 00 00 07 00 00 00 08 ; ................</span><br><span class="line">00 00 00 01 00 00 00 08 00 00 00 07 00 00 00 01 ; ................</span><br><span class="line">00 00 00 09 00 00 00 08 00 00 00 01 00 00 00 0A ; ................</span><br><span class="line">00 00 00 07 00 00 00 01 00 00 00 0B 00 00 00 08 ; ................</span><br><span class="line">00 00 00 01 00 00 00 0C 00 00 00 07 00 00 00 01 ; ................</span><br><span class="line">00 00 00 0D 00 00 00 08 00 00 00 01 00 00 00 0E ; ................</span><br><span class="line">00 00 00 07 00 00 00 01 00 00 00 0F 00 00 00 08 ; ................</span><br><span class="line">00 00 00 01 00 00 00 10 00 00 00 0F 00 00 00 01 ; ................</span><br><span class="line">00 00 00 11 00 00 00 0C 00 00 00 01             ; ............</span><br><span class="line"></span><br><span class="line">==============  解析  ==============</span><br><span class="line">00 00 00 DC: size 220</span><br><span class="line">73 74 73 63: stsc</span><br><span class="line">00 00 00 00: version flag 0</span><br><span class="line">00 00 00 11: entry count 17</span><br><span class="line"></span><br><span class="line">00 00 00 01: first_chunk 1</span><br><span class="line">00 00 00 08: samples_per_chunk 8</span><br><span class="line">00 00 00 01: sample_description_index 1</span><br><span class="line"></span><br><span class="line">00 00 00 02: first_chunk 2</span><br><span class="line">00 00 00 07: samples_per_chunk 7</span><br><span class="line">00 00 00 01: sample_description_index 1</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
+<p>学会了解析数据，下面通过几个例子来看看解析出来的数据如何使用：<br><img src="//www.cyrus.fun/2019/08/17/MP4格式解析七-stbl/stsc_1.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一个entry数据： 从第一个chunk开始，每个chunk包含8个sample,下一个entry从第二个chunk开始 -&gt; 1-8 sample</span><br><span class="line">第二个entry数据： 从第二个chunk开始，每个chunk包含7个sample，下一个entry从第三个chunk开始 -&gt; 9-15 sample</span><br><span class="line">第三个entry数据： 从第三个chunk开始，每个chunk包含8个sample，下一个entry从第四个chunk开始 -&gt; 16-24 sample</span><br><span class="line">。。。。。。</span><br></pre></td></tr></table></figure></p>
+<p><img src="//www.cyrus.fun/2019/08/17/MP4格式解析七-stbl/stsc_2.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">第一个entry数据： 从第一个chunk开始，每个chunk包含1个sample,下一个entry从第6960个chunk开始 -&gt; 第1个chunk到第6959个chunk,每个chunk包含一个sample,1-6959 sample</span><br><span class="line">第二个entry数据： 从第6960个chunk开始，每个chunk包含2个sample -&gt; 6960-6961 sample</span><br></pre></td></tr></table></figure></p>
+<p><img src="//www.cyrus.fun/2019/08/17/MP4格式解析七-stbl/stsc_3.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">第一个entry数据： 从第1个chunk开始，每个chunk包含5个sample,下一个entry从第2个chunk开始 -&gt; 1-5 sample</span><br><span class="line">第二个entry数据： 从第2个chunk开始，每个chunk包含4个sample,下一个entry从第3个chunk开始 -&gt; 6-9 sample </span><br><span class="line">第三个entry数据： 从第3个chunk开始，每个chunk包含5个sample,下一个entry从第36个chunk开始 -&gt; 第3个chunk到第35个chunk,每个chunk包含5个sample,10-169 sample</span><br><span class="line">第四个entry数据： 从第36个chunk开始，每个chunk包含4个sample,下一个entry从第37个chunk开始 -&gt; 170-173 sample</span><br><span class="line">第五个entry数据： 从第37个chunk开始，每个chunk包含5个sample,下一个entry从第69个chunk开始 -&gt; 第37个chunk到第68个chunk,每个chunk包含5个sample,174-333 sample</span><br><span class="line">。。。。。。。</span><br></pre></td></tr></table></figure></p>
+<h3 id="stsz-Sample-Size-Boxes"><a href="#stsz-Sample-Size-Boxes" class="headerlink" title="stsz(Sample Size Boxes)"></a>stsz(Sample Size Boxes)</h3><p>“stsz” 定义了每个sample的大小，包含了媒体中全部sample的数目和一张给出每个sample大小的表。这个box相对来说体积是比较大的。<br>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">aligned(8) class SampleSizeBox extends FullBox(‘stsz’, version = 0, 0) &#123;</span><br><span class="line">   unsigned int(32)  sample_size;</span><br><span class="line">   unsigned int(32)  sample_count;</span><br><span class="line">   if (sample_size==0) &#123;</span><br><span class="line">      for (i=1; i &lt;= sample_count; i++) &#123;</span><br><span class="line">      unsigned int(32)  entry_size;</span><br><span class="line">      &#125;</span><br><span class="line">&#125; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>数据解析：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">00 00 02 44 73 74 73 7A 00 00 00 00 00 00 00 00 ; ...Dstsz........</span><br><span class="line">00 00 00 8C 00 04 CF BA 00 00 C9 D9 00 00 3C 31 ; ..............&lt;1</span><br><span class="line">00 00 B0 96 00 00 26 5C 00 00 A7 FA 00 00 44 5C ; ......&amp;\......D\</span><br><span class="line">00 00 9C DD 00 00 41 26 00 00 B3 22 00 00 44 04 ; ......A&amp;...&quot;..D.</span><br><span class="line">00 00 C1 69 00 00 53 1D 00 00 9E 1D 00 00 51 D1 ; ...i..S.......Q.</span><br><span class="line">00 04 C3 05 00 00 C8 63 00 00 51 F5 00 00 AE AA ; .......c..Q.....</span><br><span class="line">00 00 55 50 00 00 B6 3A 00 00 55 C8 00 00 A6 B8 ; ..UP...:..U.....</span><br><span class="line">00 00 50 17 00 00 A6 AA 00 00 57 D8 00 00 BC 9F ; ..P.......W.....</span><br><span class="line">00 00 63 1F 00 00 C4 CA 00 00 64 3F 00 04 C5 E5 ; ..c.......d?....</span><br><span class="line">00 00 E8 6C 00 00 6B 9A 00 00 C0 F1 00 00 67 54 ; ...l..k.......gT</span><br><span class="line">。。。。。。。。。。。。。。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">==============  解析  ==============</span><br><span class="line">00 00 02 44: size 580 </span><br><span class="line">73 74 73 7A: stsz</span><br><span class="line">00 00 00 00: version flag</span><br><span class="line">00 00 00 00: Sample size 0</span><br><span class="line">00 00 00 8C: Sample count 140 视频track可用于确定视频帧数</span><br><span class="line"></span><br><span class="line">00 04 CF BA: 第一个sample(帧)大小 315322</span><br><span class="line">00 00 C9 D9: 第二个sample(帧)大小 51673</span><br><span class="line">00 00 3C 31: 第三个sample(帧)大小 15409</span><br><span class="line">00 00 B0 96: 第四个sample(帧)大小 45206</span><br><span class="line">。。。。。。。。。。。</span><br></pre></td></tr></table></figure></p>
+<h3 id="stco-Chunk-Offset-Box"><a href="#stco-Chunk-Offset-Box" class="headerlink" title="stco(Chunk Offset Box)"></a>stco(Chunk Offset Box)</h3><p>“stco”定义了每个thunk在媒体流中的位置。位置有两种可能，32位的和64位的，后者对非常大的电影很有用。在一个表中只会有一种可能，这个位置是在整个文件中的，而不是在任何box中的，这样做就可以直接在文件中找到媒体数据，而不用解释box。需要注意的是一旦前面的box有了任何改变，这张表都要重新建立，因为位置信息已经改变了。<br>数据解析：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 54 73 74 63 6F 00 00 00 00 00 00 00 11 ; ...Tstco........</span><br><span class="line">00 00 7F 0C 00 08 D5 94 00 0C 31 91 00 14 E6 30 ; .........1....0</span><br><span class="line">00 18 9C C3 00 21 93 51 00 25 B2 61 00 2E 7D 04 ; .....!.Q.%.a..&#125;.</span><br><span class="line">00 31 C0 3C 00 3A 7F B6 00 3D E2 FE 00 46 D2 76 ; .1.&lt;.:..=...F.v</span><br><span class="line">00 4A 46 3F 00 53 49 9C 00 56 A9 39 00 5F C4 5E ; .JF?.SI..V.9._.^</span><br><span class="line">00 6C 3D FE                                     ; .l=.</span><br><span class="line"></span><br><span class="line">==============  解析  ==============</span><br><span class="line">00 00 00 54: size 84</span><br><span class="line">73 74 63 6F: stco</span><br><span class="line">00 00 00 00: version flag</span><br><span class="line">00 00 00 11: entry count 17,有17个chunk</span><br><span class="line"></span><br><span class="line">00 00 7F 0C: 第一个Chunk offset 32524，与stsc(chunk包含sample的个数)和stsz(每个sample的大小)一起，可以找到具体序号的sample的位置和大小，用于读取数据</span><br><span class="line">00 08 D5 94: 第二个Chunk offset 578964</span><br><span class="line">00 0C 31 91: 第三个Chunk offset 799121</span><br><span class="line">。。。。。。。。。</span><br><span class="line"></span><br><span class="line">* 检验</span><br><span class="line">1、由stsc知道，第一个chunk包含8个sample</span><br><span class="line">2、由stsz知道，前8个sample的大小分别为：315322，51673，15409，45206，9820，43002，17500，40157</span><br><span class="line">3、由stco知道，第一个chunk的起始为置为32524，加上前8个sample大小后为570613，小于578964，查看音频track，可找到chuck offset起始地址为570613。说明音视频数据在文件中，以chunk为单位，交错分布。</span><br></pre></td></tr></table></figure></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
