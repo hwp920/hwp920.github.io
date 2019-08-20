@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="AVAudioPlayer 比较简单，主要说几个有用的方法和属性。
+属性
+1、pan:立体声设置，0:立体声  -1：左声道  1：右声道
+2、volume:  音量    0.0 - 1.0
+3、rate: 播放速率    0.5 - 2.0      0.5：半速  1.0：正常速度   2.0">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="AVFoundation学习笔记四  AVAudioPlayer">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="AVAudioPlayer 比较简单，主要说几个有用的方法和属性。
+属性
+1、pan:立体声设置，0:立体声  -1：左声道  1：右声道
+2、volume:  音量    0.0 - 1.0
+3、rate: 播放速率    0.5 - 2.0      0.5：半速  1.0：正常速度   2.0">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>AVFoundation学习笔记四  AVAudioPlayer - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>AVFoundation学习笔记四  AVAudioPlayer</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2018-11-01
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/AVFoundation/">AVFoundation</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><img src="//www.cyrus.fun/2018/11/01/AVFoundation学习笔记二-AVAudioPlayer/audioplayer.png" alt=""></p>
+<p>AVAudioPlayer 比较简单，主要说几个有用的方法和属性。</p>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><ul>
+<li>1、pan:立体声设置，0:立体声  -1：左声道  1：右声道</li>
+<li>2、volume:  音量    0.0 - 1.0</li>
+<li>3、rate: 播放速率    0.5 - 2.0      0.5：半速  1.0：正常速度   2.0：倍速</li>
+<li>4、currentTime: 音频文件的播放时间</li>
+<li>5、deviceCurrentTime: 输出设备播放音频的时间，注意如果播放中被暂停此时间也会继续累加</li>
+<li>6、numberOfLoop:  循环播放次数，默认为1， -1为无限循环</li>
+<li><p>7、settting: 文件的基本信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    AVAudioFileTypeKey = 1667327590;	\\大端序数据，转主机序后为lpcm</span><br><span class="line">    AVChannelLayoutKey = &lt;02006500 03000000 00000000&gt;;</span><br><span class="line">    AVEncoderBitRateKey = 0;</span><br><span class="line">    AVFormatIDKey = 1819304813;		\\大端序数据，转主机序后为caff</span><br><span class="line">    AVLinearPCMBitDepthKey = 16;	\\采样精度</span><br><span class="line">    AVLinearPCMIsBigEndianKey = 1;	\\数据是否以大端序保存</span><br><span class="line">    AVLinearPCMIsFloatKey = 0;		</span><br><span class="line">    AVLinearPCMIsNonInterleaved = 0;</span><br><span class="line">    AVNumberOfChannelsKey = 2;		\\通道数</span><br><span class="line">    AVSampleRateKey = 44100;		\\采样率</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>8、duration: 文件总时长</p>
+</li>
+<li>9、numberOfChannels： 该音频的声道数</li>
+<li>10、meteringEnabled： 是否允许测量声道平均值和峰值</li>
+</ul>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ul>
+<li>1、- (BOOL)prepareToPlay;  取得需要的音频硬件并预加载AudioQueue缓冲区.</li>
+<li>2、- (BOOL)play;</li>
+<li>3、- (BOOL)playAtTime:(NSTimeInterval)time； 播放没有调用prepareToPlay的话会隐式调用</li>
+<li>4、- (void)pause;</li>
+<li>5、- (void)stop;  停止播放。<font color="ff0000">区别：stop会把prepareToPlay所做的准备释放掉，pause不会，即pause后调用play响应较快。</font></li>
+<li>6、-（void）updateMeters;  meteringEnabled为true时，刷新对应声道强度的峰值和平均值</li>
+<li>7、- (float)peakPowerForChannel:(NSUInteger)channelNumber; 对应声道强度的峰值</li>
+<li>8、- (float)averagePowerForChannel:(NSUInteger)channelNumber; 对应声道强度的平均值</li>
+</ul>
+<p><font color="ff0000">注：7、8有效的前提条件为 meteringEnabled = YES &amp;&amp; 调用了updateMeters。此计数是以对数刻度计量的，-160表示完全安静，0表示最大输入值。</font>可用于动态展示音频强度状态。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
