@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="AVCaptureVideoDataOutputAVCaptureVideoDataOutput是一个AVCaptureOutput子类，可以直接访问摄像头伟感器捕捉到的视频帧。这是一个强大的功能，因为这样我们就完全控制了视频数据的格式、时间和元数据，可以按照需求操作视频内容。注：AVFoundat">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="AVFoundation学习笔记十一 AVCaptureVideoDataOutput">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="AVCaptureVideoDataOutputAVCaptureVideoDataOutput是一个AVCaptureOutput子类，可以直接访问摄像头伟感器捕捉到的视频帧。这是一个强大的功能，因为这样我们就完全控制了视频数据的格式、时间和元数据，可以按照需求操作视频内容。注：AVFoundat">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>AVFoundation学习笔记十一 AVCaptureVideoDataOutput - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>AVFoundation学习笔记十一 AVCaptureVideoDataOutput</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2018-11-12
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/AVFoundation/">AVFoundation</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="AVCaptureVideoDataOutput"><a href="#AVCaptureVideoDataOutput" class="headerlink" title="AVCaptureVideoDataOutput"></a>AVCaptureVideoDataOutput</h3><p>AVCaptureVideoDataOutput是一个AVCaptureOutput子类，可以直接访问摄像头伟感器捕捉到的视频帧。这是一个强大的功能，因为这样我们就完全控制了视频数据的格式、时间和元数据，可以按照需求操作视频内容。<br>注：AVFoundation为处理音频数据提供了一个底层捕捉输出AVCaptureAudioDataOutput。使用方法类似。</p>
+<p>与输出AVMetadataObject实例不同，AVCaptureVideoDataOutput输出的对象需要通过AVCaptureVideoDataOutputSampleBufferDelegate协议包含视频数据。</p>
+<p>AVCaptureVideoDataOutputSampleBufferDelegate定义了下面两个方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//每当有一个新的视频帧写入时该方法就会被调用。数据会基于视频数据输出的videoSetting属性进行解码或重新编码。</span><br><span class="line">- (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection</span><br><span class="line"></span><br><span class="line">//每当一个迟到的视频帧被丢弃时就会调用该方法。通过是因为在didOutputSampleBuffer：调用中消耗了太多处理时间就会调用该方法。</span><br><span class="line">- (void)captureOutput:(AVCaptureOutput *)output didDropSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection</span><br></pre></td></tr></table></figure></p>
+<h3 id="CMSampleBuffer"><a href="#CMSampleBuffer" class="headerlink" title="CMSampleBuffer"></a>CMSampleBuffer</h3><p>CMSampleBuffer是一个由Core Media框架提供的Core Foundation风格对象，用于在媒体管道传输数字样本。CMSampleBuffer的角色是将基础的样本数据进行封装并提供格式和时间信息，还会加上所有在转换和处理数据时用到的元数据。</p>
+<h3 id="样本数据"><a href="#样本数据" class="headerlink" title="样本数据"></a>样本数据</h3><p>在使用AVCaptureVideoDataOutput时，sample buffer会包含一个CVPixelBuffer，它是一个带有带个视频帧原始像素数据的CoreVideo对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">从sampleBuffer中获取图片</span><br><span class="line">CVImageBufferRef imageBuffer =  CMSampleBufferGetImageBuffer(sampleBuffer);</span><br><span class="line">    </span><br><span class="line">    CVPixelBufferLockBaseAddress(imageBuffer, 0);</span><br><span class="line">    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);</span><br><span class="line">    size_t width = CVPixelBufferGetWidth(imageBuffer);</span><br><span class="line">    size_t height = CVPixelBufferGetHeight(imageBuffer);</span><br><span class="line">    size_t bufferSize = CVPixelBufferGetDataSize(imageBuffer);</span><br><span class="line">    size_t bytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(imageBuffer, 0);</span><br><span class="line">    </span><br><span class="line">    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();</span><br><span class="line">    CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, baseAddress, bufferSize, NULL);</span><br><span class="line">     </span><br><span class="line">    CGImageRef cgImage = CGImageCreate(width, height, 8, 32, bytesPerRow, rgbColorSpace, kCGImageAlphaNoneSkipFirst|kCGBitmapByteOrder32Little, provider, NULL, true, kCGRenderingIntentDefault);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    UIImage *image = [UIImage imageWithCGImage:cgImage];</span><br><span class="line">     </span><br><span class="line">    CGImageRelease(cgImage);</span><br><span class="line">    CGDataProviderRelease(provider);</span><br><span class="line">    CGColorSpaceRelease(rgbColorSpace);</span><br><span class="line"></span><br><span class="line">    NSData* imageData = UIImageJPEGRepresentation(image, 1.0);</span><br><span class="line">    image = [UIImage imageWithData:imageData];</span><br><span class="line">    CVPixelBufferUnlockBaseAddress(imageBuffer, 0);</span><br><span class="line">    return image;</span><br></pre></td></tr></table></figure>
+<h3 id="格式描述"><a href="#格式描述" class="headerlink" title="格式描述"></a>格式描述</h3><p>除了原始媒体样本本身之外，CMSampleBuffer还提供了以CMFormatDescription对象的形式来访问样本的信息。CMFormatDescription.h定义了大量函数用于访问媒体样本的更多细节。在头文件中带有CMFormatDescription的函数分别适用于获取视频和音频细节。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">判断sampleBuffer格式</span><br><span class="line">CMFormatDescriptionRef formatDescription =                              // 2</span><br><span class="line">        CMSampleBufferGetFormatDescription(sampleBuffer);</span><br><span class="line">    CMMediaType mediaType = CMFormatDescriptionGetMediaType(formatDescription);</span><br><span class="line">    if (mediaType == kCMMediaType_Video) &#123;</span><br><span class="line">        CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);</span><br><span class="line">        //process the frame of video</span><br><span class="line">    &#125; else if(mediaType == kCMMediaType_Audio) &#123;</span><br><span class="line">        CMBlockBufferRef blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer);</span><br><span class="line">        //process audio samples</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="时间信息"><a href="#时间信息" class="headerlink" title="时间信息"></a>时间信息</h3><p>CMSampleBuffer还定义了关于媒体样本的时间信息。可以分别使用CMSampleBufferGetPresentationTimeStamp函数和CMSampleBufferGetDecodeTimeStamp函数提取时间信息来得到原始的表示时间戳和解码时间戳</p>
+<h3 id="附加的元数据"><a href="#附加的元数据" class="headerlink" title="附加的元数据"></a>附加的元数据</h3><p>CoreMedia还在CMAttachment.h中定义了一个CMAttachment形式的元数据协议。API提供了读取和写入底层元数据的基础架构，比如可交换图片文件格式（Exif）标签。<br>从一个给定的CMSampleBuffer中获取Exif元数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">CFDictionaryRef exifAttachments = CMGetAttachment(sampleBuffer, kCGImagePropertyExifDictionary, NULL);</span><br><span class="line"></span><br><span class="line">//打印的信息</span><br><span class="line">(lldb) po exifAttachments</span><br><span class="line">&#123;</span><br><span class="line">    ApertureValue = &quot;2.27500704749987&quot;;</span><br><span class="line">    BrightnessValue = &quot;3.366379752578831&quot;;</span><br><span class="line">    ColorSpace = 1;</span><br><span class="line">    DateTimeDigitized = &quot;2018:11:12 15:22:21&quot;;</span><br><span class="line">    DateTimeOriginal = &quot;2018:11:12 15:22:21&quot;;</span><br><span class="line">    ExposureBiasValue = 0;</span><br><span class="line">    ExposureTime = &quot;0.03333333333333333&quot;;</span><br><span class="line">    FNumber = &quot;2.2&quot;;</span><br><span class="line">    Flash = 0;</span><br><span class="line">    FocalLenIn35mmFilm = 155;</span><br><span class="line">    FocalLength = &quot;2.87&quot;;</span><br><span class="line">    ISOSpeedRatings =     (</span><br><span class="line">        64</span><br><span class="line">    );</span><br><span class="line">    LensMake = Apple;</span><br><span class="line">    LensModel = &quot;iPhone 8 front camera 2.87mm f/2.2&quot;;</span><br><span class="line">    LensSpecification =     (</span><br><span class="line">        &quot;2.87&quot;,</span><br><span class="line">        &quot;2.87&quot;,</span><br><span class="line">        &quot;2.2&quot;,</span><br><span class="line">        &quot;2.2&quot;</span><br><span class="line">    );</span><br><span class="line">    MeteringMode = 5;</span><br><span class="line">    PixelXDimension = 640;</span><br><span class="line">    PixelYDimension = 480;</span><br><span class="line">    SceneType = 1;</span><br><span class="line">    SensingMethod = 2;</span><br><span class="line">    ShutterSpeedValue = &quot;4.907121445283527&quot;;</span><br><span class="line">    SubsecTimeDigitized = 923;</span><br><span class="line">    SubsecTimeOriginal = 923;</span><br><span class="line">    WhiteBalance = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
