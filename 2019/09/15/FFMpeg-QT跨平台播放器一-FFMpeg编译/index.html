@@ -13,6 +13,8 @@
     
 
     
+        <meta name="description" content="一、下载到ffmpeg官网 http://ffmpeg.org/download.html 根据你要的平台下载相应的库。如Mac/linux平台：下载最新的ffmpeg-4.2.1的代码。Windows的可以根据需要，下载32位/64位的静态或动态库，这里选择64位动态库。下载shared(动态库)">
+    
 
     <!--Author-->
     
@@ -21,10 +23,12 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Cyrus的技术空间">
+        <meta property="og:title" content="FFMpeg QT跨平台播放器一 FFMpeg编译">
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="一、下载到ffmpeg官网 http://ffmpeg.org/download.html 根据你要的平台下载相应的库。如Mac/linux平台：下载最新的ffmpeg-4.2.1的代码。Windows的可以根据需要，下载32位/64位的静态或动态库，这里选择64位动态库。下载shared(动态库)">
     
 
     <!--Open Graph Site Name-->
@@ -32,7 +36,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -51,7 +55,7 @@
 
     <!-- Title -->
     
-    <title>音视频 - Cyrus的技术空间</title>
+    <title>FFMpeg QT跨平台播放器一 FFMpeg编译 - Cyrus的技术空间</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -153,188 +157,90 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>音视频</h1>
+                <div class="post-heading">
+                    <h1>FFMpeg QT跨平台播放器一 FFMpeg编译</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-09-15
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/播放器/">#播放器</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/音视频/">音视频</a>
+
+                    
+                </div>
             
-                <div class="post-preview">
-    <a href="/2019/09/15/FFMpeg-QT跨平台播放器一-FFMpeg编译/">
-        <h1 class="post-title archive">
-            FFMpeg QT跨平台播放器一 FFMpeg编译
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-09-15
-    </p>
-</div>
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2019/08/20/MP4-seek实现/">
-        <h1 class="post-title archive">
-            MP4 seek实现
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-20
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/08/17/MP4格式解析七-stbl/">
-        <h1 class="post-title archive">
-            MP4格式解析七 stbl
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-17
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/08/15/MP4格式解析六-smhd-vmhd-dinf/">
-        <h1 class="post-title archive">
-            MP4格式解析六 smhd/vmhd/dinf
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-15
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/08/15/MP4格式解析五-minf-box概览/">
-        <h1 class="post-title archive">
-            MP4格式解析五 minf box概览
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-15
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/08/15/MP4格式解析四-mdia-mdhd-mdia-hdlr/">
-        <h1 class="post-title archive">
-            MP4格式解析四 mdia->mdhd && mdia->hdlr
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-15
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/08/14/MP4格式解析三-trak-tkhd-edts-elst/">
-        <h1 class="post-title archive">
-            MP4格式解析三 trak->tkhd & edts/elst
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-14
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/08/13/MP4格式解析二-ftyp/">
-        <h1 class="post-title archive">
-            MP4格式解析二   ftyp/mvhd
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-13
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/08/13/MP4格式解析一（概览）/">
-        <h1 class="post-title archive">
-            MP4格式解析一（概览）
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-13
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/08/08/FLV文件格式解析（h264-aac）/">
-        <h1 class="post-title archive">
-            FLV文件格式解析（h264 + aac）
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2019-08-08
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
-        <li class="next"><a href="/categories/音视频/page/2/">Older Posts  &rarr;</a></li>
-    
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="一、下载"><a href="#一、下载" class="headerlink" title="一、下载"></a>一、下载</h3><p>到ffmpeg官网 <a href="http://ffmpeg.org/download.html" target="_blank" rel="noopener">http://ffmpeg.org/download.html</a> 根据你要的平台下载相应的库。如Mac/linux平台：下载最新的ffmpeg-4.2.1的代码。Windows的可以根据需要，下载32位/64位的静态或动态库，这里选择64位动态库。下载shared(动态库)和Dev(用于开发时链接符号)。</p>
+<h3 id="二、编译"><a href="#二、编译" class="headerlink" title="二、编译"></a>二、编译</h3><p>对于下载源码的，需要进行编译，编译的优势是可以根据需求，选取相应的功能模块，减小应用体积。像上面的Windows动态库的，则无需编译直接使用。</p>
+<h4 id="1、进入代码所在文件夹，查看编译选项"><a href="#1、进入代码所在文件夹，查看编译选项" class="headerlink" title="1、进入代码所在文件夹，查看编译选项"></a>1、进入代码所在文件夹，查看编译选项</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ffmpeg路径</span><br><span class="line">./configure --help</span><br><span class="line"></span><br><span class="line">// 配置</span><br><span class="line">./configure  --prefix=/Users/cyrus/Downloads/ffmpeg-4.2/build  --disable-doc  --disable-htmlpages  --disable-manpages  --disable-network</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里讲解一下，–prefix=/xxx/xxx 是编译出来的包存放的地址，这里是在ffmpeg源码里新建一个build文件夹存放，可以根据需求设置。</li>
 </ul>
+<p><img src="//www.cyrus.fun/2019/09/15/FFMpeg-QT跨平台播放器一-FFMpeg编译/make_1.png" alt=""><br><img src="//www.cyrus.fun/2019/09/15/FFMpeg-QT跨平台播放器一-FFMpeg编译/make_2.png" alt=""></p>
+<p>报错，根据报错修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure  --prefix=/Users/cyrus/Downloads/ffmpeg-4.2/build  --disable-doc  --disable-htmlpages  --disable-manpages  --disable-network  --disable-x86asm</span><br></pre></td></tr></table></figure></p>
+<p><img src="//www.cyrus.fun/2019/09/15/FFMpeg-QT跨平台播放器一-FFMpeg编译/make_3.png" alt=""><br>configure配置通过，开始编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make -j8 &amp;&amp; make install</span><br><span class="line">// 这里也可以分开写 make 编译完再make install, -j8是开8个线程编译，可以根据电脑配置选择写或不写。多线程编译速度较快。</span><br></pre></td></tr></table></figure></p>
+<p><img src="//www.cyrus.fun/2019/09/15/FFMpeg-QT跨平台播放器一-FFMpeg编译/make_4.png" alt=""><br><img src="//www.cyrus.fun/2019/09/15/FFMpeg-QT跨平台播放器一-FFMpeg编译/make_5.png" alt=""><br>编译完成，build文件夹里面的include和lib就是我们需要的头文件和库文件。</p>
+<p><img src="//www.cyrus.fun/2019/09/15/FFMpeg-QT跨平台播放器一-FFMpeg编译/make_6.png" alt=""><br>这里再说一个lib文件夹下面的pkgconfig，里面存放的是生成库的依赖关系。我们在qt的.pro文件里面需要用到。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr>
