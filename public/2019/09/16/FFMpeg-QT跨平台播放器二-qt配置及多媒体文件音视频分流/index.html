@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="项目是基本iOS的KxMovie仿写的C++版本简易跨平台播器练练手，有兴趣的可以去看看KxMovie的源码。项目主要实现了： 
+
+FFMPEG视频处理原理以及实现；
+QT界面设计；
+FFMPEG音频处理原理以及实现；
+视频播放进度控制及音量控制；
+代码MacOS/Windos/Ubuntu跨平台通">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="FFMpeg QT跨平台播放器二 qt配置及多媒体文件音视频分流">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="项目是基本iOS的KxMovie仿写的C++版本简易跨平台播器练练手，有兴趣的可以去看看KxMovie的源码。项目主要实现了： 
+
+FFMPEG视频处理原理以及实现；
+QT界面设计；
+FFMPEG音频处理原理以及实现；
+视频播放进度控制及音量控制；
+代码MacOS/Windos/Ubuntu跨平台通">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>FFMpeg QT跨平台播放器二 qt配置及多媒体文件音视频分流 - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>FFMpeg QT跨平台播放器二 qt配置及多媒体文件音视频分流</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-09-16
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/播放器/">#播放器</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/音视频/">音视频</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>项目是基本iOS的KxMovie仿写的C++版本简易跨平台播器练练手，有兴趣的可以去看看KxMovie的源码。项目主要实现了： </p>
+<ul>
+<li>FFMPEG视频处理原理以及实现；</li>
+<li>QT界面设计；</li>
+<li>FFMPEG音频处理原理以及实现；</li>
+<li>视频播放进度控制及音量控制；</li>
+<li>代码MacOS/Windos/Ubuntu跨平台通用。   </li>
+<li>后面有时间可以考虑研究一下使用QT的OPenGL Widget显示。</li>
+</ul>
+<h3 id="一、QT-pro文件引入FFMpeg"><a href="#一、QT-pro文件引入FFMpeg" class="headerlink" title="一、QT .pro文件引入FFMpeg"></a>一、QT .pro文件引入FFMpeg</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//开发平台为Mac平台</span><br><span class="line">macx &#123;</span><br><span class="line"></span><br><span class="line">LIBS += -L /usr/lib -lbz2 -lm -lz -llzma</span><br><span class="line">LIBS += -framework Foundation -framework AudioToolBox -framework VideoToolBox -framework AVFoundation -framework Cocoa -framework CoreMedia -framework QuartzCore -framework VideoDecodeAcceleration -liconv</span><br><span class="line"></span><br><span class="line">INCLUDEPATH += $$PWD/libFFmpeg/Macx/include</span><br><span class="line">LIBS += -L$$PWD/libFFmpeg/Macx/lib</span><br><span class="line">LIBS += -lavcodec   \</span><br><span class="line">        -lavdevice  \</span><br><span class="line">        -lavfilter  \</span><br><span class="line">        -lavformat  \</span><br><span class="line">        -lavutil    \</span><br><span class="line">        -lswscale   \</span><br><span class="line">        -lswresample</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Linux跟windows的等</span><br><span class="line">unix:!macx &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">win32 &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>相关依赖可以看FFMpeg QT跨平台播放器一说的，编译完FFMpeg后，lib/pkgconfig 里面的.pc文件<br><img src="//www.cyrus.fun/2019/09/16/FFMpeg-QT跨平台播放器二-qt配置及多媒体文件音视频分流/pro_1.png" alt=""></li>
+</ul>
+<h3 id="二、QT找开多媒体文件"><a href="#二、QT找开多媒体文件" class="headerlink" title="二、QT找开多媒体文件"></a>二、QT找开多媒体文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">//mainwindow.cpp</span><br><span class="line"></span><br><span class="line">//1、配置按钮的信号和槽</span><br><span class="line">connect(ui-&gt;fileBtn, &amp;QPushButton::clicked, this, &amp;MainWindow::onOpenFile);</span><br><span class="line">//创建解码对象</span><br><span class="line">decoder = new MPMovieDecoder();</span><br><span class="line"></span><br><span class="line">//2、QT打开文件</span><br><span class="line">void MainWindow::onOpenFile()</span><br><span class="line">&#123;</span><br><span class="line">    //弹窗选择文件</span><br><span class="line">    QString path = QFileDialog::getOpenFileName(this, &quot;open&quot;, &quot;../&quot;, &quot;all(*.*)&quot;);</span><br><span class="line"></span><br><span class="line">    if(path.isEmpty() == true) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 解码对象打开文件</span><br><span class="line">    int status = decoder-&gt;openFile(path);</span><br><span class="line">    if (0 != status) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 创建两个队列用于存放解码后音视频帧</span><br><span class="line">    _videoFrames = new QQueue&lt;MPVideoFrame *&gt;();</span><br><span class="line">    _audioFrames = new QQueue&lt;MPVideoFrame *&gt;();</span><br><span class="line"></span><br><span class="line">    if (decoder-&gt;isNetwork) &#123;</span><br><span class="line"></span><br><span class="line">        _minBufferedDuration = NETWORK_MIN_BUFFERED_DURATION;</span><br><span class="line">        _maxBufferedDuration = NETWORK_MAX_BUFFERED_DURATION;</span><br><span class="line"></span><br><span class="line">    &#125; else &#123;</span><br><span class="line"></span><br><span class="line">        _minBufferedDuration = LOCAL_MIN_BUFFERED_DURATION;</span><br><span class="line">        _maxBufferedDuration = LOCAL_MAX_BUFFERED_DURATION;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    decoding = false;</span><br><span class="line">    playing = false;</span><br><span class="line">	</span><br><span class="line">    // 获取文件时长并显示</span><br><span class="line">    int duration = (int)decoder-&gt;getDuration();</span><br><span class="line">   	ui-&gt;totalTime-&gt;setText(formatTime(duration));</span><br><span class="line">	</span><br><span class="line">    //播放</span><br><span class="line">    play();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面看看FFMpeg的如何实现音视频分流<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//mpmoviedecoder.h</span><br><span class="line"></span><br><span class="line">// 1、导入FFMpeg</span><br><span class="line">extern &quot;C&quot;&#123;</span><br><span class="line"></span><br><span class="line">#include &quot;libavcodec/avcodec.h&quot;</span><br><span class="line">#include &quot;libavformat/avformat.h&quot;</span><br><span class="line">#include &quot;libswscale/swscale.h&quot;</span><br><span class="line">#include &quot;libswresample/swresample.h&quot;</span><br><span class="line">#include &quot;libavutil/pixdesc.h&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">// mpmoviedecoder.cpp</span><br><span class="line"></span><br><span class="line">// 2、注册解码器</span><br><span class="line">av_register_all();</span><br><span class="line"></span><br><span class="line">// 3、通过路径打开文件</span><br><span class="line">int MPMovieDecoder::openFile(QString path)</span><br><span class="line">&#123;</span><br><span class="line">    if(path == NULL) &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;null path&quot; &lt;&lt; endl;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    _swsContext = NULL;</span><br><span class="line">    _swrContext = NULL;</span><br><span class="line">    _videoFrame = NULL;</span><br><span class="line">    _videoCodecCtx = NULL;</span><br><span class="line">    _formatCtx = NULL;</span><br><span class="line"></span><br><span class="line">    isNetwork = isNetworkPath(path);</span><br><span class="line"></span><br><span class="line">    static bool needNetworkInit = true;</span><br><span class="line">    if (needNetworkInit &amp;&amp; isNetwork) &#123;</span><br><span class="line">        needNetworkInit = false;</span><br><span class="line">        avformat_network_init();</span><br><span class="line">    &#125;</span><br><span class="line">    int errCode = 0;</span><br><span class="line">    this-&gt;path = path;</span><br><span class="line">    // 4、成功找到多媒体文件解码器的话</span><br><span class="line">    if ((errCode = openInput(path)) &gt;= 0) &#123;</span><br><span class="line">    	// 5、打开py</span><br><span class="line">        int videoErr = openVideoStream();</span><br><span class="line">        int audioErr = openAudioStream();</span><br><span class="line">        if((0 != videoErr) &amp;&amp; (0 != audioErr)) &#123;</span><br><span class="line">            errCode = -1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            _subtitleStreams = collectStreams(_formatCtx, AVMEDIA_TYPE_SUBTITLE);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;open input failure&quot; &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(errCode != 0) &#123;</span><br><span class="line">        closeFile();</span><br><span class="line">        return errCode;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int MPMovieDecoder::openInput(QString path)</span><br><span class="line">&#123;</span><br><span class="line">    AVFormatContext *formatCtx = NULL;</span><br><span class="line">    // 1、avformat_open_input</span><br><span class="line">    int status = avformat_open_input(&amp;formatCtx, (const char *)(path.toUtf8()), NULL, NULL);</span><br><span class="line">    if (status &lt; 0) &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;avformat_open_input: failure&quot;  &lt;&lt; endl;</span><br><span class="line">        if (formatCtx)</span><br><span class="line">            avformat_free_context(formatCtx);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    // 2、avformat_find_stream_info</span><br><span class="line">    if (avformat_find_stream_info(formatCtx, NULL) &lt; 0) &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;avformat_find_stream_info failure&quot; &lt;&lt; endl;</span><br><span class="line">        avformat_close_input(&amp;formatCtx);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">	// 3、av_dump_format</span><br><span class="line">    av_dump_format(formatCtx, 0, path.toUtf8(), false);</span><br><span class="line"></span><br><span class="line">    _formatCtx = formatCtx;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先看看分流的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">QVector&lt;int&gt; *MPMovieDecoder::collectStreams(AVFormatContext *formatCtx, enum AVMediaType codecType)</span><br><span class="line">&#123;</span><br><span class="line">    QVector&lt;int&gt; *ma = new QVector&lt;int&gt;();</span><br><span class="line">    for (int i = 0;i &lt; formatCtx-&gt;nb_streams; i++) &#123;</span><br><span class="line">        if (codecType == formatCtx-&gt;streams[i]-&gt;codec-&gt;codec_type) &#123;</span><br><span class="line">            ma-&gt;append(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return ma;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// FFMpeg里面，音视、视频、字幕都是用stream定义，而且可能不止一个stream，例如文件支持多语音频及字幕，那么就会有多个音频stream及多个字幕stream。AVMEDIA_TYPE_AUDIO（音频）、AVMEDIA_TYPE_SUBTITLE（字幕）、AVMEDIA_TYPE_VIDEO（视频）。这里把相关类型的所有stream所在的formatCtx-&gt;streams数组中的下标都存起来，如果stream不止一个，有需要的可以根据切换相应的下标中英文之类的。</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">// 找到视频流</span><br><span class="line">int MPMovieDecoder::openVideoStream()</span><br><span class="line">&#123;</span><br><span class="line">    qDebug() &lt;&lt; &quot;openVideoStream&quot; &lt;&lt; endl;</span><br><span class="line">    int errCode = 0;</span><br><span class="line">    _videoStream = -1;</span><br><span class="line">    _artworkStream = -1;</span><br><span class="line">	// 找到文件中的所有视频流</span><br><span class="line">    _videoStreams = collectStreams(_formatCtx, AVMEDIA_TYPE_VIDEO);</span><br><span class="line">    qDebug() &lt;&lt; &quot;_videoStreams count:&quot; &lt;&lt; _videoStreams-&gt;count() &lt;&lt; endl;</span><br><span class="line">    for (int i= 0; i&lt;_videoStreams-&gt;count(); i++) &#123;</span><br><span class="line">    	// 通过&amp;操作，判断视频是否以图片的形式存在，0不是，非0是</span><br><span class="line">        if(0 == (_formatCtx-&gt;streams[i]-&gt;disposition &amp; AV_DISPOSITION_ATTACHED_PIC)) &#123;</span><br><span class="line">        	// 查找对应的视频流的编解码信息</span><br><span class="line">            errCode = openVideoStream(_videoStreams-&gt;at(i));</span><br><span class="line">            if (0 == errCode) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            _artworkStream = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return errCode;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int MPMovieDecoder::openVideoStream(int videoStream)</span><br><span class="line">&#123;</span><br><span class="line">//    // get a pointer to the codec context for the video stream</span><br><span class="line">        AVCodecContext *codecCtx = _formatCtx-&gt;streams[videoStream]-&gt;codec;</span><br><span class="line"></span><br><span class="line">//        // find the decoder for the video stream</span><br><span class="line">        AVCodec *codec = avcodec_find_decoder(codecCtx-&gt;codec_id);</span><br><span class="line">        if (codec == NULL)</span><br><span class="line">            return -1;</span><br><span class="line"></span><br><span class="line">//        // open codec</span><br><span class="line">        if (avcodec_open2(codecCtx, codec, NULL) &lt; 0)</span><br><span class="line">            return -2;</span><br><span class="line"></span><br><span class="line">        _videoFrame = av_frame_alloc();</span><br><span class="line"></span><br><span class="line">        if (!_videoFrame) &#123;</span><br><span class="line">            avcodec_close(codecCtx);</span><br><span class="line">            return -3;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        _videoStream = videoStream;</span><br><span class="line">        _videoCodecCtx = codecCtx;</span><br><span class="line"></span><br><span class="line">        AVStream *st = _formatCtx-&gt;streams[_videoStream];</span><br><span class="line">        avStreamFPSTimeBase(st, 0.04, &amp;this-&gt;fps, &amp;_videoTimeBase);</span><br><span class="line"></span><br><span class="line">        QString info = QString(&quot;video codec size: %1:%2 fps: %3 tb: %4&quot;).arg(frameWidth).arg(frameHeight).arg(fps).arg(_videoTimeBase);</span><br><span class="line">        qDebug() &lt;&lt; info &lt;&lt; endl;</span><br><span class="line">        qDebug() &lt;&lt; &quot;video start time &quot; &lt;&lt; st-&gt;start_time * _videoTimeBase &lt;&lt; endl;</span><br><span class="line">        qDebug() &lt;&lt; &quot;video disposition &quot; &lt;&lt; st-&gt;disposition &lt;&lt; endl;</span><br><span class="line">        return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同理，找音频流<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">int MPMovieDecoder::openAudioStream()</span><br><span class="line">&#123;</span><br><span class="line">    int errCode = 0;</span><br><span class="line">    _audioStream = -1;</span><br><span class="line">    _audioStreams = collectStreams(_formatCtx, AVMEDIA_TYPE_AUDIO);</span><br><span class="line">    for (int i= 0; i&lt;_audioStreams-&gt;count(); i++) &#123;</span><br><span class="line">         errCode = openAudioStream(_audioStreams-&gt;at(i));</span><br><span class="line">         if (0 == errCode) &#123;</span><br><span class="line">             break;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return errCode;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int MPMovieDecoder::openAudioStream(int audioStream)</span><br><span class="line">&#123;</span><br><span class="line">    uint64_t out_channel_layout=AV_CH_LAYOUT_STEREO; //定义目标音频参数</span><br><span class="line">    AVCodecContext *codecCtx = _formatCtx-&gt;streams[audioStream]-&gt;codec;</span><br><span class="line">    SwrContext *swrContext = NULL;</span><br><span class="line"></span><br><span class="line">    AVCodec *codec = avcodec_find_decoder(codecCtx-&gt;codec_id);</span><br><span class="line">    if(codec == NULL)</span><br><span class="line">        return -1;</span><br><span class="line"></span><br><span class="line">    if (avcodec_open2(codecCtx, codec, NULL) &lt; 0) return -2;</span><br><span class="line"></span><br><span class="line">    swrContext = swr_alloc_set_opts(NULL,</span><br><span class="line">                                    AV_CH_LAYOUT_STEREO,</span><br><span class="line">                                    AV_SAMPLE_FMT_S16,</span><br><span class="line">                                    44100,</span><br><span class="line">                                    codecCtx-&gt;channel_layout,</span><br><span class="line">                                    codecCtx-&gt;sample_fmt,</span><br><span class="line">                                    codecCtx-&gt;sample_rate,</span><br><span class="line">                                    0,</span><br><span class="line">                                    NULL);</span><br><span class="line"></span><br><span class="line">    if (!swrContext || swr_init(swrContext)) &#123;</span><br><span class="line"></span><br><span class="line">        if (swrContext) swr_free(&amp;swrContext);</span><br><span class="line">        avcodec_close(codecCtx);</span><br><span class="line">        return -3;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    _audioFrame = av_frame_alloc();</span><br><span class="line"></span><br><span class="line">    if (!_audioFrame) &#123;</span><br><span class="line">        if (swrContext)</span><br><span class="line">            swr_free(&amp;swrContext);</span><br><span class="line">        avcodec_close(codecCtx);</span><br><span class="line">        return -4;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    _audioStream = audioStream;</span><br><span class="line">    _audioCodecCtx = codecCtx;</span><br><span class="line">    _swrContext = swrContext;</span><br><span class="line"></span><br><span class="line">    AVStream *st = _formatCtx-&gt;streams[_audioStream];</span><br><span class="line">    avStreamFPSTimeBase(st, 0.025, 0, &amp;_audioTimeBase);</span><br><span class="line"></span><br><span class="line">    QString info = QString(&quot;audio codec smr: %1 fmt:%2 chn: %3 tb: %4 %5&quot;).arg(_audioCodecCtx-&gt;sample_rate).arg(_audioCodecCtx-&gt;sample_fmt).arg(_audioCodecCtx-&gt;channels).arg(_audioTimeBase).arg(_swrContext ? &quot;resample&quot; : &quot;&quot;);</span><br><span class="line">    qDebug() &lt;&lt; info &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 这里讲解一下FFMpeg的音频重采样SwrContext。这里的做法是，不管文件的音频是怎样的，我们都把它转化成双通道（AV_CH_LAYOUT_STEREO）， 16位精度（AV_SAMPLE_FMT_S16）， 44100采样率的pcm数据。</span><br><span class="line">1、swr_alloc_set_opts 创建SwrContext转化参数</span><br><span class="line">2、swr_init SwrContext初始化</span><br></pre></td></tr></table></figure></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
