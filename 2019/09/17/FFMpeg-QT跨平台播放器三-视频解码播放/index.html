@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="一、MPVideoFrame 存放解码后的音视频数据12345678910111213141516171819202122232425// 帧数据类型typedef enum &amp;#123;    MPMovieFrameTypeAudio,    MPMovieFrameTypeVideo,    ">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="FFMpeg QT跨平台播放器三 视频解码播放">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="一、MPVideoFrame 存放解码后的音视频数据12345678910111213141516171819202122232425// 帧数据类型typedef enum &amp;#123;    MPMovieFrameTypeAudio,    MPMovieFrameTypeVideo,    ">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>FFMpeg QT跨平台播放器三 视频解码播放 - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>FFMpeg QT跨平台播放器三 视频解码播放</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-09-17
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/播放器/">#播放器</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/音视频/">音视频</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="一、MPVideoFrame-存放解码后的音视频数据"><a href="#一、MPVideoFrame-存放解码后的音视频数据" class="headerlink" title="一、MPVideoFrame 存放解码后的音视频数据"></a>一、MPVideoFrame 存放解码后的音视频数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 帧数据类型</span><br><span class="line">typedef enum &#123;</span><br><span class="line">    MPMovieFrameTypeAudio,</span><br><span class="line">    MPMovieFrameTypeVideo,</span><br><span class="line">    MPMovieFrameTypeArtwork,</span><br><span class="line">    MPMovieFrameTypeSubtitle,</span><br><span class="line">&#125; MPMovieFrameType;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class MPVideoFrame</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    MPVideoFrame();</span><br><span class="line">    MPVideoFrame(const MPVideoFrame &amp;other);</span><br><span class="line">    MPVideoFrame&amp; operator=(MPVideoFrame&amp; t);</span><br><span class="line">    ~MPVideoFrame();</span><br><span class="line">    </span><br><span class="line">    MPMovieFrameType    type;</span><br><span class="line">    int                 width;</span><br><span class="line">    int                 height;</span><br><span class="line">    int                 bufferSize;</span><br><span class="line">    unsigned char*      databuffer;</span><br><span class="line">    double              position;</span><br><span class="line">    double              duration;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="二、视频解码"><a href="#二、视频解码" class="headerlink" title="二、视频解码"></a>二、视频解码</h3><p>简单说一下解码的过程：</p>
+<ul>
+<li>1、首先从文件中读出一块数据，可能是一帧或多帧音视频数据，存到AVPacket结构里面</li>
+<li>2、判断packet是音频还是视频，分别调用相应的解码函数，如视频的avcodec_decode_video2和音频的avcodec_decode_audio4，视频解码出来的就是AVCodec里面的AVPixelFormat类型数据，如YUV420，YUV422,RGB等。音频解码出来的是pcm数据，并将数据存到AVFrame结构体中。这时的数据就是可以播放的数据了。</li>
+<li>3、对于视频，如何不采用OpenGL显示，则可以用sws_scale函数，将数据转成RGB，再将RGB转成图片显示。对于音频，我们可以选择适合设备的参数，对音频数据进行重采样播放（下一篇讲）。</li>
+</ul>
+<p>下面看代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">QVector&lt;MPVideoFrame *&gt; *MPMovieDecoder::decodeFrames(float minDuration)</span><br><span class="line">&#123;</span><br><span class="line">    if (_videoStream == -1 &amp;&amp; _audioStream == -1) return NULL;</span><br><span class="line">    QVector&lt;MPVideoFrame *&gt; *result = new QVector&lt;MPVideoFrame *&gt;();</span><br><span class="line">    AVPacket packet;</span><br><span class="line">    float decodedDuration = 0;</span><br><span class="line">    bool finished = false;</span><br><span class="line">    while (!finished) &#123;</span><br><span class="line">    	// 1、读取一块数据</span><br><span class="line">        if (av_read_frame(_formatCtx, &amp;packet) &lt; 0) &#123;</span><br><span class="line">            isEOF = true;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        // 2、判断是音频还是视频</span><br><span class="line">        if (packet.stream_index == _videoStream) &#123;</span><br><span class="line">            int pktSize = packet.size;</span><br><span class="line">            while (pktSize &gt; 0) &#123;</span><br><span class="line">                int gotframe = 0;</span><br><span class="line">				// 解码，</span><br><span class="line">                int len = avcodec_decode_video2(_videoCodecCtx, _videoFrame, &amp;gotframe, &amp;packet);</span><br><span class="line">                if (len &lt; 0) &#123;</span><br><span class="line">                    qDebug() &lt;&lt; &quot;decode video error, skip packet&quot; &lt;&lt; endl;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                if (gotframe) &#123;</span><br><span class="line">                	// 将解码数据转成RGB并存到MPVideoFrame中</span><br><span class="line">                    MPVideoFrame *frame = handleVideoFrame();</span><br><span class="line">                    if (frame != NULL) &#123;</span><br><span class="line">//                        QMutexLocker locker(&amp;m_decodeMutex);</span><br><span class="line">                        result-&gt;append(frame);</span><br><span class="line">                        _position = frame-&gt;position;</span><br><span class="line">                        decodedDuration += frame-&gt;duration;</span><br><span class="line">                        if (decodedDuration &gt; minDuration) finished = true;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if (0 == len) break;</span><br><span class="line">                pktSize -= len;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(packet.stream_index == _audioStream) &#123;</span><br><span class="line">    // 音频解码</span><br><span class="line">		&#125;</span><br><span class="line">        av_free_packet(&amp;packet);</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">/** 简单讲一下解码完的数据存在方式</span><br><span class="line">* 1、数据类型为AVCodecContext-&gt;AVPixelFormat/AVCodec-&gt;AVPixelFormat</span><br><span class="line">* 2、数据存在AVFrame结构体中的uint8_t *data[AV_NUM_DATA_POINTERS];</span><br><span class="line">* 3、相应的数据长度存在AVFrame结构体中int linesize[AV_NUM_DATA_POINTERS];</span><br><span class="line">* 如YUV420 即data[0]是Y分量数据，linesize[0]是Y分量数据长度。data[1]是U分量数据，linesize[1]是U分量数据长度.data[2]是V分量数据，linesize[2]是V分量数据长度.</span><br><span class="line">*/</span><br><span class="line">MPVideoFrame *MPMovieDecoder::handleVideoFrame()</span><br><span class="line">&#123;</span><br><span class="line">    if (_videoFrame-&gt;data[0] == NULL) &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;_videoFrame-&gt;data[0] no data&quot; &lt;&lt; endl;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    if (_swsContext == NULL) &#123;</span><br><span class="line">    	// 设置转换器</span><br><span class="line">        bool result = setupScaler();</span><br><span class="line">        if (!result) &#123;</span><br><span class="line">            qDebug() &lt;&lt; &quot;fail setup video scaler&quot; &lt;&lt; endl;</span><br><span class="line">            return NULL;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	// sws_scale 可以实现1.图像色彩空间转换；2.分辨率缩放；3.前后图像滤波处理。解码完成的数据可以存在AVPicture中</span><br><span class="line">    int height = sws_scale(_swsContext,</span><br><span class="line">              (const uint8_t **)_videoFrame-&gt;data,</span><br><span class="line">              _videoFrame-&gt;linesize,</span><br><span class="line">              0,</span><br><span class="line">              _videoCodecCtx-&gt;height,</span><br><span class="line">              _picture.data,</span><br><span class="line">              _picture.linesize);</span><br><span class="line">  </span><br><span class="line">    MPVideoFrame *frame = new MPVideoFrame();</span><br><span class="line">    frame-&gt;type = MPMovieFrameTypeVideo;</span><br><span class="line">    frame-&gt;bufferSize = _picture.linesize[0] * _videoCodecCtx-&gt;height;</span><br><span class="line">    frame-&gt;databuffer = (unsigned char*)malloc(frame-&gt;bufferSize);</span><br><span class="line">    memcpy(frame-&gt;databuffer, _picture.data[0], frame-&gt;bufferSize);</span><br><span class="line">    frame-&gt;width = _videoCodecCtx-&gt;width;</span><br><span class="line">    frame-&gt;height = _videoCodecCtx-&gt;height;</span><br><span class="line">    frame-&gt;position = av_frame_get_best_effort_timestamp(_videoFrame) * _videoTimeBase;</span><br><span class="line">    const int64_t frameDuration = av_frame_get_pkt_duration(_videoFrame);</span><br><span class="line">    if (frameDuration) &#123;</span><br><span class="line">        frame-&gt;duration = frameDuration * _videoTimeBase;</span><br><span class="line">        frame-&gt;duration += _videoFrame-&gt;repeat_pict * _videoTimeBase * 0.5;</span><br><span class="line">  </span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // sometimes, ffmpeg unable to determine a frame duration</span><br><span class="line">        // as example yuvj420p stream from web camera</span><br><span class="line">        frame-&gt;duration = 1.0 / fps;</span><br><span class="line">    &#125;</span><br><span class="line">    return frame;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">bool MPMovieDecoder::setupScaler()</span><br><span class="line">&#123;</span><br><span class="line">    closeScaler();</span><br><span class="line"></span><br><span class="line">    _pictureValid = avpicture_alloc(&amp;_picture,</span><br><span class="line">                                    AV_PIX_FMT_RGB24,</span><br><span class="line">                                    _videoCodecCtx-&gt;width,</span><br><span class="line">                                    _videoCodecCtx-&gt;height) == 0;</span><br><span class="line"></span><br><span class="line">    if (!_pictureValid)</span><br><span class="line">        return false;</span><br><span class="line"></span><br><span class="line">    _swsContext = sws_getCachedContext(_swsContext,</span><br><span class="line">                                       _videoCodecCtx-&gt;width,</span><br><span class="line">                                       _videoCodecCtx-&gt;height,</span><br><span class="line">                                       _videoCodecCtx-&gt;pix_fmt,</span><br><span class="line">                                       _videoCodecCtx-&gt;width,</span><br><span class="line">                                       _videoCodecCtx-&gt;height,</span><br><span class="line">                                       AV_PIX_FMT_RGB24,</span><br><span class="line">                                       SWS_FAST_BILINEAR,</span><br><span class="line">                                       NULL, NULL, NULL);</span><br><span class="line"></span><br><span class="line">    return _swsContext != NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MPMovieDecoder::closeScaler()</span><br><span class="line">&#123;</span><br><span class="line">    qDebug() &lt;&lt; &quot;MPMovieDecoder::closeScaler start&quot; &lt;&lt; endl;</span><br><span class="line">    if (_swsContext != NULL) &#123;</span><br><span class="line">        sws_freeContext(_swsContext);</span><br><span class="line">        _swsContext = NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    qDebug() &lt;&lt; &quot;MPMovieDecoder::closeScaler end&quot; &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三、视频播放"><a href="#三、视频播放" class="headerlink" title="三、视频播放"></a>三、视频播放</h3><p>这里简单说一下播放的逻辑，</p>
+<ul>
+<li>1、设定一个一定时长的缓冲区间，如1-2秒，少于1s开始异步解码并缓存起来，缓存的视频长度大于2s则停止。</li>
+<li>2、设定一个定时器，每显示一帧就把该帧的duration作为定时器的定时时长，在定时器的timeout信号槽里显示下一帧。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 定时器，处理超时信号</span><br><span class="line"> m_tickTimer = new QTimer(this);</span><br><span class="line">    m_tickTimer-&gt;setSingleShot(true);</span><br><span class="line">    connect(m_tickTimer, SIGNAL(timeout()), this, SLOT(handleTickTimeout()));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void MainWindow::handleTickTimeout()</span><br><span class="line">&#123;</span><br><span class="line">    qDebug()&lt;&lt;&quot;Enter timeout processing function\n&quot;;</span><br><span class="line">    if(m_tickTimer-&gt;isActive())&#123;</span><br><span class="line">        m_tickTimer-&gt;stop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    qDebug() &lt;&lt; &quot;_videoFrames-&gt;length() = &quot; &lt;&lt; _videoFrames-&gt;length() &lt;&lt; endl;</span><br><span class="line">	// tick函数播放视频、判断是否继续解码缓存及根据播放帧的duration定时下一次超时</span><br><span class="line">    tick();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>// 具体讲播放前，先看一下异步解码的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">void MainWindow::asyncDecodeFrames()</span><br><span class="line">&#123;</span><br><span class="line">    qDebug() &lt;&lt; &quot;MainWindow::asyncDecodeFrames() start&quot; &lt;&lt; endl;</span><br><span class="line">    if (decoding) return;</span><br><span class="line"></span><br><span class="line">    const float duration = decoder-&gt;isNetwork ? .0f : 0.1f;</span><br><span class="line"></span><br><span class="line">    decoding = true;</span><br><span class="line">    qDebug() &lt;&lt; &quot;MainWindow::asyncDecodeFrames() start2&quot; &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	// 异步解码，并分别加到缓存的音频帧队列里</span><br><span class="line">    std::function&lt;void()&gt; decode = [=]() &#123;</span><br><span class="line">        bool good = true;</span><br><span class="line">        while (good) &#123;</span><br><span class="line">            if (decoder &amp;&amp; (decoder-&gt;validVideo() || decoder-&gt;validAudio())) &#123;</span><br><span class="line">                QVector&lt;MPVideoFrame *&gt; *frames = decoder-&gt;decodeFrames(duration);</span><br><span class="line">                if (!frames-&gt;isEmpty()) &#123;</span><br><span class="line">                    good = addFrames(frames);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        decoding = false;</span><br><span class="line">        qDebug() &lt;&lt; &quot;MainWindow::asyncDecodeFrames() end&quot; &lt;&lt; endl;</span><br><span class="line">    &#125;;</span><br><span class="line">    QtConcurrent::run(decode);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool MainWindow::addFrames(QVector&lt;MPVideoFrame *&gt; *frames)</span><br><span class="line">&#123;</span><br><span class="line">    if (decoder-&gt;validVideo()) &#123;</span><br><span class="line">        &#123;</span><br><span class="line">            QMutexLocker locker(&amp;m_videoMutex);</span><br><span class="line">            for (QVector&lt;MPVideoFrame *&gt;::iterator it = frames-&gt;begin(); it != frames-&gt;end(); ++it)</span><br><span class="line">            &#123;</span><br><span class="line">                if ((*it)-&gt;type == MPMovieFrameTypeVideo) &#123;</span><br><span class="line">                    _videoFrames-&gt;enqueue(*it);</span><br><span class="line">                    _bufferedDuration += (*it)-&gt;duration;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (decoder-&gt;validAudio()) &#123;</span><br><span class="line">        // 音频，下一篇讲</span><br><span class="line">    &#125;</span><br><span class="line">    delete frames;</span><br><span class="line">    return playing &amp;&amp; _bufferedDuration &lt; _maxBufferedDuration;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">void MainWindow::tick()</span><br><span class="line">&#123;</span><br><span class="line">    if (_buffered &amp;&amp; ((_bufferedDuration &gt; _minBufferedDuration) || decoder-&gt;isEOF)) &#123;</span><br><span class="line">        _tickCorrectionTime = 0;</span><br><span class="line">        _buffered = false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    double interval = 0;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    if (playing) &#123;</span><br><span class="line"></span><br><span class="line">        if (!_buffered)  interval = presentFrame();</span><br><span class="line"></span><br><span class="line">        if (decoder-&gt;isEOF) &#123;</span><br><span class="line">            qDebug() &lt;&lt; &quot;MainWindow::tick() eof&quot; &lt;&lt; endl;</span><br><span class="line">            pause();</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        const int leftFrames =</span><br><span class="line">        (decoder-&gt;validVideo() ? _videoFrames-&gt;length() : 0);</span><br><span class="line"></span><br><span class="line">        if (0 == leftFrames) &#123;</span><br><span class="line"></span><br><span class="line">            if (_minBufferedDuration &gt; 0 &amp;&amp; !_buffered) &#123;</span><br><span class="line">                _buffered = true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (!leftFrames ||</span><br><span class="line">            !(_bufferedDuration &gt; _minBufferedDuration)) &#123;</span><br><span class="line">            asyncDecodeFrames();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        const double time = interval &gt; 0.01 ? interval : 0.01;</span><br><span class="line">        m_tickTimer-&gt;start(int(time * 1000));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体显示图像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">double MainWindow::presentFrame()</span><br><span class="line">&#123;</span><br><span class="line">    double interval = 0;</span><br><span class="line"></span><br><span class="line">    if (decoder-&gt;validVideo()) &#123;</span><br><span class="line"></span><br><span class="line">        MPVideoFrame *frame = NULL;</span><br><span class="line">        &#123;</span><br><span class="line">            QMutexLocker locker(&amp;m_videoMutex);</span><br><span class="line">            if (_videoFrames-&gt;length() &gt; 0) &#123;</span><br><span class="line">                frame = _videoFrames-&gt;dequeue();</span><br><span class="line">                _bufferedDuration -= frame-&gt;duration;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (frame != NULL) &#123;</span><br><span class="line">            interval = presentVideoFrame(frame);</span><br><span class="line">            if(playing) &#123;</span><br><span class="line">                updateCurrentTime();</span><br><span class="line">            &#125;</span><br><span class="line">            delete frame;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    return interval;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double MainWindow::presentVideoFrame(MPVideoFrame *frame)</span><br><span class="line">&#123;</span><br><span class="line">    displayRBGFrame((char *)frame-&gt;databuffer, frame-&gt;width, frame-&gt;height);</span><br><span class="line">    _moviePosition = frame-&gt;position;</span><br><span class="line">    return frame-&gt;duration;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
