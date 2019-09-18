@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="一、解码音频解码的步骤跟视频类型，都是AVPaket-&amp;gt;AVFrame再根据需要进行调整1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="FFMpeg QT跨平台播放器四 音频解码播放">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="一、解码音频解码的步骤跟视频类型，都是AVPaket-&amp;gt;AVFrame再根据需要进行调整1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>FFMpeg QT跨平台播放器四 音频解码播放 - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>FFMpeg QT跨平台播放器四 音频解码播放</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-09-18
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/播放器/">#播放器</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/音视频/">音视频</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="一、解码"><a href="#一、解码" class="headerlink" title="一、解码"></a>一、解码</h3><p>音频解码的步骤跟视频类型，都是AVPaket-&gt;AVFrame再根据需要进行调整<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">QVector&lt;MPVideoFrame *&gt; *MPMovieDecoder::decodeFrames(float minDuration)</span><br><span class="line">&#123;</span><br><span class="line">    if (_videoStream == -1 &amp;&amp; _audioStream == -1) return NULL;</span><br><span class="line">    QVector&lt;MPVideoFrame *&gt; *result = new QVector&lt;MPVideoFrame *&gt;();</span><br><span class="line"></span><br><span class="line">    AVPacket packet;</span><br><span class="line">    float decodedDuration = 0;</span><br><span class="line"></span><br><span class="line">    bool finished = false;</span><br><span class="line">    while (!finished) &#123;</span><br><span class="line">        if (av_read_frame(_formatCtx, &amp;packet) &lt; 0) &#123;</span><br><span class="line">            isEOF = true;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (packet.stream_index == _videoStream) &#123;</span><br><span class="line">			// 视频解码，看上一篇</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(packet.stream_index == _audioStream) &#123;</span><br><span class="line">            int pktSize = packet.size;</span><br><span class="line">            while (pktSize &gt; 0) &#123;</span><br><span class="line"></span><br><span class="line">                int gotFrame = 0;</span><br><span class="line"></span><br><span class="line">                int len = avcodec_decode_audio4(_audioCodecCtx, _audioFrame, &amp;gotFrame, &amp;packet);</span><br><span class="line">                if (len &lt; 0) &#123;</span><br><span class="line">                    qDebug() &lt;&lt; &quot;decode audio error, skip packet&quot; &lt;&lt; endl;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (gotFrame) &#123;</span><br><span class="line"></span><br><span class="line">                    qDebug() &lt;&lt; &quot;decode audio gotFrame&quot; &lt;&lt; endl;</span><br><span class="line">                    MPVideoFrame *frame = handleAudioFrame();</span><br><span class="line">                    if (frame != NULL) &#123;</span><br><span class="line">                        result-&gt;append(frame);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    if (_videoStream == -1) &#123;</span><br><span class="line">                        _position = frame-&gt;position;</span><br><span class="line">                        decodedDuration += frame-&gt;duration;</span><br><span class="line">                        if (decodedDuration &gt; minDuration) finished = true;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if (0 == len) break;</span><br><span class="line">                pktSize -= len;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        av_free_packet(&amp;packet);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    qDebug() &lt;&lt; &quot;decode end&quot; &lt;&lt; endl;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">MPVideoFrame *MPMovieDecoder::handleAudioFrame()</span><br><span class="line">&#123;</span><br><span class="line">    if (_audioFrame-&gt;data[0] == NULL) &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;_audioFrame-&gt;data[0] no data&quot; &lt;&lt; endl;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    // 重采样上下文配置可以看第二篇分流</span><br><span class="line">    if (_swrContext == NULL) &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;_swrContext == NULL&quot; &lt;&lt; endl;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;before swr_convert&quot; &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">        int out_channels = av_get_channel_layout_nb_channels(AV_CH_LAYOUT_STEREO);</span><br><span class="line">        int out_buffer_size = av_samples_get_buffer_size(NULL,out_channels ,_audioFrame-&gt;nb_samples,AV_SAMPLE_FMT_S16, 0);//计算转换后数据大小</span><br><span class="line">        uint8_t *audio_out_buffer = (uint8_t *)av_malloc(out_buffer_size);//申请输出缓冲区</span><br><span class="line"></span><br><span class="line">        int len = swr_convert(_swrContext,&amp;audio_out_buffer, out_buffer_size,(const uint8_t **)_audioFrame-&gt;data , _audioFrame-&gt;nb_samples);</span><br><span class="line">        if (len &lt;= 0)</span><br><span class="line">        &#123;</span><br><span class="line">            av_free(audio_out_buffer);</span><br><span class="line">            return NULL;</span><br><span class="line">        &#125;</span><br><span class="line">        int resampled_data_size = len * 2  * av_get_bytes_per_sample(AV_SAMPLE_FMT_S16);//每声道采样数 x 声道数 x 每个采样字节数</span><br><span class="line">        MPVideoFrame *frame = new MPVideoFrame();</span><br><span class="line">        frame-&gt;type = MPMovieFrameTypeAudio;</span><br><span class="line">        frame-&gt;bufferSize = resampled_data_size;</span><br><span class="line">        frame-&gt;databuffer = audio_out_buffer;</span><br><span class="line">        frame-&gt;position = av_frame_get_best_effort_timestamp(_audioFrame) * _audioTimeBase;</span><br><span class="line">        frame-&gt;duration = av_frame_get_pkt_duration(_audioFrame) * _audioTimeBase;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        if (frame-&gt;duration == 0) &#123;</span><br><span class="line">            frame-&gt;duration = frame-&gt;bufferSize / (sizeof(float) * 2 * 44100);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">       return frame;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 主要是重采样的参数要传对，最终的数据大小要算准</span><br></pre></td></tr></table></figure>
+<h3 id="二、播放"><a href="#二、播放" class="headerlink" title="二、播放"></a>二、播放</h3><p>先说一下QT对于pcm数据的播放方法：</p>
+<ul>
+<li>1、QIODevice负责提供用于播放的数据，所以我们的pcm数据都会写到QIODevice中；</li>
+<li>2、QAudioOutput根据设定的QAudioFormat,播放QIODevice提供的数据。</li>
+</ul>
+<p>由于人对音频比较敏感，控制不好的话，杂音频比较严重。借鉴<a href="https://blog.csdn.net/jklinux/article/details/72620102" target="_blank" rel="noopener">https://blog.csdn.net/jklinux/article/details/72620102</a> 我们自己继承QIODevice创建一下提供pcm数据的IODevice,最大可能的保证音频数据的连续性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">/// MPAudioDevice.h</span><br><span class="line"></span><br><span class="line">#ifndef MPAUDIODEVICE_H</span><br><span class="line">#define MPAUDIODEVICE_H</span><br><span class="line"></span><br><span class="line">#include &lt;QIODevice&gt;</span><br><span class="line">#include &lt;QMutex&gt;</span><br><span class="line"></span><br><span class="line">class MPAudioDevice : public QIODevice</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    MPAudioDevice(); //创建对象传递pcm数据</span><br><span class="line">   ~MPAudioDevice();</span><br><span class="line"></span><br><span class="line">   void appendData(char *data, qint64 len);</span><br><span class="line">   qint64 readData(char *data, qint64 maxlen); //重新实现的虚函数</span><br><span class="line">   qint64 writeData(const char *data, qint64 len); //它是个纯虚函数， 不得不实现</span><br><span class="line">   qint64 bytesAvailable() const;</span><br><span class="line">private:</span><br><span class="line">    QMutex m_audioMutex;</span><br><span class="line">    QByteArray data_pcm; //存放pcm数据</span><br><span class="line">    int        len_written; //记录已写入多少字节</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#endif // MPAUDIODEVICE_H</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">/// MPAudioDevice.cpp</span><br><span class="line"></span><br><span class="line">#include &quot;mpaudiodevice.h&quot;</span><br><span class="line">#include &lt;QDebug&gt;</span><br><span class="line"></span><br><span class="line">MPAudioDevice::MPAudioDevice()</span><br><span class="line">&#123;</span><br><span class="line">    this-&gt;open(QIODevice::ReadOnly); // 为了解决QIODevice::read (QIODevice): device not open</span><br><span class="line">    len_written = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MPAudioDevice::~MPAudioDevice()</span><br><span class="line">&#123;</span><br><span class="line">    this-&gt;close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">qint64 MPAudioDevice::readData(char *data, qint64 maxlen) // data为声卡的数据缓冲区地址， maxlen为声卡缓冲区最大能存放的字节数</span><br><span class="line">&#123;</span><br><span class="line">//    qDebug() &lt;&lt; &quot;MPAudioDevice::readData&quot; &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    if(data_pcm.size() == 0) return 0;</span><br><span class="line"></span><br><span class="line">    int len;</span><br><span class="line"></span><br><span class="line">    //计算未播放的数据的长度</span><br><span class="line">    len = maxlen &gt; data_pcm.size() ? data_pcm.size() : maxlen;</span><br><span class="line"></span><br><span class="line">    memcpy(data, data_pcm.data(), len); //把要播放的pcm数据存入声卡缓冲区里</span><br><span class="line">    &#123;</span><br><span class="line">        QMutexLocker locker(&amp;m_audioMutex);</span><br><span class="line">        data_pcm.remove(0, len);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">qint64 MPAudioDevice::writeData(const char *data, qint64 len)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MPAudioDevice::appendData(char *data, qint64 len)</span><br><span class="line">&#123;</span><br><span class="line">    QMutexLocker locker(&amp;m_audioMutex);</span><br><span class="line">    data_pcm.append(data, len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">qint64 MPAudioDevice::bytesAvailable() const</span><br><span class="line">&#123;</span><br><span class="line">    return data_pcm.size() + QIODevice::bytesAvailable();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体的播放<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">	// 1、配置audioFormat</span><br><span class="line">    QAudioFormat fmt;//设置音频输出格式</span><br><span class="line">    fmt.setSampleRate(44100);//1秒的音频采样率</span><br><span class="line">    fmt.setSampleSize(16);//声音样本的大小</span><br><span class="line">    fmt.setChannelCount(2);//声道</span><br><span class="line">    fmt.setCodec(&quot;audio/pcm&quot;);//解码格式</span><br><span class="line">    fmt.setByteOrder(QAudioFormat::LittleEndian);</span><br><span class="line">    fmt.setSampleType(QAudioFormat::SignedInt);//设置音频类型</span><br><span class="line">    QAudioDeviceInfo info = QAudioDeviceInfo::defaultOutputDevice();</span><br><span class="line">    if (!info.isFormatSupported(fmt)) &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;Raw audio format not supported by backend, cannot play audio.&quot;;</span><br><span class="line">        fmt = info.nearestFormat(fmt);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 2、 创建AudioOutput</span><br><span class="line">    QAudioOutput *audioOut = new QAudioOutput(info, fmt, this);</span><br><span class="line">    audioOut-&gt;setVolume(ui-&gt;volumSlider-&gt;value() / 100.0);</span><br><span class="line">	</span><br><span class="line">    // 3、 关联IODevice和AudioOutput</span><br><span class="line">    audioDevice = new MPAudioDevice();</span><br><span class="line">    audioOut-&gt;start(audioDevice);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    // 4、每次解码完音频数据后，就加到AudioDevice的播放缓冲里</span><br><span class="line">    bool MainWindow::addFrames(QVector&lt;MPVideoFrame *&gt; *frames)</span><br><span class="line">&#123;</span><br><span class="line">    if (decoder-&gt;validVideo()) &#123;</span><br><span class="line">		// 视频看上一篇</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (decoder-&gt;validAudio()) &#123;</span><br><span class="line">        QMutexLocker locker(&amp;m_audioMutex);</span><br><span class="line">        for (QVector&lt;MPVideoFrame *&gt;::iterator it = frames-&gt;begin(); it != frames-&gt;end(); ++it)</span><br><span class="line">        &#123;</span><br><span class="line">            if ((*it)-&gt;type == MPMovieFrameTypeAudio) &#123;</span><br><span class="line">                audioDevice-&gt;appendData((char *)((*it)-&gt;databuffer), (*it)-&gt;bufferSize);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    delete frames;</span><br><span class="line">    return playing &amp;&amp; _bufferedDuration &lt; _maxBufferedDuration;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 缺点：音视频同步不好。</span><br></pre></td></tr></table></figure></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
