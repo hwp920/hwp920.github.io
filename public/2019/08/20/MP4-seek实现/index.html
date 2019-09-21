@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="前面讲了几篇mp4文件的解析，这篇讲一下如何运用前面了解到的知识来完成一个seek操作。那么为了实现seek到指定时间，在mp4中需要做如下工作(这里简化了，没有考虑edts box的影响)：
+
+在mvhd中找到timescale和duration，目标时间*timescale将标准化。（MP4格式">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="MP4 seek实现">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="前面讲了几篇mp4文件的解析，这篇讲一下如何运用前面了解到的知识来完成一个seek操作。那么为了实现seek到指定时间，在mp4中需要做如下工作(这里简化了，没有考虑edts box的影响)：
+
+在mvhd中找到timescale和duration，目标时间*timescale将标准化。（MP4格式">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>MP4 seek实现 - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>MP4 seek实现</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-08-20
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/MP4/">#MP4</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/音视频/">音视频</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>前面讲了几篇mp4文件的解析，这篇讲一下如何运用前面了解到的知识来完成一个seek操作。那么为了实现seek到指定时间，在mp4中需要做如下工作(这里简化了，没有考虑edts box的影响)：</p>
+<ul>
+<li>在mvhd中找到timescale和duration，目标时间*timescale将标准化。（<a href="http://www.cyrus.fun/2019/08/13/MP4格式解析二-ftyp/">MP4格式解析二</a>）</li>
+<li>在stts中找到根据sample delta，可以换算出给定时间的sample number(帧序号)。(<a href="http://www.cyrus.fun/2019/08/17/MP4格式解析七-stbl/">MP4格式解析七</a>)（注意，有时sample delta数值不准，建议用duration / 总帧数 对比一下）</li>
+<li>stss中保存了I帧的序号，在stss中查找距离sample number最近的sync sample。</li>
+<li>stsc记录了每个chunk里面sample的数目，根据这个表可以计算出每个sample对应的chunk。</li>
+<li>stsz记录了每个sample的大小，结合stsc的内容，可以得到每个sample在其对应的chunk中的相对位置。</li>
+<li>stco记录了每个chunk在文件中的绝对位置。（注意是“绝对”位置，offset以文件开头为准，不是以mdat box为准）</li>
+<li>根据chunk在文件中的绝对位置及sample在chunk中的相对位置，即可计算出sample在文件中的绝对位置。</li>
+</ul>
+<p>下面看一下例子：<br>我们seek 5s画面:  </p>
+<p>1、先看下timescale和duration,timescale = 6000, duration = 56000, 5s标准化的时间为30000;<br><img src="//www.cyrus.fun/2019/08/20/MP4-seek实现/seek_1.png" alt=""></p>
+<p>2、再看一下stts:<br><img src="//www.cyrus.fun/2019/08/20/MP4-seek实现/seek_2.png" alt=""><br>只有一个entry,sample delta为400，56000/140=400,说明sample delta的值没问题。即5s的帧数为：30000/400=75帧。 </p>
+<p>3、看stss中的I帧位置:<br><img src="//www.cyrus.fun/2019/08/20/MP4-seek实现/seek_3.png" alt=""><br>可以看到距离5s所处的75帧最近的两个同步帧(I帧)分别为61和76,这里选取较近的76帧。（如果精度要求高，可以选61帧，然后一帧帧解码到75帧。）  </p>
+<p>4、到stsc中找76帧所处的chuck:<br><img src="//www.cyrus.fun/2019/08/20/MP4-seek实现/seek_4.png" alt=""><br>通过计算可以知道，76帧是第11个chuck的第一个sample。</p>
+<p>5、在stco找到第11个chuck在文件中的绝对位置:<br><img src="//www.cyrus.fun/2019/08/20/MP4-seek实现/seek_5.png" alt=""><br>chuck offset = 4055806</p>
+<p>6、在stsz中找到第76帧在chuck中的偏移和大小（这里是chuck中的第1帧，偏移为0，如果不是第1帧，则偏移为该chuck前面帧数size累加值）,sample size = 318782<br><img src="//www.cyrus.fun/2019/08/20/MP4-seek实现/seek_6.png" alt=""></p>
+<p>所以，只需从文件开始，偏移4055806，读取318782大小的数据，解码出来就是我们要seek的画面。当然要解码，还需要找到视频的解码数据如sps、pps(详见‘stsd’)。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
