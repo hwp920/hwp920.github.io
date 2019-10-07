@@ -42,7 +42,7 @@ cd /{你的路径}/ffmpeg-android-maker-master
 
 ### 二、移植FFMpeg到Android Studio
 * 1、新建一个Native C++项目
-！[](jni_3.png)
+![](jni_3.png)
 
 * 2、将编译完的.so库放到项目中，如下图：
 ![](jni_4.png)
