@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="一、环境1、macOS 10.13.62、Android Studio 3.4.1，Android SDK配置：
+二、编译FFMpeg编译方面，墙裂推荐这个脚本ffmpeg-android-maker,使用方法：
+
+1、打开ffmpeg-android-maker.sh  第111行找到TOOLCH">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Mac平台移植FFMpeg到Android">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="一、环境1、macOS 10.13.62、Android Studio 3.4.1，Android SDK配置：
+二、编译FFMpeg编译方面，墙裂推荐这个脚本ffmpeg-android-maker,使用方法：
+
+1、打开ffmpeg-android-maker.sh  第111行找到TOOLCH">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>Mac平台移植FFMpeg到Android - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Mac平台移植FFMpeg到Android</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-10-07
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Android/">#Android</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/FFMpeg/">FFMpeg</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="一、环境"><a href="#一、环境" class="headerlink" title="一、环境"></a>一、环境</h3><p>1、macOS 10.13.6<br>2、Android Studio 3.4.1，Android SDK配置：<br><img src="//www.cyrus.fun/2019/10/07/Mac平台移植FFMpeg到Android/jni_1.png" alt=""></p>
+<h3 id="二、编译FFMpeg"><a href="#二、编译FFMpeg" class="headerlink" title="二、编译FFMpeg"></a>二、编译FFMpeg</h3><p>编译方面，墙裂推荐这个脚本<a href="https://github.com/Javernaut/ffmpeg-android-maker" target="_blank" rel="noopener">ffmpeg-android-maker</a>,使用方法：</p>
+<ul>
+<li>1、打开ffmpeg-android-maker.sh  第111行找到<strong>TOOLCHAIN_PATH=${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/${HOST_TAG}</strong>，其中ANDROID_NDK_HOME的路径，在你的~/.bash_profile中你的ndk路径配置一下就好了。我这边之前把ndk的路径配置成ANDROID_NDK_ROOT，所以这里我就把ANDROID_NDK_HOME改为ANDROID_NDK_ROOT：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cyurssiMac:~ cyrus$ cat .bash_profile </span><br><span class="line">export PUB_HOSTED_URL=https://pub.flutter-io.cn</span><br><span class="line">export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</span><br><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home</span><br><span class="line">export ANDROID_NDK_ROOT=/Users/cyrus/Library/Android/sdk/ndk-bundle</span><br><span class="line">export JAVA_HOME</span><br><span class="line">export PATH=/Users/cyrus/development/flutter/bin:$PATH:$JAVA_HOME:$ANDROID_NDK_ROOT</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>ffmpeg-android-maker.sh第111行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TOOLCHAIN_PATH=$&#123;ANDROID_NDK_ROOT&#125;/toolchains/llvm/prebuilt/$&#123;HOST_TAG&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2、进入ffmpeg-android-maker-master文件夹，运行ffmpeg-android-maker.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /&#123;你的路径&#125;/ffmpeg-android-maker-master</span><br><span class="line">./ffmpeg-android-maker.sh</span><br></pre></td></tr></table></figure></p>
+<p>自动下载4.2.1版本的FFMpeg并编译armeabi-v7a、arm64-v8a、x86、x86_64四个平台的动态库。（如果需要其他版本可以改 FFMPEG_FALLBACK_VERSION=4.2.1 的值,编译需求可修改脚本163行开始的configure）</p>
+<p>编译结果：<br><img src="//www.cyrus.fun/2019/10/07/Mac平台移植FFMpeg到Android/jni_2.png" alt=""></p>
+<h3 id="二、移植FFMpeg到Android-Studio"><a href="#二、移植FFMpeg到Android-Studio" class="headerlink" title="二、移植FFMpeg到Android Studio"></a>二、移植FFMpeg到Android Studio</h3><ul>
+<li><p>1、新建一个Native C++项目<br>！<a href="jni_3.png"></a></p>
+</li>
+<li><p>2、将编译完的.so库放到项目中，如下图：<br><img src="//www.cyrus.fun/2019/10/07/Mac平台移植FFMpeg到Android/jni_4.png" alt=""></p>
+</li>
+<li><p>3、修改CMakeLists.txt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.4.1)</span><br><span class="line"></span><br><span class="line">#1.设置第三方库头文件所在位置，跟CMakeLists.txt同级，所以直接写include</span><br><span class="line">include_directories(include)</span><br><span class="line"></span><br><span class="line">#2.导入第三方动态库</span><br><span class="line">add_library(avcodec SHARED IMPORTED)</span><br><span class="line"></span><br><span class="line">set_target_properties( avcodec</span><br><span class="line">        PROPERTIES</span><br><span class="line">        IMPORTED_LOCATION $&#123;CMAKE_SOURCE_DIR&#125;/../jniLibs/$&#123;ANDROID_ABI&#125;/libavcodec.so)</span><br><span class="line">add_library(avformat SHARED IMPORTED)</span><br><span class="line"></span><br><span class="line">set_target_properties( avformat</span><br><span class="line">        PROPERTIES</span><br><span class="line">        IMPORTED_LOCATION $&#123;CMAKE_SOURCE_DIR&#125;/../jniLibs/$&#123;ANDROID_ABI&#125;/libavformat.so)</span><br><span class="line"></span><br><span class="line">add_library(avutil SHARED IMPORTED)</span><br><span class="line">set_target_properties( avutil</span><br><span class="line">        PROPERTIES</span><br><span class="line">        IMPORTED_LOCATION $&#123;CMAKE_SOURCE_DIR&#125;/../jniLibs/$&#123;ANDROID_ABI&#125;/libavutil.so )</span><br><span class="line"></span><br><span class="line">add_library(swscale SHARED IMPORTED)</span><br><span class="line">set_target_properties( swscale</span><br><span class="line">        PROPERTIES</span><br><span class="line">        IMPORTED_LOCATION $&#123;CMAKE_SOURCE_DIR&#125;/../jniLibs/$&#123;ANDROID_ABI&#125;/libswscale.so )</span><br><span class="line"></span><br><span class="line">#3.创建动态库（自己将要生成的动态库,库名跟代码文件都可以根据需要改，这里演示就随便了）</span><br><span class="line">add_library( TestJNI  SHARED native-lib.cpp)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">find_library( # Sets the name of the path variable.</span><br><span class="line">        log-lib</span><br><span class="line"></span><br><span class="line">        # Specifies the name of the NDK library that</span><br><span class="line">        # you want CMake to locate.</span><br><span class="line">        log )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">* 4.链接需要的第三方动态库</span><br><span class="line">target_link_libraries( # Specifies the target library.</span><br><span class="line">        TestJNI</span><br><span class="line"></span><br><span class="line">        #the third library</span><br><span class="line">        avcodec</span><br><span class="line">        avformat</span><br><span class="line">        avutil</span><br><span class="line">        swscale</span><br><span class="line"></span><br><span class="line">        # Links the target library to the log library</span><br><span class="line">        # included in the NDK.</span><br><span class="line">        $&#123;log-lib&#125; )</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>5、修改代码，看一下效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// native-lib.cpp</span><br><span class="line"></span><br><span class="line">#include &lt;jni.h&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line"></span><br><span class="line">extern &quot;C&quot; &#123;</span><br><span class="line">#include &quot;libavcodec/avcodec.h&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extern &quot;C&quot; JNIEXPORT jstring JNICALL</span><br><span class="line">Java_com_cyrus_ffmpegjni_MainActivity_stringFromJNI(</span><br><span class="line">        JNIEnv *env,</span><br><span class="line">        jobject /* this */) &#123;</span><br><span class="line">    std::string hello = avcodec_configuration();</span><br><span class="line">    return env-&gt;NewStringUTF(hello.c_str());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// MainActivity</span><br><span class="line">// CMakeLists.txt中把生成库改成TestJNI了，所以这里要改一下</span><br><span class="line">    static &#123;</span><br><span class="line">        System.loadLibrary(&quot;TestJNI&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>效果：<br><img src="//www.cyrus.fun/2019/10/07/Mac平台移植FFMpeg到Android/jni_5.png" alt=""></p>
+<ul>
+<li>6、自定义类导入FFMpeg<br>这里先说一个我觉得挺好的javah tool配置：<br>Android Studio -&gt; Preferences -&gt;External Tools -&gt; “+”<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Program填 		$JDKPath$/bin/javah</span><br><span class="line">Arguments填		$FileClass$</span><br><span class="line">Working direction填		$ModuleFileDir$/src/main/java</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>具体如下图：<br><img src="//www.cyrus.fun/2019/10/07/Mac平台移植FFMpeg到Android/jni_6.png" alt=""></p>
+<p>创建一下类，这里就叫TestJNI<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package com.cyrus.ffmpegjni;</span><br><span class="line"></span><br><span class="line">public class TestJNI &#123;</span><br><span class="line">    public native String GetConfigString();</span><br><span class="line"></span><br><span class="line">    static  &#123;</span><br><span class="line">        System.loadLibrary(&quot;TestJNI&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>选中TestJNI，右键External Tools -&gt; javah,生成头文件com_cyrus_ffmpegjni_TestJNI.h，将头文件放到cpp文件夹下,新建一个TestJNI.cpp，代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;com_cyrus_ffmpegjni_TestJNI.h&quot;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line"></span><br><span class="line">extern &quot;C&quot; &#123;</span><br><span class="line">#include &quot;libavcodec/avcodec.h&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">JNIEXPORT jstring JNICALL Java_com_cyrus_ffmpegjni_TestJNI_GetConfigString</span><br><span class="line">        (JNIEnv *env, jobject obj)</span><br><span class="line">&#123;</span><br><span class="line">    std::string hello = avcodec_configuration();</span><br><span class="line">    return env-&gt;NewStringUTF(hello.c_str());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>修改MainActivity<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package com.cyrus.ffmpegjni;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">		</span><br><span class="line">        //这个就是我们新建的JNI类</span><br><span class="line">        TestJNI test = new TestJNI();</span><br><span class="line"></span><br><span class="line">        // Example of a call to a native method</span><br><span class="line">        TextView tv = findViewById(R.id.sample_text);</span><br><span class="line">        tv.setText(test.GetConfigString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>删掉native-lib.cpp,修改一下CMakeLists.txt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#3.创建动态库（自己将要生成的动态库,库名跟代码文件都可以根据需要改，这里演示就随便了）</span><br><span class="line">// 这里的cpp改成我们自己建的TestJNI.cpp</span><br><span class="line">add_library( TestJNI  SHARED TestJNI.cpp)</span><br></pre></td></tr></table></figure></p>
+<p>Build -&gt; Clean Project, 再次运行，正常显示。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
