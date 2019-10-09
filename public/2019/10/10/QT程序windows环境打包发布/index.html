@@ -13,6 +13,12 @@
     
 
     
+        <meta name="description" content="参考链接：
+
+windeployqt生成依赖库：https://blog.csdn.net/windsnow1/article/details/78004265
+NSIS生成安装包：https://blog.csdn.net/m1223853767/article/details/79702064
+">
+    
 
     <!--Author-->
     
@@ -21,10 +27,16 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Cyrus的技术空间">
+        <meta property="og:title" content="QT程序windows环境打包发布">
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="参考链接：
+
+windeployqt生成依赖库：https://blog.csdn.net/windsnow1/article/details/78004265
+NSIS生成安装包：https://blog.csdn.net/m1223853767/article/details/79702064
+">
     
 
     <!--Open Graph Site Name-->
@@ -32,7 +44,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -51,7 +63,7 @@
 
     <!-- Title -->
     
-    <title>page - Archives - Cyrus的技术空间</title>
+    <title>QT程序windows环境打包发布 - Cyrus的技术空间</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -153,98 +165,112 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>Archives</h1>
+                <div class="post-heading">
+                    <h1>QT程序windows环境打包发布</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-10-10
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/打包发布/">#打包发布</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/QT/">QT</a>
+
+                    
+                </div>
             
-                <div class="post-preview">
-    <a href="/2018/10/24/AVFoundation学习笔记一-iOS多媒体环境/">
-        <h1 class="post-title archive">
-            AVFoundation学习笔记一 iOS多媒体环境
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-24
-    </p>
-</div>
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2018/10/23/SRS服务器搭建/">
-        <h1 class="post-title archive">
-            SRS服务器一 搭建
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-23
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/10/23/冒泡排序/">
-        <h1 class="post-title archive">
-            冒泡排序
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-23
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/10/23/TCP-IP学习笔记一/">
-        <h1 class="post-title archive">
-            TCP/IP学习笔记一
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-            Posted by Cyrus on
-        
-        2018-10-23
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-        <li class="previous"><a href="/archives/page/5/">&larr;  Newer Posts</a></li>
-    
-    
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>参考链接：</p>
+<ul>
+<li>windeployqt生成依赖库：<a href="https://blog.csdn.net/windsnow1/article/details/78004265" target="_blank" rel="noopener">https://blog.csdn.net/windsnow1/article/details/78004265</a></li>
+<li>NSIS生成安装包：<a href="https://blog.csdn.net/m1223853767/article/details/79702064" target="_blank" rel="noopener">https://blog.csdn.net/m1223853767/article/details/79702064</a></li>
 </ul>
+<h3 id="一、依赖库生成"><a href="#一、依赖库生成" class="headerlink" title="一、依赖库生成"></a>一、依赖库生成</h3><ul>
+<li>1、选择release环境，编辑，会生成release文件夹和.exe文件</li>
+<li>2、如果有第三方动态库，将动态库拷贝到编译生成的release，运行程序(这一步可以省略)<br><img src="//www.cyrus.fun/2019/10/10/QT程序windows环境打包发布/winqt_1.png" alt=""></li>
+<li>3、将.exe文件拷贝出来，找到QT用的编辑器（这里是QT 5.12.5(MinGw7.3.0 64bit)),执行下面的代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd xxxxx\xxx\	//进入.exe所在的文件夹</span><br><span class="line">windeployqt xxx.exe</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="//www.cyrus.fun/2019/10/10/QT程序windows环境打包发布/winqt_2.png" alt=""><br><img src="//www.cyrus.fun/2019/10/10/QT程序windows环境打包发布/winqt_3.png" alt=""></p>
+<ul>
+<li>4、将第三方运态库文件拷到.exe同级目录。完成！</li>
+</ul>
+<p>这里说一下容易遇到的问题：</p>
+<ul>
+<li><p>1、在release环境编译后，到release文件夹运行程序，提示缺少.dll文件<br>百度及部分视频讲到qt安装目录下拷贝对应的.dll文件。这种方法在安装qt的电脑上可以运行，但是在没安装qt的电脑上还是会提示缺少其他底层的.dll文件。一个一个添加效率太低。<br><img src="//www.cyrus.fun/2019/10/10/QT程序windows环境打包发布/error_1.png" alt="编译后提示缺少库"><br><img src="//www.cyrus.fun/2019/10/10/QT程序windows环境打包发布/error_2.png" alt="在未安装qt的电脑上提示缺少底层库"></p>
+</li>
+<li><p>2、出现0xc000007b——应用程序无法正常启动<br>这个问题主要是编译器选的不对，例如我们要生成MinGW64位的程序，在QT中却使用了clang x86的编译器。查看下面两个位置设置是否对应：<br><img src="//www.cyrus.fun/2019/10/10/QT程序windows环境打包发布/winqt_4.png" alt=""><br><img src="//www.cyrus.fun/2019/10/10/QT程序windows环境打包发布/winqt_2.png" alt=""></p>
+</li>
+</ul>
+<h3 id="二、NSIS生成安装包"><a href="#二、NSIS生成安装包" class="headerlink" title="二、NSIS生成安装包"></a>二、NSIS生成安装包</h3><p>使用NSIS生成安装包，我们主要会用到两个软件：</p>
+<ul>
+<li>1、NSIS，NSIS是一个基于脚本的打包软件，提供了安装、卸载、系统设置、文件解压缩等功能。但是脚本编写麻烦，所以又有了第二个软件NSIS Edit.</li>
+<li>2、NSIS Edit，顾名思义，就是NSIS编辑器，可以通过可视化界面的方式配置脚本并编译生成安装包。</li>
+</ul>
+<p>具体的使用过程 <a href="https://blog.csdn.net/m1223853767/article/details/79702064" target="_blank" rel="noopener">NSIS制作软件安装包</a> 这篇文篇已经讲得非常详细,这里就不再重复，主要讲几个需要注意的地方。</p>
+<ul>
+<li>1、NSIS Edit 新建时，选择“文件”菜单中的 “新建脚本：向导“；</li>
+<li>2、步骤4，授权文件，如果没有就删掉，不然编译会出错；</li>
+<li>3、步骤5，先删除默认的两个示例文件。如果包含子文件夹，使用AddTreeDir添加。使用添加文件的话，文件夹不会添加，生成的安装包会缺少库。<br><img src="//www.cyrus.fun/2019/10/10/QT程序windows环境打包发布/winqt_5.png" alt=""></li>
+</ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr>
