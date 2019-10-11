@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="参考：https://wiki.multimedia.cx/index.php?title=ADTShttps://wiki.multimedia.cx/index.php?title=MPEG-4_Audio#Channel_Configurations
+一、adts是啥，有什么用？ADTS全称是">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="AAC ADTS格式解析">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="参考：https://wiki.multimedia.cx/index.php?title=ADTShttps://wiki.multimedia.cx/index.php?title=MPEG-4_Audio#Channel_Configurations
+一、adts是啥，有什么用？ADTS全称是">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>AAC ADTS格式解析 - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>AAC ADTS格式解析</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2019-10-11
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/adts/">#adts</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/音视频/">音视频</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>参考：<a href="https://wiki.multimedia.cx/index.php?title=ADTS" target="_blank" rel="noopener">https://wiki.multimedia.cx/index.php?title=ADTS</a><br><a href="https://wiki.multimedia.cx/index.php?title=MPEG-4_Audio#Channel_Configurations" target="_blank" rel="noopener">https://wiki.multimedia.cx/index.php?title=MPEG-4_Audio#Channel_Configurations</a></p>
+<h3 id="一、adts是啥，有什么用？"><a href="#一、adts是啥，有什么用？" class="headerlink" title="一、adts是啥，有什么用？"></a>一、adts是啥，有什么用？</h3><p>ADTS全称是(Audio Data Transport Stream)，是AAC的一种十分常见的传输格式。一般为7字节或9字节，包含用于aac音频解码的采样率、通道数、采样精度等信息。在音频传输过程中，只要在音频数据前加上adts数据，就可以在任意位置解码出音频数据（pcm）并播放。</p>
+<h3 id="二、adts长什么样？怎么看？"><a href="#二、adts长什么样？怎么看？" class="headerlink" title="二、adts长什么样？怎么看？"></a>二、adts长什么样？怎么看？</h3><p>简单地说，adts就长下面这样子，每一个字母代表一个参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">AAAAAAAA AAAABCCD EEFFFFGH HHIJKLMM MMMMMMMM MMMOOOOO OOOOOOPP (QQQQQQQQ QQQQQQQQ)</span><br><span class="line"></span><br><span class="line">A:	 12位， 同步码，全为1</span><br><span class="line">B:   MPEG版本: 0 for MPEG-4, 1 for MPEG-2</span><br><span class="line">C:   Layer: 都是0     </span><br><span class="line">D:   有否有CRC校验  1 没有 0 有  有的话adts后面跟两字节crc校验(即上面的Q)</span><br><span class="line">E:   profile, the MPEG-4 Audio Object Type minus 1</span><br><span class="line">F:   MPEG-4 Sampling Frequency Index，即采样率</span><br><span class="line">G:   private bit, guaranteed never to be used by MPEG, set to 0 when encoding, ignore when decoding,也就是说，传0就对了</span><br><span class="line">H:   MPEG-4 Channel Configuration, 通道数</span><br><span class="line">I:   originality, set to 0 when encoding, ignore when decoding,无脑传0</span><br><span class="line">J:   home, set to 0 when encoding, ignore when decoding,同样无脑传0</span><br><span class="line">K：  copyrighted id bit, the next bit of a centrally registered copyright identifier, set to 0 when encoding, ignore when decoding， 同上</span><br><span class="line">L：	copyright id start, signals that this frame&apos;s copyright id bit is the first bit of the copyright id, set to 0 when encoding, ignore when decoding， 同上</span><br><span class="line">M: 	包含adts长度的帧长度， frame length, this value must include 7 or 9 bytes of header length: FrameLength = (ProtectionAbsent == 1 ? 7 : 9) + size(AACFrame)</span><br><span class="line">O:  11位,Buffer fullness</span><br><span class="line">P:  Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibility always use 1 AAC frame per ADTS frame</span><br><span class="line">Q:	两字节crc校验</span><br></pre></td></tr></table></figure></p>
+<p>下面看看具体参数的值含义：</p>
+<ul>
+<li><p>1、MPEG-4 Audio Object Types（E = type - 1）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">* 0: Null </span><br><span class="line">* 1: AAC Main</span><br><span class="line">* 2: AAC LC (Low Complexity)</span><br><span class="line">* 3: AAC SSR (Scalable Sample Rate)</span><br><span class="line">* 4: AAC LTP (Long Term Prediction)</span><br><span class="line">* 5: SBR (Spectral Band Replication)</span><br><span class="line">* 6: AAC Scalable</span><br><span class="line">* 7: TwinVQ</span><br><span class="line">* 8: CELP (Code Excited Linear Prediction)</span><br><span class="line">* 9: HXVC (Harmonic Vector eXcitation Coding)</span><br><span class="line">* 10: Reserved</span><br><span class="line">* 11: Reserved</span><br><span class="line">* 12: TTSI (Text-To-Speech Interface)</span><br><span class="line">* 13: Main Synthesis</span><br><span class="line">* 14: Wavetable Synthesis</span><br><span class="line">* 15: General MIDI</span><br><span class="line">* 16: Algorithmic Synthesis and Audio Effects</span><br><span class="line">* 17: ER (Error Resilient) AAC LC</span><br><span class="line">* 18: Reserved</span><br><span class="line">* 19: ER AAC LTP</span><br><span class="line">* 20: ER AAC Scalable</span><br><span class="line">* 21: ER TwinVQ</span><br><span class="line">* 22: ER BSAC (Bit-Sliced Arithmetic Coding)</span><br><span class="line">* 23: ER AAC LD (Low Delay)</span><br><span class="line">* 24: ER CELP</span><br><span class="line">* 25: ER HVXC</span><br><span class="line">* 26: ER HILN (Harmonic and Individual Lines plus Noise)</span><br><span class="line">* 27: ER Parametric</span><br><span class="line">* 28: SSC (SinuSoidal Coding)</span><br><span class="line">* 29: PS (Parametric Stereo)</span><br><span class="line">* 30: MPEG Surround</span><br><span class="line">* 31: (Escape value)</span><br><span class="line">* 32: Layer-1</span><br><span class="line">* 33: Layer-2</span><br><span class="line">* 34: Layer-3</span><br><span class="line">* 35: DST (Direct Stream Transfer)</span><br><span class="line">* 36: ALS (Audio Lossless)</span><br><span class="line">* 37: SLS (Scalable LosslesS)</span><br><span class="line">* 38: SLS non-core</span><br><span class="line">* 39: ER AAC ELD (Enhanced Low Delay)</span><br><span class="line">* 40: SMR (Symbolic Music Representation) Simple</span><br><span class="line">* 41: SMR Main</span><br><span class="line">* 42: USAC (Unified Speech and Audio Coding) (no SBR)</span><br><span class="line">* 43: SAOC (Spatial Audio Object Coding)</span><br><span class="line">* 44: LD MPEG Surround</span><br><span class="line">* 45: USAC</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2、MPEG-4 Sampling Frequency Index（即上面的F) </p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">There are 13 supported frequencies:</span><br><span class="line">* 0: 96000 Hz</span><br><span class="line">* 1: 88200 Hz</span><br><span class="line">* 2: 64000 Hz</span><br><span class="line">* 3: 48000 Hz</span><br><span class="line">* 4: 44100 Hz</span><br><span class="line">* 5: 32000 Hz</span><br><span class="line">* 6: 24000 Hz</span><br><span class="line">* 7: 22050 Hz</span><br><span class="line">* 8: 16000 Hz</span><br><span class="line">* 9: 12000 Hz</span><br><span class="line">* 10: 11025 Hz</span><br><span class="line">* 11: 8000 Hz</span><br><span class="line">* 12: 7350 Hz</span><br><span class="line">* 13: Reserved</span><br><span class="line">* 14: Reserved</span><br><span class="line">* 15: frequency is written explictly</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3、MPEG-4 Channel Configuration（即上面的H)  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">These are the channel configurations:</span><br><span class="line">* 0: Defined in AOT Specifc Config</span><br><span class="line">* 1: 1 channel: front-center</span><br><span class="line">* 2: 2 channels: front-left, front-right</span><br><span class="line">* 3: 3 channels: front-center, front-left, front-right</span><br><span class="line">* 4: 4 channels: front-center, front-left, front-right, back-center</span><br><span class="line">* 5: 5 channels: front-center, front-left, front-right, back-left, back-right</span><br><span class="line">* 6: 6 channels: front-center, front-left, front-right, back-left, back-right, LFE-channel</span><br><span class="line">* 7: 8 channels: front-center, front-left, front-right, side-left, side-right, back-left, back-right, LFE-channel</span><br><span class="line">* 8-15: Reserved</span><br></pre></td></tr></table></figure>
+<p>下面看一个具体adts头的解析：<br>数据为：fff9 5040 017f fc<br>首先，改写成二进制： 11111111 11111001 01010000 01000000 00000001 01111111 11111100<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">11111111 1111 	--&gt; A 同步码，全为1</span><br><span class="line">1				--&gt; B 1 for MPEG-2</span><br><span class="line">00				--&gt; C 总是0</span><br><span class="line">1				--&gt; D 1代表没有CRC验证，即adts长度为7</span><br><span class="line">01				--&gt; E profile-1,即profile=2，查看上面的MPEG-4 Audio Object Types列表，可以知道是AAC LC (Low Complexity) </span><br><span class="line">0100 			--&gt; F 采样率，查看上面的MPEG-4 Sampling Frequency Index，可以知道4是44100HZ</span><br><span class="line">0				--&gt; G 无脑0</span><br><span class="line">001				--&gt; H 通道数，1为单通道</span><br><span class="line">0				--&gt; I 无脑0</span><br><span class="line">0				--&gt; J 无脑0</span><br><span class="line">0				--&gt; K 无脑0</span><br><span class="line">0				--&gt; L 无脑0</span><br><span class="line">00 00000001 011 --&gt; M 包含adts长度的帧长度,这里是11，说明这一帧后面还有4字节的数据</span><br><span class="line">11111 111111	--&gt; O 11位,Buffer fullness</span><br><span class="line">00				--&gt; P 几帧aac数据带一个adts头减1，0代码每帧一个adts头</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、项目中adts怎么组"><a href="#三、项目中adts怎么组" class="headerlink" title="三、项目中adts怎么组"></a>三、项目中adts怎么组</h3><p>下面我们看一个OC的示例代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (NSData*) adtsDataForPacketLength:(NSUInteger)packetLength &#123;</span><br><span class="line">    int adtsLength = 7;</span><br><span class="line">    char *packet = malloc(sizeof(char) * adtsLength);</span><br><span class="line">    // Variables Recycled by addADTStoPacket</span><br><span class="line">    int profile = 2;  //AAC LC</span><br><span class="line">    //39=MediaCodecInfo.CodecProfileLevel.AACObjectELD;</span><br><span class="line">    int freqIdx = 4;  //44.1KHz</span><br><span class="line">    int chanCfg = 1;  //MPEG-4 Audio Channel Configuration. 1 Channel front-center</span><br><span class="line">    NSUInteger fullLength = adtsLength + packetLength;</span><br><span class="line">    // fill in ADTS data</span><br><span class="line">    packet[0] = (char)0xFF; // 11111111     = syncword</span><br><span class="line">    packet[1] = (char)0xF9; // 1111 1 00 1  = syncword MPEG-2 Layer CRC</span><br><span class="line">    packet[2] = (char)(((profile-1)&lt;&lt;6) + (freqIdx&lt;&lt;2) +(chanCfg&gt;&gt;2));</span><br><span class="line">    packet[3] = (char)(((chanCfg&amp;3)&lt;&lt;6) + (fullLength&gt;&gt;11));</span><br><span class="line">    packet[4] = (char)((fullLength&amp;0x7FF) &gt;&gt; 3);</span><br><span class="line">    packet[5] = (char)(((fullLength&amp;7)&lt;&lt;5) + 0x1F);</span><br><span class="line">    packet[6] = (char)0xFC;</span><br><span class="line">    NSData *data = [NSData dataWithBytesNoCopy:packet length:adtsLength freeWhenDone:YES];</span><br><span class="line">    return data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
