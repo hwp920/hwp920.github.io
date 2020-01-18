@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="一、编译openssl上一篇编译的openssl已经包含了x86_64框架，可以直接拿过来用，如果觉得包含的框架太多，包太大，可以把脚本的第48行， ARCH_LIST=(“armv7” “armv7s” “arm64” “i386” “x86_64”)  改成  ARCH_LIST=(“x86_6">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cyrus">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="macox QT 集成ONVIF客户端">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="一、编译openssl上一篇编译的openssl已经包含了x86_64框架，可以直接拿过来用，如果觉得包含的框架太多，包太大，可以把脚本的第48行， ARCH_LIST=(“armv7” “armv7s” “arm64” “i386” “x86_64”)  改成  ARCH_LIST=(“x86_6">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cyrus的技术空间">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://www.cyrus.funhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>macox QT 集成ONVIF客户端 - Cyrus的技术空间</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cyrus的技术空间</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>macox QT 集成ONVIF客户端</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Cyrus on
+                        
+                        
+                            2020-01-18
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/ONVIF/">#ONVIF</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="一、编译openssl"><a href="#一、编译openssl" class="headerlink" title="一、编译openssl"></a>一、编译openssl</h3><p>上一篇编译的openssl已经包含了x86_64框架，可以直接拿过来用，如果觉得包含的框架太多，包太大，可以把脚本的第48行，<strong><em> ARCH_LIST=(“armv7” “armv7s” “arm64” “i386” “x86_64”) </em></strong> 改成 <strong><em> ARCH_LIST=(“x86_64”) </em></strong>，去掉多余的框架。</p>
+<h3 id="二、编译ffmpeg"><a href="#二、编译ffmpeg" class="headerlink" title="二、编译ffmpeg"></a>二、编译ffmpeg</h3><p>这里选择用ffmpeg播放rtmp，具体的ffmpeg编译可以看前面的文章，要注意的是rtmp属于网络多媒体，编译的时候要把<strong><em>”–disable-network“</em></strong>去掉。具体的播放代码打算直接用前面kxMovie翻译版的播放器。</p>
+<h3 id="三、将onvif框架文件编译成静态库文件（可选）"><a href="#三、将onvif框架文件编译成静态库文件（可选）" class="headerlink" title="三、将onvif框架文件编译成静态库文件（可选）"></a>三、将onvif框架文件编译成静态库文件（可选）</h3><p>如果想项目整洁一点，可以将前面生成的onvif框架文件生成静态库，导入到项目中。这里用cmake编译。<br>CMakeList.txt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.1.0)</span><br><span class="line">PROJECT(onvifClient)</span><br><span class="line"></span><br><span class="line">message(STATUS &quot;$&#123;PROJECT_BINARY_DIR&#125;&quot;)</span><br><span class="line"></span><br><span class="line">include_directories(&quot;$&#123;PROJECT_BINARY_DIR&#125;&quot; $&#123;PROJECT_BINARY_DIR&#125;/../openssl/include)</span><br><span class="line"></span><br><span class="line">add_library(libcrypto STATIC IMPORTED)</span><br><span class="line">set_target_properties( libcrypto</span><br><span class="line">        PROPERTIES</span><br><span class="line">        IMPORTED_LOCATION $&#123;PROJECT_BINARY_DIR&#125;/../openssl/libcrypto.a )</span><br><span class="line"></span><br><span class="line">add_library(libssl STATIC IMPORTED)</span><br><span class="line">set_target_properties( libssl</span><br><span class="line">        PROPERTIES</span><br><span class="line">        IMPORTED_LOCATION $&#123;PROJECT_BINARY_DIR&#125;/../openssl/libssl.a )</span><br><span class="line"></span><br><span class="line">file(GLOB SOURCES &quot;*.c&quot; )</span><br><span class="line">add_library(onvifClient STATIC $&#123;SOURCES&#125; wsdd.nsmap)</span><br><span class="line">target_link_libraries(onvifClient libcrypto libssl)</span><br></pre></td></tr></table></figure></p>
+<p>可以生成libonvifClient.a,将.h文件拷贝出来，放到include文件里，就ok了。<br><img src="//www.cyrus.fun/2020/01/18/macox-QT-集成ONVIF客户端/onvif_qt_1.png" alt=""></p>
+<h3 id="四、创建项目"><a href="#四、创建项目" class="headerlink" title="四、创建项目"></a>四、创建项目</h3><p>1、.pro导入所需的qt库和第三方库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">QT       += core gui multimedia concurrent</span><br><span class="line"></span><br><span class="line">greaterThan(QT_MAJOR_VERSION, 4): QT += widgets</span><br><span class="line"></span><br><span class="line">CONFIG += c++11</span><br><span class="line"></span><br><span class="line"># The following define makes your compiler emit warnings if you use</span><br><span class="line"># any Qt feature that has been marked deprecated (the exact warnings</span><br><span class="line"># depend on your compiler). Please consult the documentation of the</span><br><span class="line"># deprecated API in order to know how to port your code away from it.</span><br><span class="line">DEFINES += QT_DEPRECATED_WARNINGS</span><br><span class="line"></span><br><span class="line"># You can also make your code fail to compile if it uses deprecated APIs.</span><br><span class="line"># In order to do so, uncomment the following line.</span><br><span class="line"># You can also select to disable deprecated APIs only up to a certain version of Qt.</span><br><span class="line">#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0</span><br><span class="line"></span><br><span class="line">macx &#123;</span><br><span class="line"></span><br><span class="line">#INCLUDEPATH += $$PWD/libFFmpeg/include</span><br><span class="line">INCLUDEPATH += $$PWD/onvifClient/include</span><br><span class="line">INCLUDEPATH += $$PWD/openssl/include</span><br><span class="line"></span><br><span class="line">LIBS += -L$$PWD/onvifClient</span><br><span class="line">LIBS += -lonvifClient</span><br><span class="line"></span><br><span class="line">LIBS += -L$$PWD/openssl</span><br><span class="line">LIBS += -lcrypto  \</span><br><span class="line">        -lssl</span><br><span class="line"></span><br><span class="line">LIBS += -L /usr/lib -lbz2 -lm -lz -llzma</span><br><span class="line"></span><br><span class="line">LIBS += -framework Foundation -framework AudioToolBox \</span><br><span class="line">        -framework VideoToolBox -framework AVFoundation \</span><br><span class="line">        -framework Cocoa -framework CoreMedia \</span><br><span class="line">        -framework QuartzCore -framework VideoDecodeAcceleration \</span><br><span class="line">        -framework Security</span><br><span class="line"></span><br><span class="line">LIBS += -liconv</span><br><span class="line">INCLUDEPATH += $$PWD/libFFmpeg/Macx/include</span><br><span class="line"></span><br><span class="line">LIBS += -L$$PWD/libFFmpeg/Macx/lib</span><br><span class="line"></span><br><span class="line">LIBS += -lavcodec   \</span><br><span class="line">        -lavdevice  \</span><br><span class="line">        -lavfilter  \</span><br><span class="line">        -lavformat  \</span><br><span class="line">        -lavutil    \</span><br><span class="line">        -lswscale   \</span><br><span class="line">        -lswresample</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SOURCES += \</span><br><span class="line">    main.cpp \</span><br><span class="line">    mainwindow.cpp \</span><br><span class="line">    mpaudiodevice.cpp \</span><br><span class="line">    mpaudiooutput.cpp \</span><br><span class="line">    mpmoviedecoder.cpp \</span><br><span class="line">    mpplayer.cpp \</span><br><span class="line">    mpvideoframe.cpp \</span><br><span class="line">    myopenglwidget.cpp</span><br><span class="line"></span><br><span class="line">HEADERS += \</span><br><span class="line">    mainwindow.h \</span><br><span class="line">    mpaudiodevice.h \</span><br><span class="line">    mpaudiooutput.h \</span><br><span class="line">    mpmoviedecoder.h \</span><br><span class="line">    mpplayer.h \</span><br><span class="line">    mpvideoframe.h \</span><br><span class="line">    myopenglwidget.h</span><br><span class="line"></span><br><span class="line">FORMS += \</span><br><span class="line">    mainwindow.ui</span><br><span class="line"></span><br><span class="line"># Default rules for deployment.</span><br><span class="line">qnx: target.path = /tmp/$$&#123;TARGET&#125;/bin</span><br><span class="line">else: unix:!android: target.path = /opt/$$&#123;TARGET&#125;/bin</span><br><span class="line">!isEmpty(target.path): INSTALLS += target</span><br></pre></td></tr></table></figure></p>
+<p>mainwindow.h的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#ifndef MAINWINDOW_H</span><br><span class="line">#define MAINWINDOW_H</span><br><span class="line"></span><br><span class="line">#include &lt;QMainWindow&gt;</span><br><span class="line">#include &lt;QVector&gt;</span><br><span class="line">#include &lt;QQueue&gt;</span><br><span class="line"></span><br><span class="line">#include &quot;OnvifControl.h&quot;</span><br><span class="line">#include &quot;mpplayer.h&quot;</span><br><span class="line"></span><br><span class="line">QT_BEGIN_NAMESPACE</span><br><span class="line">namespace Ui &#123; class MainWindow; &#125;</span><br><span class="line">QT_END_NAMESPACE</span><br><span class="line"></span><br><span class="line">class MainWindow : public QMainWindow</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    MainWindow(QWidget *parent = nullptr);</span><br><span class="line">    ~MainWindow();</span><br><span class="line"></span><br><span class="line">    void play();</span><br><span class="line">    void pause();</span><br><span class="line"></span><br><span class="line">    Ui::MainWindow 	*getUI();</span><br><span class="line">    QStringList&amp;    getXaddrs();</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line"></span><br><span class="line">public slots:</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">    QStringList     xaddrs;	//数据源，存入搜索到的设备地址</span><br><span class="line">    Ui::MainWindow  *ui;</span><br><span class="line">    oc_device_t     *device;</span><br><span class="line">    MPPlayer        *p_player;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">#endif // MAINWINDOW_H</span><br></pre></td></tr></table></figure></p>
+<p>mainwindow.cpp的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;mainwindow.h&quot;</span><br><span class="line">#include &quot;ui_mainwindow.h&quot;</span><br><span class="line">#include &lt;QDebug&gt;</span><br><span class="line"></span><br><span class="line">void cb_detect(void *userinfo, struct wsdd__ProbeMatchesType *wsdd__ProbeMatches)</span><br><span class="line">&#123;</span><br><span class="line">    MainWindow *window = (MainWindow *)userinfo;</span><br><span class="line"></span><br><span class="line">    if(wsdd__ProbeMatches != NULL) &#123;</span><br><span class="line">        for(int i = 0; i &lt; wsdd__ProbeMatches-&gt;__sizeProbeMatch; i++) &#123;</span><br><span class="line">            struct wsdd__ProbeMatchType *probeMatch = wsdd__ProbeMatches-&gt;ProbeMatch + i;</span><br><span class="line">            printf(&quot;%s\n&quot;, probeMatch-&gt;XAddrs);</span><br><span class="line">            QString addr = QString(probeMatch-&gt;XAddrs);</span><br><span class="line">            if(!window-&gt;getXaddrs().contains(addr)) &#123;</span><br><span class="line">                window-&gt;getXaddrs().append(addr);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else  &#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;no devices&quot; &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    window-&gt;getUI()-&gt;listWidget-&gt;clear();</span><br><span class="line">    window-&gt;getUI()-&gt;listWidget-&gt;addItems(window-&gt;getXaddrs());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MainWindow::MainWindow(QWidget *parent)</span><br><span class="line">    : QMainWindow(parent)</span><br><span class="line">    , ui(new Ui::MainWindow)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line"></span><br><span class="line">    setGeometry(100, 100, 1000, 600);</span><br><span class="line">    setFixedSize(1000, 600);</span><br><span class="line">    ui-&gt;label-&gt;setScaledContents(true);</span><br><span class="line"></span><br><span class="line">    connect(ui-&gt;searchBtn, &amp;QPushButton::released, [=]()&#123;</span><br><span class="line">        this-&gt;getXaddrs().clear();</span><br><span class="line">        this-&gt;getUI()-&gt;listWidget-&gt;clear();</span><br><span class="line">        ONVIF_DetectDevice(cb_detect, (void *)this);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    connect(ui-&gt;listWidget, &amp;QListWidget::currentRowChanged, [=](int row)&#123;</span><br><span class="line">        qDebug() &lt;&lt; &quot;current row is &quot; &lt;&lt; row &lt;&lt; endl;</span><br><span class="line">        if(row &gt;= 0) ui-&gt;deviceNameLb-&gt;setText(xaddrs.at(row));</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    connect(ui-&gt;connectBtn, &amp;QPushButton::released, [=]()&#123;</span><br><span class="line">        QString url = ui-&gt;deviceNameLb-&gt;text();</span><br><span class="line">        if(!url.startsWith(&quot;http&quot;)) return;</span><br><span class="line">        if(ui-&gt;userName-&gt;text().isEmpty() || ui-&gt;password-&gt;text().isEmpty()) return ;</span><br><span class="line"></span><br><span class="line">        device = createDevice(url.toUtf8(), ui-&gt;userName-&gt;text().toUtf8(), ui-&gt;password-&gt;text().toUtf8());</span><br><span class="line">        ONVIF_GetCapabilities(device);</span><br><span class="line">        ONVIF_GetProfile(device);</span><br><span class="line"></span><br><span class="line">        char uri[128] = &#123;0&#125;;</span><br><span class="line">        ONVIF_GetStreamUri(device, 0, uri, 128);</span><br><span class="line">        p_player = new MPPlayer(QString(uri), ui-&gt;label);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MainWindow::~MainWindow()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Ui::MainWindow *MainWindow::getUI()</span><br><span class="line">&#123;</span><br><span class="line">    return this-&gt;ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">QStringList&amp; MainWindow::getXaddrs()</span><br><span class="line">&#123;</span><br><span class="line">    return this-&gt;xaddrs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="//www.cyrus.fun/2020/01/18/macox-QT-集成ONVIF客户端/onvif_qt_2.png" alt=""></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2020 Cyrus<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><a href="http://www.beian.miit.gov.cn">粤ICP备18110122号-1</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
